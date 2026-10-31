@@ -1,0 +1,35 @@
+{
+  "CANONICAL SOURCE": "config/official_urls.json",
+  "_pointer": true,
+  "_note": "本文件是指针，不是配方本体。项目里的浏览器/平台配方已经存在于下列文件，请勿在此重复维护。",
+  "canonical_sources": {
+    "per_question_recipes": {
+      "path": "config/official_urls.json",
+      "description": "逐题 URL 配方：平台、入口、字段、操作路径、登录与自动化边界",
+      "records": 326,
+      "platforms": 183
+    },
+    "platform_routes": {
+      "path": "config/platforms.yaml",
+      "description": "12 个平台的总路线（id / name / url / login / route / automation）"
+    },
+    "readable_index": {
+      "path": "skill/official_links.md",
+      "description": "official_urls.json 的可读版"
+    },
+    "platform_classification": {
+      "path": "skill/platform_routes.md",
+      "description": "平台分类与检索路线"
+    },
+    "fast_overrides": {
+      "path": "config/fast_profile.yaml",
+      "description": "FAST 档位：硬上限 120 秒，浏览器失败 2 次即停"
+    }
+  },
+  "runtime_policy": {
+    "hard_timeout_seconds": 180,
+    "fast_hard_timeout_seconds": 120,
+    "max_browser_failures": 2,
+    "source_of_truth": "config/official_urls.json"
+  }
+}

@@ -1,0 +1,4863 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19T13:54:11+08:00",
+  "agent": "FAST Replica",
+  "purpose": "题目 → 平台 → 已知深链接 → 打开 → 检索。题库和答案不在本文件内。",
+  "route_types": [
+    "HOME",
+    "SEARCH",
+    "ADVANCED_SEARCH",
+    "DATABASE_ENTRY",
+    "RESOURCE_LIST",
+    "RESOURCE_DETAIL",
+    "PDF",
+    "LOGIN_DASHBOARD",
+    "QUERY_RECIPE",
+    "APP_ONLY",
+    "WECHAT_ONLY",
+    "LEGACY"
+  ],
+  "route_status": [
+    "ACTIVE",
+    "ACTIVE_EDGE_ONLY",
+    "LOGIN_REQUIRED",
+    "MANUAL_ONLY",
+    "LEGACY_REDIRECT",
+    "TEMPORARILY_UNAVAILABLE",
+    "BROKEN",
+    "UNKNOWN"
+  ],
+  "source_priority": [
+    "P0 官方模拟题与官方公布标准答案",
+    "P1 题目指定官方平台实时查询",
+    "P2 组委会/官方培训资料",
+    "P3 第三方辅助网页（仅辅助证据，不得称为官方验证）"
+  ],
+  "url_cleaning": {
+    "stripped_keys": [
+      "uid",
+      "token",
+      "session",
+      "sessionid",
+      "cookie",
+      "randomt",
+      "queryId",
+      "utm_source",
+      "utm_medium",
+      "utm_campaign"
+    ],
+    "note": "canonical URL 一律不含上述参数；也不写入 JSON/YAML/Markdown/SQLite/logs。"
+  },
+  "edge_policy": {
+    "browser_priority": [
+      "existing_edge_login",
+      "edge_automation",
+      "agent-browser",
+      "playwright_edge",
+      "no_login_browser"
+    ],
+    "forbidden": [
+      "chrome_by_default",
+      "playwright_chromium_by_default",
+      "read_or_export_cookies",
+      "kill_user_edge",
+      "delete_profile_lock",
+      "modify_browser_database"
+    ]
+  },
+  "platform_count": 125,
+  "curated_count": 17,
+  "derived_count": 108,
+  "platforms": {
+    "cnki": {
+      "platform_key": "cnki",
+      "name": "CNKI 中国知网",
+      "aliases": [
+        "中国知网",
+        "知网",
+        "CNKI",
+        "kns.cnki.net"
+      ],
+      "category": "学术数据库",
+      "canonical_home": "https://www.cnki.net/",
+      "auth_requirement": "SOMETIMES",
+      "prefer_edge": true,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "CNKI 不是单一页面：期刊/学位/会议/图书/AI/法律/图片/RSS 各有入口。canonical 固定为不带 uid 的首页；uid 等参数由清洗规则剔除，禁止写入任何文件。",
+      "routes": [
+        {
+          "route_key": "CNKI_ADVANCED",
+          "name": "CNKI 高级检索",
+          "url": "https://kns.cnki.net/starter/advanced",
+          "route_type": "ADVANCED_SEARCH",
+          "purpose": "高级检索（实测可绕过 blockPuzzle）",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "CNKI_BOOK",
+          "name": "CNKI 图书",
+          "url": "https://kns.cnki.net/kns8s/search?classid=ECVI",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "图书与工具书检索",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CNKI_CONFERENCE",
+          "name": "CNKI 会议",
+          "url": "https://conf.cnki.net/Home",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "会议论文与会议信息；当前 Edge 实际可用入口需现场确认，不写死",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CNKI_DEGREE",
+          "name": "CNKI 学位论文",
+          "url": "https://kns.cnki.net/kns8s/search?classid=CDMD",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "学位论文库（题名/导师/学校/学位类型）",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CNKI_LAW",
+          "name": "CNKI 法律智库 LawPro",
+          "url": "https://lawpro.cnki.net/",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "法律案例与法规检索",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CNKI_MAIN",
+          "name": "CNKI 首页",
+          "url": "https://www.cnki.net/",
+          "route_type": "HOME",
+          "purpose": "总入口与文献类型导航",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "CNKI_LEGACY_ADVSEARCH",
+          "name": "旧高级检索直链",
+          "url": "https://kns.cnki.net/kns8s/AdvSearch",
+          "route_type": "LEGACY",
+          "purpose": "直连会跳 blockPuzzle 安全验证，仅作回溯",
+          "status": "ACTIVE_EDGE_ONLY",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "CNKI_AI",
+          "name": "CNKI AI",
+          "url": "https://ai.cnki.net/chat/home",
+          "route_type": "LOGIN_DASHBOARD",
+          "purpose": "CNKI AI 模块位置与功能",
+          "status": "LOGIN_REQUIRED",
+          "requires_login": "YES",
+          "prefer_edge": true,
+          "automation": "MANUAL_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CNKI_ESTUDY",
+          "name": "知网研学 E-Study",
+          "url": "https://estudy.cnki.net/",
+          "route_type": "RESOURCE_DETAIL",
+          "purpose": "文献管理工具（模块 46）",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CNKI_RSS",
+          "name": "CNKI RSS 订阅",
+          "url": "https://rss.cnki.net/knavi/rss/",
+          "route_type": "RESOURCE_DETAIL",
+          "purpose": "期刊 RSS 订阅（模块 47）",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CNKI_IMAGE",
+          "name": "CNKI 学术图片",
+          "url": "https://image.cnki.net/AI",
+          "route_type": "RESOURCE_LIST",
+          "purpose": "学术图片检索",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CNKI_JOURNAL",
+          "name": "CNKI 期刊库",
+          "url": "https://navi.cnki.net/knavi",
+          "route_type": "RESOURCE_LIST",
+          "purpose": "期刊导航与期刊内检索",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 12,
+      "query_templates": []
+    },
+    "wanfang": {
+      "platform_key": "wanfang",
+      "name": "万方数据",
+      "aliases": [
+        "万方",
+        "wanfangdata",
+        "万方智研"
+      ],
+      "category": "学术数据库",
+      "canonical_home": "https://www.wanfangdata.com.cn/",
+      "auth_requirement": "SOMETIMES",
+      "prefer_edge": true,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "主线与智研是两条独立路由；订阅/学科/被引量类题走智研。",
+      "routes": [
+        {
+          "route_key": "WANFANG_CONFERENCE",
+          "name": "万方会议论文",
+          "url": "https://c.wanfangdata.com.cn/conference",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "会议论文库",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "WANFANG_DEGREE",
+          "name": "万方学位论文",
+          "url": "https://c.wanfangdata.com.cn/thesis",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "学位论文库（题名/导师/学校）",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "WANFANG_JOURNAL",
+          "name": "万方期刊",
+          "url": "https://c.wanfangdata.com.cn/periodical",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "期刊论文库",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "WANFANG_STANDARD",
+          "name": "万方标准",
+          "url": "https://c.wanfangdata.com.cn/standard",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "标准文献库",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "WANFANG_MAIN",
+          "name": "万方主站",
+          "url": "https://www.wanfangdata.com.cn/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "WANFANG_ZHIYAN",
+          "name": "万方智研",
+          "url": "https://zhiyan.wanfangdata.com.cn/",
+          "route_type": "HOME",
+          "purpose": "订阅/期刊订阅/学科订阅/排序/被引量",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "WANFANG_SEARCH",
+          "name": "万方检索页",
+          "url": "https://s.wanfangdata.com.cn/paper",
+          "route_type": "SEARCH",
+          "purpose": "论文检索入口",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 7,
+      "query_templates": []
+    },
+    "vip": {
+      "platform_key": "vip",
+      "name": "维普",
+      "aliases": [
+        "维普",
+        "cqvip",
+        "维普中文期刊服务平台"
+      ],
+      "category": "学术数据库",
+      "canonical_home": "https://www.cqvip.com/",
+      "auth_requirement": "SOMETIMES",
+      "prefer_edge": true,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "canonical 不带 ?dialog=login。精确/模糊语义与 CNKI 不同，不可混用。旧入口 qikan.cqvip.com 返回 412，不使用。",
+      "routes": [
+        {
+          "route_key": "VIP_ADVANCED_SEARCH",
+          "name": "维普高级检索",
+          "url": "https://www.cqvip.com/advancesearch",
+          "route_type": "ADVANCED_SEARCH",
+          "purpose": "14 个检索项 + 模糊/精确 + AND/OR/NOT",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "VIP_CONFERENCE",
+          "name": "维普会议论文",
+          "url": "https://www.cqvip.com/advancesearch",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "高级检索页内选文献类型=会议论文",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "VIP_DEGREE",
+          "name": "维普学位论文",
+          "url": "https://www.cqvip.com/advancesearch",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "高级检索页内选文献类型=学位论文",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "VIP_STANDARD",
+          "name": "维普标准",
+          "url": "https://www.cqvip.com/advancesearch",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "高级检索页内选文献类型=标准",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "VIP_MAIN",
+          "name": "维普首页",
+          "url": "https://www.cqvip.com/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "VIP_JOURNAL",
+          "name": "维普期刊论文",
+          "url": "https://qikan.cqvip.com/",
+          "route_type": "LEGACY",
+          "purpose": "旧期刊入口，返回 412，仅作回溯",
+          "status": "LEGACY_REDIRECT",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 6,
+      "query_templates": []
+    },
+    "pubmed": {
+      "platform_key": "pubmed",
+      "name": "PubMed",
+      "aliases": [
+        "pubmed",
+        "NCBI PubMed",
+        "MeSH"
+      ],
+      "category": "国际学术数据库",
+      "canonical_home": "https://pubmed.ncbi.nlm.nih.gov/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "优先生成可复制 Query。字段标记与截词规则不可套用到 CNKI/万方/维普/ScienceDirect。",
+      "routes": [
+        {
+          "route_key": "PUBMED_ADVANCED",
+          "name": "Advanced Search",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "route_type": "ADVANCED_SEARCH",
+          "purpose": "字段限定与检索史组合",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "PUBMED_MESH",
+          "name": "MeSH Database",
+          "url": "https://www.ncbi.nlm.nih.gov/mesh/",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "主题词规范化",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "PUBMED_MAIN",
+          "name": "PubMed 首页",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "PUBMED_QUERY_RECIPE",
+          "name": "PubMed 检索式配方",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/?term=CRISPR%5BTitle%2FAbstract%5D+AND+2017%3A2024%5Bdp%5D+NOT+therapy%5BTitle%5D",
+          "route_type": "QUERY_RECIPE",
+          "purpose": "参数化检索式，见 config/query_templates.json",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 4,
+      "query_templates": []
+    },
+    "ieee": {
+      "platform_key": "ieee",
+      "name": "IEEE Xplore",
+      "aliases": [
+        "IEEE",
+        "ieeexplore",
+        "IEEE Xplore"
+      ],
+      "category": "国际学术数据库",
+      "canonical_home": "https://ieeexplore.ieee.org/",
+      "auth_requirement": "SOMETIMES",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 2,
+      "notes": "IEEE 的 wildcard 语法不得复制到其他平台。",
+      "routes": [
+        {
+          "route_key": "IEEE_XPLORE_ADVANCED",
+          "name": "IEEE Xplore 高级检索",
+          "url": "https://ieeexplore.ieee.org/search/advanced",
+          "route_type": "ADVANCED_SEARCH",
+          "purpose": "Document Title / Author / Publication Year / 结果数量 / 年份筛选",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "IEEE_ORG",
+          "name": "IEEE 官网",
+          "url": "https://www.ieee.org/",
+          "route_type": "HOME",
+          "purpose": "会议与组织信息（模块 22）",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "IEEE_XPLORE_MAIN",
+          "name": "IEEE Xplore 首页",
+          "url": "https://ieeexplore.ieee.org/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 3,
+      "query_templates": []
+    },
+    "sciencedirect": {
+      "platform_key": "sciencedirect",
+      "name": "ScienceDirect",
+      "aliases": [
+        "sciencedirect",
+        "Elsevier",
+        "SD"
+      ],
+      "category": "国际学术数据库",
+      "canonical_home": "https://www.sciencedirect.com/",
+      "auth_requirement": "SOMETIMES",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 2,
+      "notes": "首页被 Cloudflare 拦截（403，浏览器卡「请稍候…」），但 /search 可直接进高级检索。不套用其它库的 wildcard 语法。",
+      "routes": [
+        {
+          "route_key": "SD_ADVANCED_SEARCH",
+          "name": "ScienceDirect 高级检索",
+          "url": "https://www.sciencedirect.com/search",
+          "route_type": "ADVANCED_SEARCH",
+          "purpose": "期刊内检索 / 年份 / 作者 / 卷期页 / Title,abstract,keywords",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "SD_JOURNAL_SEARCH",
+          "name": "期刊内检索",
+          "url": "https://www.sciencedirect.com/search",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "In this journal or book title 字段",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "SD_MAIN",
+          "name": "ScienceDirect 首页",
+          "url": "https://www.sciencedirect.com/",
+          "route_type": "HOME",
+          "purpose": "总入口（HTTP 403，浏览器需过挑战）",
+          "status": "ACTIVE_EDGE_ONLY",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "SD_PDF",
+          "name": "ScienceDirect PDF",
+          "url": "https://www.sciencedirect.com/science/article/pii/",
+          "route_type": "PDF",
+          "purpose": "全文 PDF（受订阅权限限制）",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "SD_ARTICLE_DETAIL",
+          "name": "文章详情页",
+          "url": "https://www.sciencedirect.com/science/article/pii/",
+          "route_type": "RESOURCE_DETAIL",
+          "purpose": "按 DOI/PII 进入详情",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "SD_LEAPSPACE",
+          "name": "LeapSpace",
+          "url": "https://www.sciencedirect.com/leapspace",
+          "route_type": "RESOURCE_DETAIL",
+          "purpose": "Trust Card / Claim Radar / Deep Research / Writing Coach",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 6,
+      "query_templates": []
+    },
+    "icourse163": {
+      "platform_key": "icourse163",
+      "name": "中国大学MOOC",
+      "aliases": [
+        "中国大学MOOC",
+        "MOOC",
+        "慕课",
+        "icourse163",
+        "icourse163.cn"
+      ],
+      "category": "在线课程",
+      "canonical_home": "https://www.icourse163.org/",
+      "auth_requirement": "NO",
+      "prefer_edge": true,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "课程大纲无需登录即可读（.outline）。同名课程必须按学校+教师核对。icourse163.cn 为别名，canonical 固定用 .org。",
+      "routes": [
+        {
+          "route_key": "MOOC_MAIN",
+          "name": "MOOC 首页",
+          "url": "https://www.icourse163.org/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "MOOC_COURSE",
+          "name": "课程详情与大纲",
+          "url": "https://www.icourse163.org/course/",
+          "route_type": "RESOURCE_DETAIL",
+          "purpose": "课程页 .outline 含章节 + 小节标题",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "MOOC_SEARCH",
+          "name": "课程搜索",
+          "url": "https://www.icourse163.org/search.htm",
+          "route_type": "SEARCH",
+          "purpose": "按课程名搜索，结果卡片含学校与教师",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 3,
+      "query_templates": []
+    },
+    "unesco": {
+      "platform_key": "unesco",
+      "name": "UNESCO Digital Library",
+      "aliases": [
+        "UNESCO",
+        "unesdoc",
+        "联合国教科文组织"
+      ],
+      "category": "国际组织文献",
+      "canonical_home": "https://unesdoc.unesco.org/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "STATIC",
+      "source_priority": 1,
+      "notes": "SPA，需浏览器渲染（打开后等 3-5 秒）。PDF 无法脱离浏览器直取：/PDF/ 路径只返回外壳 HTML，真实下载端点 403。页码必须区分 PDF viewer page 与 printed/body page。",
+      "routes": [
+        {
+          "route_key": "UNESCO_MAIN",
+          "name": "UNESCO 数字图书馆",
+          "url": "https://unesdoc.unesco.org/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "UNESCO_PDF_393559",
+          "name": "同文档 PDF（393559chi.pdf）",
+          "url": "https://unesdoc.unesco.org/ark:/48223/pf0000393559/PDF/393559chi.pdf",
+          "route_type": "PDF",
+          "purpose": "必须经浏览器 documentViewer；直取返回 HTML/403",
+          "status": "ACTIVE_EDGE_ONLY",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "UNESCO_ARK_393559",
+          "name": "老师点名文档 pf0000393559",
+          "url": "https://unesdoc.unesco.org/ark:/48223/pf0000393559",
+          "route_type": "RESOURCE_DETAIL",
+          "purpose": "《生成式人工智能 教育与研究应用指南》2025 中文版，47 页",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 3,
+      "query_templates": []
+    },
+    "cnipa": {
+      "platform_key": "cnipa",
+      "name": "国家知识产权局",
+      "aliases": [
+        "CNIPA",
+        "cnipa.gov.cn",
+        "专利检索",
+        "pss-system"
+      ],
+      "category": "政府/专利",
+      "canonical_home": "https://www.cnipa.gov.cn/",
+      "auth_requirement": "SOMETIMES",
+      "prefer_edge": true,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "具体检索题走 conventionalSearch；导航页仅在不知入口时用。",
+      "routes": [
+        {
+          "route_key": "CNIPA_CONVENTIONAL",
+          "name": "专利常规检索",
+          "url": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "申请号优先，其次专利名称；含同族/详览",
+          "status": "ACTIVE",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "CNIPA_NAV",
+          "name": "国家知识产权局导航",
+          "url": "https://www.cnipa.gov.cn/col/col171/index.html",
+          "route_type": "HOME",
+          "purpose": "官方导航页",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "nsfc": {
+      "platform_key": "nsfc",
+      "name": "国家自然科学基金",
+      "aliases": [
+        "NSFC",
+        "kd.nsfc.cn",
+        "自然科学基金"
+      ],
+      "category": "科研项目",
+      "canonical_home": "https://kd.nsfc.cn/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "不要从首页层层点击找「信息检索」，直接进结题项目入口。",
+      "routes": [
+        {
+          "route_key": "NSFC_FINAL_PROJECT",
+          "name": "结题项目",
+          "url": "https://kd.nsfc.cn/finalProjectInit",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "结题年度/项目类型/申请代码/依托单位/负责人",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        },
+        {
+          "route_key": "NSFC_MAIN",
+          "name": "NSFC 首页",
+          "url": "https://kd.nsfc.cn/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "ncpssd": {
+      "platform_key": "ncpssd",
+      "name": "国家哲学社会科学文献中心",
+      "aliases": [
+        "NCPSSD",
+        "ncpssd.cn",
+        "ncpssd.org",
+        "哲社文献中心"
+      ],
+      "category": "学术数据库",
+      "canonical_home": "https://www.ncpssd.cn/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 2,
+      "notes": "canonical 用 ncpssd.cn；ncpssd.org 作为 LEGACY/ALIAS 保留，不删除。",
+      "routes": [
+        {
+          "route_key": "NCPSD_MAIN",
+          "name": "NCPSD 主入口",
+          "url": "https://www.ncpssd.cn/",
+          "route_type": "HOME",
+          "purpose": "总入口（canonical）",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NCPSD_LEGACY_ORG",
+          "name": "NCPSD 旧域名入口",
+          "url": "https://www.ncpssd.org/index",
+          "route_type": "LEGACY",
+          "purpose": "用户实际可用入口，保留为 LEGACY/ALIAS",
+          "status": "ACTIVE",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "stats": {
+      "platform_key": "stats",
+      "name": "国家统计局",
+      "aliases": [
+        "国家统计局",
+        "stats.gov.cn",
+        "国家数据"
+      ],
+      "category": "政府/统计",
+      "canonical_home": "https://www.stats.gov.cn/sj/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "DYNAMIC",
+      "source_priority": 1,
+      "notes": "年度/地区/分省年度数据是不同入口，不要混。",
+      "routes": [
+        {
+          "route_key": "DATA_STATS",
+          "name": "国家数据",
+          "url": "https://data.stats.gov.cn/",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "数据类型 → 指标目录 → 指标 → 地区 → 年份",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "STATS_MAIN",
+          "name": "统计数据",
+          "url": "https://www.stats.gov.cn/sj/",
+          "route_type": "RESOURCE_LIST",
+          "purpose": "统计数据栏目",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "standards": {
+      "platform_key": "standards",
+      "name": "国家标准",
+      "aliases": [
+        "国家标准",
+        "std.samr.gov.cn",
+        "openstd",
+        "标准全文公开"
+      ],
+      "category": "政府/标准",
+      "canonical_home": "https://std.samr.gov.cn/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "STATIC",
+      "source_priority": 1,
+      "notes": "canonical 用 std.samr.gov.cn；openstd.samr.gov.cn 记为 LEGACY_REDIRECT。题目给标准号时直接用标准号检索；PDF 题必须实际打开 PDF。",
+      "routes": [
+        {
+          "route_key": "STANDARD_PDF",
+          "name": "国家标准全文公开系统",
+          "url": "https://openstd.samr.gov.cn/",
+          "route_type": "LEGACY",
+          "purpose": "旧入口，记为 LEGACY_REDIRECT",
+          "status": "LEGACY_REDIRECT",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "STANDARD_DETAIL",
+          "name": "标准详情",
+          "url": "https://std.samr.gov.cn/hb/search/stdHBDetailed",
+          "route_type": "RESOURCE_DETAIL",
+          "purpose": "标准详情字段",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "STANDARD_SEARCH",
+          "name": "全国标准信息公共服务平台",
+          "url": "https://std.samr.gov.cn/",
+          "route_type": "SEARCH",
+          "purpose": "标准号或名称检索",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 3,
+      "query_templates": []
+    },
+    "nmpa": {
+      "platform_key": "nmpa",
+      "name": "国家药品监督管理局",
+      "aliases": [
+        "NMPA",
+        "nmpa.gov.cn",
+        "药监局",
+        "药品查询"
+      ],
+      "category": "政府/医卫",
+      "canonical_home": "https://www.nmpa.gov.cn/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "查询优先使用批准文号或注册证号。",
+      "routes": [
+        {
+          "route_key": "NMPA_DOMESTIC_DRUG",
+          "name": "国产药品查询",
+          "url": "https://www.nmpa.gov.cn/datasearch/home-index.html",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "批准文号优先",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NMPA_MEDICAL_DEVICE",
+          "name": "医疗器械查询",
+          "url": "https://www.nmpa.gov.cn/datasearch/home-index.html",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "注册证号优先",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NMPA_OVERSEAS_DRUG",
+          "name": "进口药品查询",
+          "url": "https://www.nmpa.gov.cn/datasearch/home-index.html",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "注册证号优先",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 3,
+      "query_templates": []
+    },
+    "nlc": {
+      "platform_key": "nlc",
+      "name": "国家图书馆",
+      "aliases": [
+        "国家图书馆",
+        "NLC",
+        "nlc.cn",
+        "国图"
+      ],
+      "category": "图书馆/古籍",
+      "canonical_home": "https://www.nlc.cn/",
+      "auth_requirement": "SOMETIMES",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 1,
+      "notes": "册 / 卷 / PDF 页 / 正文页 四个概念不能混。",
+      "routes": [
+        {
+          "route_key": "NLC_DISSERTATION",
+          "name": "国图学位论文",
+          "url": "https://www.nlc.cn/",
+          "route_type": "DATABASE_ENTRY",
+          "purpose": "学位论文检索",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NLC_MAIN",
+          "name": "国家图书馆",
+          "url": "https://www.nlc.cn/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NLC_RESOURCE_DETAIL",
+          "name": "国图资源详情",
+          "url": "https://www.nlc.cn/",
+          "route_type": "RESOURCE_DETAIL",
+          "purpose": "民国文献等专题库详情",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NLC_ANCIENT_BOOK",
+          "name": "中华古籍资源库",
+          "url": "http://read.nlc.cn/thematDataSearch/toGujiIndex",
+          "route_type": "RESOURCE_LIST",
+          "purpose": "古籍全文与目录",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NLC_ETHNIC",
+          "name": "民族文字古籍",
+          "url": "http://read.nlc.cn/allSearch/searchList?searchType=102&showType=1&pageNo=1",
+          "route_type": "RESOURCE_LIST",
+          "purpose": "民族文字古籍",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NLC_XIXIA",
+          "name": "西夏碎金",
+          "url": "http://read.nlc.cn/allSearch/searchList?searchType=37&showType=1&pageNo=1",
+          "route_type": "RESOURCE_LIST",
+          "purpose": "西夏文献",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 6,
+      "query_templates": []
+    },
+    "wenjuanxing": {
+      "platform_key": "wenjuanxing",
+      "name": "问卷星",
+      "aliases": [
+        "问卷星",
+        "wjx.cn",
+        "WJX"
+      ],
+      "category": "工具平台",
+      "canonical_home": "https://www.wjx.cn/",
+      "auth_requirement": "YES",
+      "prefer_edge": true,
+      "dynamic_level": "DYNAMIC",
+      "source_priority": 2,
+      "notes": "canonical 不含 randomt 参数。后台依赖登录态，优先用户 Edge Profile。",
+      "routes": [
+        {
+          "route_key": "WJX_MAIN",
+          "name": "问卷星首页",
+          "url": "https://www.wjx.cn/",
+          "route_type": "HOME",
+          "purpose": "总入口",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": true,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "WJX_DASHBOARD",
+          "name": "我的问卷后台",
+          "url": "https://www.wjx.cn/newwjx/manage/myquestionnaires.aspx",
+          "route_type": "LOGIN_DASHBOARD",
+          "purpose": "问卷设置 / 提交答卷控制 / AI创建 / 版本功能",
+          "status": "LOGIN_REQUIRED",
+          "requires_login": "YES",
+          "prefer_edge": true,
+          "automation": "MANUAL_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "douyin_creator": {
+      "platform_key": "douyin_creator",
+      "name": "抖音创作者中心",
+      "aliases": [
+        "抖音创作者中心",
+        "creator.douyin.com",
+        "抖音指数"
+      ],
+      "category": "指数/动态数据",
+      "canonical_home": "https://creator.douyin.com/",
+      "auth_requirement": "YES",
+      "prefer_edge": true,
+      "dynamic_level": "DYNAMIC",
+      "source_priority": 3,
+      "notes": "出现二维码/扫码/手机确认立即转人工，不尝试绕过。",
+      "routes": [
+        {
+          "route_key": "DOUYIN_INDEX",
+          "name": "创作者指数",
+          "url": "https://creator.douyin.com/creator-micro/creator-count/arithmetic-index",
+          "route_type": "LOGIN_DASHBOARD",
+          "purpose": "指数与创作者数据",
+          "status": "LOGIN_REQUIRED",
+          "requires_login": "YES",
+          "prefer_edge": true,
+          "automation": "MANUAL_ONLY",
+          "last_verified_at": "2026-09-19"
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "202": {
+      "platform_key": "202",
+      "name": "202.115.54.22",
+      "aliases": [
+        "202.115.54.22"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://202.115.54.22/genai/static/wenjian/%E3%80%8A%E5%9B%9B%E5%B7%9D%E5%A4%A7%E5%AD%A6%E6%9C%AC%E7%A7%91%E6%95%99%E8%82%B2%E6%95%99%E5%AD%A6%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%B7%A5%E5%85%B7%E5%BA%94%E7%94%A8%E8%A7%84%E8%8C%83%EF%BC%88%E8%AF%95%E8%A1%8C%EF%BC%89%20%E3%80%8B%EF%BC%88%E5%B7%9D%E5%A4%A7%E6%95%99%E3%80%942025%E3%80%9528%E5%8F%B7%EF%BC%89.pdf",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "202_01",
+          "name": "202.115.54.22",
+          "url": "http://202.115.54.22/genai/static/wenjian/%E3%80%8A%E5%9B%9B%E5%B7%9D%E5%A4%A7%E5%AD%A6%E6%9C%AC%E7%A7%91%E6%95%99%E8%82%B2%E6%95%99%E5%AD%A6%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%B7%A5%E5%85%B7%E5%BA%94%E7%94%A8%E8%A7%84%E8%8C%83%EF%BC%88%E8%AF%95%E8%A1%8C%EF%BC%89%20%E3%80%8B%EF%BC%88%E5%B7%9D%E5%A4%A7%E6%95%99%E3%80%942025%E3%80%9528%E5%8F%B7%EF%BC%89.pdf",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "ai_bot": {
+      "platform_key": "ai_bot",
+      "name": "ai-bot.cn",
+      "aliases": [
+        "ai-bot.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://ai-bot.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "AI_BOT_01",
+          "name": "ai-bot.cn",
+          "url": "https://ai-bot.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "ailongmiao": {
+      "platform_key": "ailongmiao",
+      "name": "ailongmiao.com",
+      "aliases": [
+        "ailongmiao.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://ailongmiao.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "AILONGMIAO_HOME",
+          "name": "ailongmiao.com",
+          "url": "https://ailongmiao.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "aisg": {
+      "platform_key": "aisg",
+      "name": "aisg.tongji.edu.cn",
+      "aliases": [
+        "aisg.tongji.edu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://aisg.tongji.edu.cn/info/1005/1192.htm",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "AISG_01",
+          "name": "aisg.tongji.edu.cn",
+          "url": "https://aisg.tongji.edu.cn/info/1005/1192.htm",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "aistudio": {
+      "platform_key": "aistudio",
+      "name": "aistudio.baidu.com",
+      "aliases": [
+        "aistudio.baidu.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://aistudio.baidu.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "AISTUDIO_01",
+          "name": "aistudio.baidu.com",
+          "url": "https://aistudio.baidu.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "amac": {
+      "platform_key": "amac",
+      "name": "amac.org.cn",
+      "aliases": [
+        "amac.org.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.amac.org.cn/fwdt/wyc",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "AMAC_01",
+          "name": "www.amac.org.cn",
+          "url": "https://www.amac.org.cn/fwdt/wyc",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "AMAC_02",
+          "name": "www.amac.org.cn",
+          "url": "https://www.amac.org.cn/fwdt/wyc/jgcprycx/rycx",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "archive_beta": {
+      "platform_key": "archive_beta",
+      "name": "archive-beta.ics.uci.edu",
+      "aliases": [
+        "archive-beta.ics.uci.edu"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://archive-beta.ics.uci.edu/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ARCHIVE_BETA_01",
+          "name": "archive-beta.ics.uci.edu",
+          "url": "https://archive-beta.ics.uci.edu/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "archive": {
+      "platform_key": "archive",
+      "name": "archive.ics.uci.edu",
+      "aliases": [
+        "archive.ics.uci.edu"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://archive.ics.uci.edu/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ARCHIVE_01",
+          "name": "archive.ics.uci.edu",
+          "url": "https://archive.ics.uci.edu/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "ascend": {
+      "platform_key": "ascend",
+      "name": "ascend.developer.huaweicloud.com",
+      "aliases": [
+        "ascend.developer.huaweicloud.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://ascend.developer.huaweicloud.com/home",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ASCEND_01",
+          "name": "ascend.developer.huaweicloud.com",
+          "url": "https://ascend.developer.huaweicloud.com/home",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "asmedigitalcollection": {
+      "platform_key": "asmedigitalcollection",
+      "name": "asmedigitalcollection.asme.org",
+      "aliases": [
+        "asmedigitalcollection.asme.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://asmedigitalcollection.asme.org/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ASMEDIGITALCOLLECTION_01",
+          "name": "asmedigitalcollection.asme.org",
+          "url": "https://asmedigitalcollection.asme.org/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "baidu": {
+      "platform_key": "baidu",
+      "name": "baidu.com",
+      "aliases": [
+        "baidu.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.baidu.com/gaoji/advanced.html",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "BAIDU_01",
+          "name": "百度",
+          "url": "https://www.baidu.com/gaoji/advanced.html",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "basic": {
+      "platform_key": "basic",
+      "name": "basic.smartedu.cn",
+      "aliases": [
+        "basic.smartedu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://basic.smartedu.cn/",
+      "auth_requirement": "SOMETIMES",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "BASIC_01",
+          "name": "国家智慧教育平台",
+          "url": "https://basic.smartedu.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "SOMETIMES",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "bilibili": {
+      "platform_key": "bilibili",
+      "name": "bilibili.com",
+      "aliases": [
+        "bilibili.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.bilibili.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "BILIBILI_01",
+          "name": "www.bilibili.com",
+          "url": "https://www.bilibili.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "bioone": {
+      "platform_key": "bioone",
+      "name": "bioone.org",
+      "aliases": [
+        "bioone.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://bioone.org/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "BIOONE_01",
+          "name": "bioone.org",
+          "url": "https://bioone.org/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "cac": {
+      "platform_key": "cac",
+      "name": "cac.gov.cn",
+      "aliases": [
+        "cac.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CAC_01",
+          "name": "www.cac.gov.cn",
+          "url": "https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "cambridge": {
+      "platform_key": "cambridge",
+      "name": "cambridge.org",
+      "aliases": [
+        "cambridge.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.cambridge.org/core",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CAMBRIDGE_01",
+          "name": "www.cambridge.org",
+          "url": "https://www.cambridge.org/core",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "cas": {
+      "platform_key": "cas",
+      "name": "cas.cn",
+      "aliases": [
+        "cas.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.cas.cn/sygz/202409/t20240910_5031186.shtml",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CAS_01",
+          "name": "www.cas.cn",
+          "url": "https://www.cas.cn/sygz/202409/t20240910_5031186.shtml",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "cell": {
+      "platform_key": "cell",
+      "name": "cell.com",
+      "aliases": [
+        "cell.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.cell.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CELL_01",
+          "name": "www.cell.com",
+          "url": "https://www.cell.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "china_cba": {
+      "platform_key": "china_cba",
+      "name": "china-cba.net",
+      "aliases": [
+        "china-cba.net"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.china-cba.net/Index/lists/catid/31.htm",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CHINA_CBA_01",
+          "name": "www.china-cba.net",
+          "url": "https://www.china-cba.net/Index/lists/catid/31.htm",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "CHINA_CBA_02",
+          "name": "www.china-cba.net",
+          "url": "https://www.china-cba.net/Index/lists/catid/31.html",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "chkd": {
+      "platform_key": "chkd",
+      "name": "chkd.cnki.net",
+      "aliases": [
+        "chkd.cnki.net"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://chkd.cnki.net/ai",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CHKD_01",
+          "name": "chkd.cnki.net",
+          "url": "https://chkd.cnki.net/ai",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "citexs": {
+      "platform_key": "citexs",
+      "name": "citexs.com",
+      "aliases": [
+        "citexs.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.citexs.com/Paperpicky",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CITEXS_01",
+          "name": "www.citexs.com",
+          "url": "https://www.citexs.com/Paperpicky",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "cmis": {
+      "platform_key": "cmis",
+      "name": "cmis.cicpa.org.cn",
+      "aliases": [
+        "cmis.cicpa.org.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://cmis.cicpa.org.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CMIS_01",
+          "name": "cmis.cicpa.org.cn",
+          "url": "https://cmis.cicpa.org.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "cn": {
+      "platform_key": "cn",
+      "name": "cn.bing.com",
+      "aliases": [
+        "cn.bing.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://cn.bing.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CN_HOME",
+          "name": "cn.bing.com",
+          "url": "https://cn.bing.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "csc": {
+      "platform_key": "csc",
+      "name": "csc.xxsuyang.com",
+      "aliases": [
+        "csc.xxsuyang.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://csc.xxsuyang.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CSC_01",
+          "name": "AI+信息素养大赛公开入口",
+          "url": "https://csc.xxsuyang.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "cx": {
+      "platform_key": "cx",
+      "name": "cx.wanfangdata.com.cn",
+      "aliases": [
+        "cx.wanfangdata.com.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://cx.wanfangdata.com.cn/e-training",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CX_01",
+          "name": "cx.wanfangdata.com.cn",
+          "url": "https://cx.wanfangdata.com.cn/e-training",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "cy": {
+      "platform_key": "cy",
+      "name": "cy.ncss.cn",
+      "aliases": [
+        "cy.ncss.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://cy.ncss.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "CY_01",
+          "name": "cy.ncss.cn",
+          "url": "https://cy.ncss.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "data": {
+      "platform_key": "data",
+      "name": "data.worldbank.org",
+      "aliases": [
+        "data.worldbank.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://data.worldbank.org/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "DATA_01",
+          "name": "data.worldbank.org",
+          "url": "https://data.worldbank.org/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "datafountain": {
+      "platform_key": "datafountain",
+      "name": "datafountain.cn",
+      "aliases": [
+        "datafountain.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.datafountain.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "DATAFOUNTAIN_01",
+          "name": "www.datafountain.cn",
+          "url": "https://www.datafountain.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "docs": {
+      "platform_key": "docs",
+      "name": "docs.github.com",
+      "aliases": [
+        "docs.github.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://docs.github.com/zh",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "DOCS_01",
+          "name": "GitHub Docs",
+          "url": "https://docs.github.com/zh",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "dspace": {
+      "platform_key": "dspace",
+      "name": "dspace.mit.edu",
+      "aliases": [
+        "dspace.mit.edu"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://dspace.mit.edu/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "DSPACE_01",
+          "name": "MIT Theses",
+          "url": "https://dspace.mit.edu/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "eci": {
+      "platform_key": "eci",
+      "name": "eci.elsevier.cn",
+      "aliases": [
+        "eci.elsevier.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://eci.elsevier.cn/resource/LeapSpace.html?fid=165&menuid=358&infoid=2004",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ECI_01",
+          "name": "LeapSpace资源说明",
+          "url": "https://eci.elsevier.cn/resource/LeapSpace.html?fid=165&menuid=358&infoid=2004",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "elementsofai": {
+      "platform_key": "elementsofai",
+      "name": "elementsofai.com",
+      "aliases": [
+        "elementsofai.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.elementsofai.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ELEMENTSOFAI_01",
+          "name": "www.elementsofai.com",
+          "url": "https://www.elementsofai.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "elsevier": {
+      "platform_key": "elsevier",
+      "name": "elsevier.com",
+      "aliases": [
+        "elsevier.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.elsevier.com/products/leapspace",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ELSEVIER_01",
+          "name": "www.elsevier.com",
+          "url": "https://www.elsevier.com/products/leapspace",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "epub": {
+      "platform_key": "epub",
+      "name": "epub.cnipa.gov.cn",
+      "aliases": [
+        "epub.cnipa.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://epub.cnipa.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "EPUB_01",
+          "name": "epub.cnipa.gov.cn",
+          "url": "http://epub.cnipa.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "escience": {
+      "platform_key": "escience",
+      "name": "escience.org.cn",
+      "aliases": [
+        "escience.org.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.escience.org.cn/data-center",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ESCIENCE_01",
+          "name": "www.escience.org.cn",
+          "url": "https://www.escience.org.cn/data-center",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "flk": {
+      "platform_key": "flk",
+      "name": "flk.npc.gov.cn",
+      "aliases": [
+        "flk.npc.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://flk.npc.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "FLK_01",
+          "name": "flk.npc.gov.cn",
+          "url": "https://flk.npc.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "gb2760": {
+      "platform_key": "gb2760",
+      "name": "gb2760.cfsa.net.cn",
+      "aliases": [
+        "gb2760.cfsa.net.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://gb2760.cfsa.net.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GB2760_01",
+          "name": "gb2760.cfsa.net.cn",
+          "url": "http://gb2760.cfsa.net.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "ggfw": {
+      "platform_key": "ggfw",
+      "name": "ggfw.cnipa.gov.cn",
+      "aliases": [
+        "ggfw.cnipa.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://ggfw.cnipa.gov.cn/dlbzs",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GGFW_01",
+          "name": "ggfw.cnipa.gov.cn",
+          "url": "https://ggfw.cnipa.gov.cn/dlbzs",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GGFW_02",
+          "name": "ggfw.cnipa.gov.cn",
+          "url": "https://ggfw.cnipa.gov.cn/dlbzsq/dbQuery",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "github": {
+      "platform_key": "github",
+      "name": "github.com",
+      "aliases": [
+        "github.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://github.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GITHUB_02",
+          "name": "GitHub",
+          "url": "https://github.com/Significant-Gravitas/AutoGPT/projects",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GITHUB_03",
+          "name": "GitHub",
+          "url": "https://github.com/onnx/onnx/blob/main/LICENSES",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GITHUB_04",
+          "name": "GitHub",
+          "url": "https://github.com/onnx/onnx/tree/main/L",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GITHUB_05",
+          "name": "GitHub",
+          "url": "https://github.com/onnx/onnx/tree/main/LICENSES",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GITHUB_01",
+          "name": "GitHub",
+          "url": "https://github.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 5,
+      "query_templates": []
+    },
+    "gj": {
+      "platform_key": "gj",
+      "name": "gj.ncss.cn",
+      "aliases": [
+        "gj.ncss.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://gj.ncss.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GJ_01",
+          "name": "gj.ncss.cn",
+          "url": "https://gj.ncss.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "gongbao": {
+      "platform_key": "gongbao",
+      "name": "gongbao.court.gov.cn",
+      "aliases": [
+        "gongbao.court.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://gongbao.court.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GONGBAO_01",
+          "name": "gongbao.court.gov.cn",
+          "url": "http://gongbao.court.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "gov": {
+      "platform_key": "gov",
+      "name": "gov.cn",
+      "aliases": [
+        "gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://www.gov.cn/zhengce/xzfgk",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GOV_01",
+          "name": "中国政府网",
+          "url": "http://www.gov.cn/zhengce/xzfgk",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GOV_02",
+          "name": "中国政府网",
+          "url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GOV_03",
+          "name": "中国政府网",
+          "url": "https://www.gov.cn/zhengce/zhengceku/202307/content_6891752.htm",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 3,
+      "query_templates": []
+    },
+    "graduate": {
+      "platform_key": "graduate",
+      "name": "graduate.smartedu.cn",
+      "aliases": [
+        "graduate.smartedu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://graduate.smartedu.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GRADUATE_01",
+          "name": "graduate.smartedu.cn",
+          "url": "https://graduate.smartedu.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "gs": {
+      "platform_key": "gs",
+      "name": "gs.sac.net.cn",
+      "aliases": [
+        "gs.sac.net.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://gs.sac.net.cn/pages/registration/new-sac-publicity-org.html",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GS_01",
+          "name": "gs.sac.net.cn",
+          "url": "https://gs.sac.net.cn/pages/registration/new-sac-publicity-org.html",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GS_02",
+          "name": "gs.sac.net.cn",
+          "url": "https://gs.sac.net.cn/pages/registration/sac-pu",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "GS_03",
+          "name": "gs.sac.net.cn",
+          "url": "https://gs.sac.net.cn/pages/registration/sac-pub",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 3,
+      "query_templates": []
+    },
+    "gw": {
+      "platform_key": "gw",
+      "name": "gw.xkonglong.com",
+      "aliases": [
+        "gw.xkonglong.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://gw.xkonglong.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "GW_01",
+          "name": "gw.xkonglong.com",
+          "url": "https://gw.xkonglong.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "hao": {
+      "platform_key": "hao",
+      "name": "hao.uisdc.com",
+      "aliases": [
+        "hao.uisdc.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://hao.uisdc.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "HAO_01",
+          "name": "hao.uisdc.com",
+          "url": "https://hao.uisdc.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "heywhale": {
+      "platform_key": "heywhale",
+      "name": "heywhale.com",
+      "aliases": [
+        "heywhale.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.heywhale.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "HEYWHALE_02",
+          "name": "www.heywhale.com",
+          "url": "https://www.heywhale.com/home/dataset",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "HEYWHALE_01",
+          "name": "www.heywhale.com",
+          "url": "https://www.heywhale.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "higher": {
+      "platform_key": "higher",
+      "name": "higher.smartedu.cn",
+      "aliases": [
+        "higher.smartedu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://higher.smartedu.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "HIGHER_01",
+          "name": "higher.smartedu.cn",
+          "url": "https://higher.smartedu.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "hulianhutongshequ": {
+      "platform_key": "hulianhutongshequ",
+      "name": "hulianhutongshequ.cn",
+      "aliases": [
+        "hulianhutongshequ.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://hulianhutongshequ.cn/upload/tank/report/2024/202403/1/28716c58bcc84f6db5242dd90363c98c.pdf",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "HULIANHUTONGSHEQU_01",
+          "name": "hulianhutongshequ.cn",
+          "url": "https://hulianhutongshequ.cn/upload/tank/report/2024/202403/1/28716c58bcc84f6db5242dd90363c98c.pdf",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "icourses": {
+      "platform_key": "icourses",
+      "name": "icourses.cn",
+      "aliases": [
+        "icourses.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.icourses.cn/courseInfo?co",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ICOURSES_01",
+          "name": "www.icourses.cn",
+          "url": "https://www.icourses.cn/courseInfo?co",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "ICOURSES_02",
+          "name": "www.icourses.cn",
+          "url": "https://www.icourses.cn/courseInfo?courseIndex=3&co",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "ICOURSES_03",
+          "name": "www.icourses.cn",
+          "url": "https://www.icourses.cn/courseInfo?courseIndex=3&courseType=2&courseTypeId=2",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "ICOURSES_04",
+          "name": "www.icourses.cn",
+          "url": "https://www.icourses.cn/courseInfo?courseIndex=4&courseType=1&courseTypeId=1",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 4,
+      "query_templates": []
+    },
+    "ie": {
+      "platform_key": "ie",
+      "name": "ie.espacenet.com",
+      "aliases": [
+        "ie.espacenet.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://ie.espacenet.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "IE_01",
+          "name": "ie.espacenet.com",
+          "url": "https://ie.espacenet.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "image": {
+      "platform_key": "image",
+      "name": "image.baidu.com",
+      "aliases": [
+        "image.baidu.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://image.baidu.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "IMAGE_01",
+          "name": "百度图片",
+          "url": "https://image.baidu.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "iopscience": {
+      "platform_key": "iopscience",
+      "name": "iopscience.iop.org",
+      "aliases": [
+        "iopscience.iop.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://iopscience.iop.org/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "IOPSCIENCE_01",
+          "name": "iopscience.iop.org",
+          "url": "https://iopscience.iop.org/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "jhsjk": {
+      "platform_key": "jhsjk",
+      "name": "jhsjk.people.cn",
+      "aliases": [
+        "jhsjk.people.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://jhsjk.people.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "JHSJK_01",
+          "name": "jhsjk.people.cn",
+          "url": "http://jhsjk.people.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "jstor": {
+      "platform_key": "jstor",
+      "name": "jstor.org",
+      "aliases": [
+        "jstor.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.jstor.org/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "JSTOR_01",
+          "name": "www.jstor.org",
+          "url": "https://www.jstor.org/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "k": {
+      "platform_key": "k",
+      "name": "k.cnki.net",
+      "aliases": [
+        "k.cnki.net"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://k.cnki.net/home",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "K_01",
+          "name": "k.cnki.net",
+          "url": "https://k.cnki.net/home",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "lib": {
+      "platform_key": "lib",
+      "name": "lib.caskm.edu.cn",
+      "aliases": [
+        "lib.caskm.edu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://lib.caskm.edu.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "LIB_HOME",
+          "name": "lib.caskm.edu.cn",
+          "url": "https://lib.caskm.edu.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "lifelong": {
+      "platform_key": "lifelong",
+      "name": "lifelong.smartedu.cn",
+      "aliases": [
+        "lifelong.smartedu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://lifelong.smartedu.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "LIFELONG_01",
+          "name": "lifelong.smartedu.cn",
+          "url": "https://lifelong.smartedu.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "loc": {
+      "platform_key": "loc",
+      "name": "loc.gov",
+      "aliases": [
+        "loc.gov"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.loc.gov/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "LOC_01",
+          "name": "www.loc.gov",
+          "url": "https://www.loc.gov/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "mee": {
+      "platform_key": "mee",
+      "name": "mee.gov.cn",
+      "aliases": [
+        "mee.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.mee.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "MEE_02",
+          "name": "www.mee.gov.cn",
+          "url": "https://www.mee.gov.cn/ywgz/fgbz/bz",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MEE_01",
+          "name": "www.mee.gov.cn",
+          "url": "https://www.mee.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "modelscope": {
+      "platform_key": "modelscope",
+      "name": "modelscope.cn",
+      "aliases": [
+        "modelscope.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://modelscope.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "MODELSCOPE_01",
+          "name": "modelscope.cn",
+          "url": "https://modelscope.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "modernhistory": {
+      "platform_key": "modernhistory",
+      "name": "modernhistory.org.cn",
+      "aliases": [
+        "modernhistory.org.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.modernhistory.org.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "MODERNHISTORY_01",
+          "name": "www.modernhistory.org.cn",
+          "url": "https://www.modernhistory.org.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "mohurd": {
+      "platform_key": "mohurd",
+      "name": "mohurd.gov.cn",
+      "aliases": [
+        "mohurd.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.mohurd.gov.cn/gongkai/fdzdgknr/bzgg/inde",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "MOHURD_01",
+          "name": "www.mohurd.gov.cn",
+          "url": "https://www.mohurd.gov.cn/gongkai/fdzdgknr/bzgg/inde",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MOHURD_02",
+          "name": "www.mohurd.gov.cn",
+          "url": "https://www.mohurd.gov.cn/gongkai/fdzdgknr/bzgg/index.html",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "moj": {
+      "platform_key": "moj",
+      "name": "moj.gov.cn",
+      "aliases": [
+        "moj.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.moj.gov.cn/pub/sfbgw/gwygzk/index.html",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "MOJ_01",
+          "name": "www.moj.gov.cn",
+          "url": "https://www.moj.gov.cn/pub/sfbgw/gwygzk/index.html",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "mp": {
+      "platform_key": "mp",
+      "name": "mp.weixin.qq.com",
+      "aliases": [
+        "mp.weixin.qq.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://mp.weixin.qq.com/s/YozwFYMEX7QUjYFDDT0LmA",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "MP_01",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s/YozwFYMEX7QUjYFDDT0LmA",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MP_02",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s/f3h8pTh8o7vHrfNTvAq6bA",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MP_03",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s/gNrq_r7t19tZ34vyB99f9w",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MP_04",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s/nT8hcUnQj6TmvsW1RK5Emw?click_id=451899144",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MP_05",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s/uWR2BMvQtpuGkv9oXTZDdQ",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MP_06",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s/yMzjuReWiBDgP6sJLkSA-A",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MP_07",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzA4NTQ4MDkzNA==&mid=2654299012&idx=1&sn=6f7532",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MP_08",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzA4NTQ4MDkzNA==&mid=2654299012&idx=1&sn=6f7532e280f9a5bdc7012aa4360b9888&chksm=",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "MP_09",
+          "name": "mp.weixin.qq.com",
+          "url": "https://mp.weixin.qq.com/s?__biz=MzA4NTQ4MDkzNA==&mid=2654299012&idx=1&sn=6f7532e280f9a5bdc7012aa4360b9888&chksm=854b38ac89eca8be18ec44081bf02ea3c637b40ca5558c2379f711404eb14e922f8897cf32da&mpshare=1&srcid=0612m8yC0d0RF2jEoZXOyZoT&sharer_shareinfo",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 9,
+      "query_templates": []
+    },
+    "neea": {
+      "platform_key": "neea",
+      "name": "neea.edu.cn",
+      "aliases": [
+        "neea.edu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.neea.edu.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "NEEA_01",
+          "name": "www.neea.edu.cn",
+          "url": "https://www.neea.edu.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "nhc": {
+      "platform_key": "nhc",
+      "name": "nhc.gov.cn",
+      "aliases": [
+        "nhc.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://www.nhc.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "NHC_01",
+          "name": "国家卫生健康委员会",
+          "url": "http://www.nhc.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "note": {
+      "platform_key": "note",
+      "name": "note.youdao.com",
+      "aliases": [
+        "note.youdao.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://note.youdao.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "NOTE_01",
+          "name": "note.youdao.com",
+          "url": "https://note.youdao.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "nppa": {
+      "platform_key": "nppa",
+      "name": "nppa.gov.cn",
+      "aliases": [
+        "nppa.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.nppa.gov.cn/bsfw/cyjghcpc",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "NPPA_01",
+          "name": "www.nppa.gov.cn",
+          "url": "https://www.nppa.gov.cn/bsfw/cyjghcpc",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "NPPA_02",
+          "name": "www.nppa.gov.cn",
+          "url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "office_ai": {
+      "platform_key": "office_ai",
+      "name": "office-ai.cn",
+      "aliases": [
+        "office-ai.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.office-ai.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "OFFICE_AI_01",
+          "name": "www.office-ai.cn",
+          "url": "https://www.office-ai.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "opendatalab": {
+      "platform_key": "opendatalab",
+      "name": "opendatalab.com",
+      "aliases": [
+        "opendatalab.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://opendatalab.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "OPENDATALAB_01",
+          "name": "opendatalab.com",
+          "url": "https://opendatalab.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "openml": {
+      "platform_key": "openml",
+      "name": "openml.org",
+      "aliases": [
+        "openml.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.openml.org/search?type=data",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "OPENML_01",
+          "name": "www.openml.org",
+          "url": "https://www.openml.org/search?type=data",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "paper": {
+      "platform_key": "paper",
+      "name": "paper.iflytek.com",
+      "aliases": [
+        "paper.iflytek.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://paper.iflytek.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "PAPER_01",
+          "name": "paper.iflytek.com",
+          "url": "https://paper.iflytek.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "patentscope2": {
+      "platform_key": "patentscope2",
+      "name": "patentscope2.wipo.int",
+      "aliases": [
+        "patentscope2.wipo.int"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://patentscope2.wipo.int/search/en/search.jsf",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "PATENTSCOPE2_01",
+          "name": "patentscope2.wipo.int",
+          "url": "https://patentscope2.wipo.int/search/en/search.jsf",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "pic": {
+      "platform_key": "pic",
+      "name": "pic.sogou.com",
+      "aliases": [
+        "pic.sogou.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://pic.sogou.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "PIC_01",
+          "name": "pic.sogou.com",
+          "url": "https://pic.sogou.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "pku": {
+      "platform_key": "pku",
+      "name": "pku.edu.cn",
+      "aliases": [
+        "pku.edu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://www.pku.edu.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "PKU_01",
+          "name": "www.pku.edu.cn",
+          "url": "http://www.pku.edu.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "press": {
+      "platform_key": "press",
+      "name": "press.nppa.gov.cn",
+      "aliases": [
+        "press.nppa.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://press.nppa.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "PRESS_01",
+          "name": "press.nppa.gov.cn",
+          "url": "https://press.nppa.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "publishmedia": {
+      "platform_key": "publishmedia",
+      "name": "publishmedia.cbpt.cnki.net",
+      "aliases": [
+        "publishmedia.cbpt.cnki.net"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://publishmedia.cbpt.cnki.net/portal/minio/webs/zghd/media/web/2026/05/28/%E6%96%87%E5%90%8E%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E8%91%97%E5%BD%95%E8%A7%84%E5%88%99%EF%BC%88GB%20T%207714%E2%80%94%202025%EF%BC%89.pdf",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "PUBLISHMEDIA_01",
+          "name": "publishmedia.cbpt.cnki.net",
+          "url": "https://publishmedia.cbpt.cnki.net/portal/minio/webs/zghd/media/web/2026/05/28/%E6%96%87%E5%90%8E%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E8%91%97%E5%BD%95%E8%A7%84%E5%88%99%EF%BC%88GB%20T%207714%E2%80%94%202025%EF%BC%89.pdf",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "research": {
+      "platform_key": "research",
+      "name": "research.bjmu.edu.cn",
+      "aliases": [
+        "research.bjmu.edu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://research.bjmu.edu.cn/kycx/0a2253cf83e34201b07578de02cb743a.htm",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "RESEARCH_01",
+          "name": "research.bjmu.edu.cn",
+          "url": "https://research.bjmu.edu.cn/kycx/0a2253cf83e34201b07578de02cb743a.htm",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "rmfyalk": {
+      "platform_key": "rmfyalk",
+      "name": "rmfyalk.court.gov.cn",
+      "aliases": [
+        "rmfyalk.court.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://rmfyalk.court.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "RMFYALK_01",
+          "name": "rmfyalk.court.gov.cn",
+          "url": "https://rmfyalk.court.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "sbj": {
+      "platform_key": "sbj",
+      "name": "sbj.cnipa.gov.cn",
+      "aliases": [
+        "sbj.cnipa.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://sbj.cnipa.gov.cn/sbj/sbc",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SBJ_01",
+          "name": "sbj.cnipa.gov.cn",
+          "url": "https://sbj.cnipa.gov.cn/sbj/sbc",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "SBJ_02",
+          "name": "sbj.cnipa.gov.cn",
+          "url": "https://sbj.cnipa.gov.cn/sbj/sbcx",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "scidb": {
+      "platform_key": "scidb",
+      "name": "scidb.cn",
+      "aliases": [
+        "scidb.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.scidb.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SCIDB_01",
+          "name": "www.scidb.cn",
+          "url": "https://www.scidb.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "scidraw": {
+      "platform_key": "scidraw",
+      "name": "scidraw.io",
+      "aliases": [
+        "scidraw.io"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://scidraw.io/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SCIDRAW_01",
+          "name": "scidraw.io",
+          "url": "https://scidraw.io/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "science": {
+      "platform_key": "science",
+      "name": "science.org",
+      "aliases": [
+        "science.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.science.org/journal/science",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SCIENCE_01",
+          "name": "www.science.org",
+          "url": "https://www.science.org/journal/science",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "site": {
+      "platform_key": "site",
+      "name": "site.sciping.com",
+      "aliases": [
+        "site.sciping.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://site.sciping.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SITE_HOME",
+          "name": "site.sciping.com",
+          "url": "https://site.sciping.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "sjtu": {
+      "platform_key": "sjtu",
+      "name": "sjtu.edu.cn",
+      "aliases": [
+        "sjtu.edu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.sjtu.edu.cn/tg/20250304/207682.html",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SJTU_01",
+          "name": "www.sjtu.edu.cn",
+          "url": "https://www.sjtu.edu.cn/tg/20250304/207682.html",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "smart": {
+      "platform_key": "smart",
+      "name": "smart.servier.com",
+      "aliases": [
+        "smart.servier.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://smart.servier.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SMART_01",
+          "name": "smart.servier.com",
+          "url": "https://smart.servier.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "spiedigitallibrary": {
+      "platform_key": "spiedigitallibrary",
+      "name": "spiedigitallibrary.org",
+      "aliases": [
+        "spiedigitallibrary.org"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.spiedigitallibrary.org/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SPIEDIGITALLIBRARY_01",
+          "name": "www.spiedigitallibrary.org",
+          "url": "https://www.spiedigitallibrary.org/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "sppt": {
+      "platform_key": "sppt",
+      "name": "sppt.cfsa.net.cn:8086",
+      "aliases": [
+        "sppt.cfsa.net.cn:8086"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://sppt.cfsa.net.cn:8086/db",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SPPT_01",
+          "name": "sppt.cfsa.net.cn",
+          "url": "https://sppt.cfsa.net.cn:8086/db",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "static": {
+      "platform_key": "static",
+      "name": "static.zxhnzq.com",
+      "aliases": [
+        "static.zxhnzq.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://static.zxhnzq.com/zsjs/prod/front/20250626141846whNzAx.png",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "STATIC_01",
+          "name": "static.zxhnzq.com",
+          "url": "https://static.zxhnzq.com/zsjs/prod/front/20250626141846whNzAx.png",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "suyang": {
+      "platform_key": "suyang",
+      "name": "suyang.zxhnzq.com",
+      "aliases": [
+        "suyang.zxhnzq.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://suyang.zxhnzq.com/lecture",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "SUYANG_01",
+          "name": "suyang.zxhnzq.com",
+          "url": "https://suyang.zxhnzq.com/lecture",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "ted": {
+      "platform_key": "ted",
+      "name": "ted.com",
+      "aliases": [
+        "ted.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.ted.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "TED_01",
+          "name": "www.ted.com",
+          "url": "https://www.ted.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "tianchi": {
+      "platform_key": "tianchi",
+      "name": "tianchi.aliyun.com",
+      "aliases": [
+        "tianchi.aliyun.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://tianchi.aliyun.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "TIANCHI_02",
+          "name": "tianchi.aliyun.com",
+          "url": "https://tianchi.aliyun.com/dataset",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "TIANCHI_01",
+          "name": "tianchi.aliyun.com",
+          "url": "https://tianchi.aliyun.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "trendinsight": {
+      "platform_key": "trendinsight",
+      "name": "trendinsight.oceanengine.com",
+      "aliases": [
+        "trendinsight.oceanengine.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://trendinsight.oceanengine.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "TRENDINSIGHT_01",
+          "name": "巨量算数",
+          "url": "https://trendinsight.oceanengine.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "uspto": {
+      "platform_key": "uspto",
+      "name": "uspto.gov",
+      "aliases": [
+        "uspto.gov"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.uspto.gov/patents/search/p",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "USPTO_01",
+          "name": "www.uspto.gov",
+          "url": "https://www.uspto.gov/patents/search/p",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "USPTO_02",
+          "name": "www.uspto.gov",
+          "url": "https://www.uspto.gov/patents/search/patent-public-search",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "video": {
+      "platform_key": "video",
+      "name": "video.wanfangdata.com.cn",
+      "aliases": [
+        "video.wanfangdata.com.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://video.wanfangdata.com.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "VIDEO_01",
+          "name": "video.wanfangdata.com.cn",
+          "url": "https://video.wanfangdata.com.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "vocational": {
+      "platform_key": "vocational",
+      "name": "vocational.smartedu.cn",
+      "aliases": [
+        "vocational.smartedu.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://vocational.smartedu.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "VOCATIONAL_01",
+          "name": "vocational.smartedu.cn",
+          "url": "https://vocational.smartedu.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "wenshu": {
+      "platform_key": "wenshu",
+      "name": "wenshu.court.gov.cn",
+      "aliases": [
+        "wenshu.court.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://wenshu.court.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "WENSHU_01",
+          "name": "wenshu.court.gov.cn",
+          "url": "https://wenshu.court.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "x": {
+      "platform_key": "x",
+      "name": "x.cnki.net",
+      "aliases": [
+        "x.cnki.net"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://x.cnki.net/web/search#/down",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "X_01",
+          "name": "x.cnki.net",
+          "url": "https://x.cnki.net/web/search#/down",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "xhsz": {
+      "platform_key": "xhsz",
+      "name": "xhsz.news.cn",
+      "aliases": [
+        "xhsz.news.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://xhsz.news.cn/",
+      "auth_requirement": "NO",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "XHSZ_02",
+          "name": "课程思政平台",
+          "url": "https://xhsz.news.cn/curriculum/detail/873",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "XHSZ_01",
+          "name": "课程思政平台",
+          "url": "https://xhsz.news.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "NO",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "xiaohongshu": {
+      "platform_key": "xiaohongshu",
+      "name": "xiaohongshu.com",
+      "aliases": [
+        "xiaohongshu.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.xiaohongshu.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "XIAOHONGSHU_01",
+          "name": "www.xiaohongshu.com",
+          "url": "https://www.xiaohongshu.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "xuexi": {
+      "platform_key": "xuexi",
+      "name": "xuexi.cn",
+      "aliases": [
+        "xuexi.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.xuexi.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "XUEXI_01",
+          "name": "www.xuexi.cn",
+          "url": "https://www.xuexi.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "xzfg": {
+      "platform_key": "xzfg",
+      "name": "xzfg.moj.gov.cn",
+      "aliases": [
+        "xzfg.moj.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://xzfg.moj.gov.cn/sear",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "XZFG_01",
+          "name": "xzfg.moj.gov.cn",
+          "url": "http://xzfg.moj.gov.cn/sear",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "XZFG_02",
+          "name": "xzfg.moj.gov.cn",
+          "url": "http://xzfg.moj.gov.cn/search2.html",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "yuanbao": {
+      "platform_key": "yuanbao",
+      "name": "yuanbao.tencent.com",
+      "aliases": [
+        "yuanbao.tencent.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://yuanbao.tencent.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "YUANBAO_02",
+          "name": "yuanbao.tencent.com",
+          "url": "https://yuanbao.tencent.com/chat/naQivTmsDa",
+          "route_type": "DEEP_LINK",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        },
+        {
+          "route_key": "YUANBAO_01",
+          "name": "yuanbao.tencent.com",
+          "url": "https://yuanbao.tencent.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 2,
+      "query_templates": []
+    },
+    "yz": {
+      "platform_key": "yz",
+      "name": "yz.chsi.com.cn",
+      "aliases": [
+        "yz.chsi.com.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://yz.chsi.com.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "YZ_01",
+          "name": "yz.chsi.com.cn",
+          "url": "https://yz.chsi.com.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "zh": {
+      "platform_key": "zh",
+      "name": "zh.d2l.ai",
+      "aliases": [
+        "zh.d2l.ai"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://zh.d2l.ai/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ZH_01",
+          "name": "zh.d2l.ai",
+          "url": "https://zh.d2l.ai/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "zhihu": {
+      "platform_key": "zhihu",
+      "name": "zhihu.com",
+      "aliases": [
+        "zhihu.com"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "https://www.zhihu.com/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ZHIHU_01",
+          "name": "www.zhihu.com",
+          "url": "https://www.zhihu.com/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    },
+    "zxgk": {
+      "platform_key": "zxgk",
+      "name": "zxgk.court.gov.cn",
+      "aliases": [
+        "zxgk.court.gov.cn"
+      ],
+      "category": "AUTO_DERIVED",
+      "canonical_home": "http://zxgk.court.gov.cn/",
+      "auth_requirement": "UNKNOWN",
+      "prefer_edge": false,
+      "dynamic_level": "SEMI_DYNAMIC",
+      "source_priority": 5,
+      "notes": "由 50 模块/模拟题/公开资料自动派生；入口来自 official_urls.json，未逐条核验。",
+      "routes": [
+        {
+          "route_key": "ZXGK_01",
+          "name": "zxgk.court.gov.cn",
+          "url": "http://zxgk.court.gov.cn/",
+          "route_type": "HOME",
+          "purpose": "来源派生入口（未逐条核验）",
+          "status": "UNKNOWN",
+          "requires_login": "UNKNOWN",
+          "prefer_edge": false,
+          "automation": "PUBLIC_PAGE_ONLY",
+          "last_verified_at": ""
+        }
+      ],
+      "route_count": 1,
+      "query_templates": []
+    }
+  },
+  "coverage": {
+    "source_hosts": {
+      "module_01_50": 163,
+      "simulation_sets": 60,
+      "teacher_training": 134,
+      "public_knowledge": 173
+    },
+    "known_hosts": 209,
+    "covered_hosts": 195,
+    "uncovered_hosts": 0,
+    "uncovered": []
+  },
+  "gaps": [],
+  "status": "COMPLETE"
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-08",
+  "agent": "Provincial Elimination Executor",
+  "purpose": "任务模型的**第二个维度**：取证来源。",
+  "controller_decision": {
+    "DECISION_2": "APPROVED — 将任务类型拆分为答案意图(answer_intent)与取证来源(evidence_surface)两个维度。",
+    "why": "官方「答题模式」把**答案形态**与**来源类型**混在一个枚举里（如『篇名精确检索』『动态UI / 原站核验』），一对一扫成单值必然产生系统性偏差——PHASE 2 实测任务类型准确率只有 45.1%。拆成两个维度后，二者可独立评估、独立纠错。",
+    "first_dimension_lives_in": "config/task_types.json（answer_intent 复用其意图短语定义，避免两处维护）"
+  },
+  "scoring": {
+    "model": "与 answer_intent 一致：意图短语(intent_phrases)×4 + 对象信号(signals)×1",
+    "intent_weight": 4,
+    "signal_weight": 1
+  },
+  "detection_order": [
+    "HUMAN_ONLY",
+    "SOFTWARE",
+    "DOCUMENT",
+    "STATISTICS",
+    "REPOSITORY",
+    "DATABASE",
+    "SEARCH_ENGINE",
+    "WEBSITE_UI"
+  ],
+  "detection_note": "同分时按 detection_order；HUMAN_ONLY 永远优先（合规优先于取数）。全部为 0 时 evidence_surface=UNKNOWN。",
+  "evidence_surfaces": [
+    {
+      "id": "HUMAN_ONLY",
+      "name_zh": "比赛面（人工）",
+      "definition": "比赛系统及其同源域。Human Only，禁止任何自动化接触。",
+      "intent_phrases": ["比赛系统", "比赛平台", "答题系统", "考试系统", "省赛系统", "校赛系统"],
+      "signals": ["xxsuyang", "csc.xxsuyang"],
+      "automation": "FORBIDDEN",
+      "note": "命中即 HUMAN_REQUIRED，且不给出任何自动化步骤。"
+    },
+    {
+      "id": "SOFTWARE",
+      "name_zh": "本机软件",
+      "definition": "答案取决于本机已安装软件的功能、菜单或快捷键（Office / WPS / 插件 / 客户端）。",
+      "intent_phrases": [
+        "选项卡中", "功能区", "本机", "软件中", "客户端中", "插件中",
+        "Word中", "Excel中", "WPS中", "PPT中", "在Word", "在Excel",
+        "快捷键", "按钮的功能是", "工具栏"
+      ],
+      "signals": [
+        "Word", "Excel", "PowerPoint", "WPS", "Office", "插件", "雨课堂",
+        "小恐龙", "客户端", "桌面版", "截图", "录屏", "LOCAL",
+        "笔记", "思维导图", "个人中心"
+      ],
+      "typical_module_ranges": [[38, 41], [45, 46], [48, 49]],
+      "note": "这类题的正确取证方式是**本机实操**，不是上网搜。用网页搜索得到的结论必须降到 MODEL_REASONING。"
+    },
+    {
+      "id": "DOCUMENT",
+      "name_zh": "规范文件原文",
+      "definition": "答案在标准、法规、办法、著录规则或 PDF 原文的条款里。",
+      "intent_phrases": [
+        "GB/T", "国家标准规定", "标准规定", "规范要求", "法规规定",
+        "办法规定", "依据条文", "根据规定", "正文第", "第几页",
+        "著录格式", "引用格式", "文献类型标识"
+      ],
+      "signals": [
+        "标准", "法规", "规范", "条文", "条款", "著录", "PDF", "页码",
+        "教育部", "网信办", "UNESCO", "框架"
+      ],
+      "typical_module_ranges": [[1, 1], [10, 11], [43, 45]],
+      "note": "必须给出条款号/页码；扫描件无文字层时返回 HUMAN_REQUIRED，不得声称已读到正文。"
+    },
+    {
+      "id": "STATISTICS",
+      "name_zh": "统计数据",
+      "definition": "答案来自统计口径的数据：国家统计局、指数平台、宏观/行业数据。",
+      "intent_phrases": ["国家统计局", "指数", "GDP", "年度数据", "地区数据", "统计口径"],
+      "signals": [
+        "国家数据", "统计局", "百度指数", "微信指数", "抖音指数",
+        "同比增长", "增幅", "人均", "总量", "城市群"
+      ],
+      "typical_module_ranges": [[8, 9], [29, 29]],
+      "note": "重点是口径（全国/地区/年度/单位），不是检索技巧。"
+    },
+    {
+      "id": "REPOSITORY",
+      "name_zh": "代码/开放数据仓库",
+      "definition": "答案在代码托管或开放数据平台的仓库页：GitHub、ModelScope、AI Studio、数据集站。",
+      "intent_phrases": ["GitHub", "Github", "github", "ModelScope", "魔搭", "AI Studio", "Releases", "License", "开源项目"],
+      "signals": ["仓库", "repo", "Releases", "Tags", "README", "数据集", "模型库", "天池", "OpenDataLab"],
+      "typical_module_ranges": [[7, 7], [24, 24]],
+      "note": "Releases ≠ Tags；注意分支与文件路径。"
+    },
+    {
+      "id": "DATABASE",
+      "name_zh": "文献/专利/标准数据库",
+      "definition": "答案在专业检索数据库里：CNKI、万方、维普、PubMed、Wiley、专利库、标准库。",
+      "intent_phrases": [
+        "CNKI", "知网", "万方", "维普", "PubMed", "ScienceDirect",
+        "Wiley", "IEEE", "高级检索", "精确检索", "篇名", "主题", "学位论文",
+        "专利", "标准号", "收录"
+      ],
+      "signals": [
+        "数据库", "期刊", "文献", "论文", "检索式", "字段", "收录",
+        "影响因子", "核心期刊", "CNIPA", "USPTO", "标准全文"
+      ],
+      "typical_module_ranges": [[21, 26], [31, 37], [42, 44]],
+      "note": "必须遵守该平台自己的检索语法，禁止跨库套用；注意结果页分面 ≠ 详情页字段。"
+    },
+    {
+      "id": "SEARCH_ENGINE",
+      "name_zh": "搜索引擎/聚合检索",
+      "definition": "需要靠搜索引擎或学术聚合站定位目标页面。",
+      "intent_phrases": ["百度学术", "Google", "site:", "filetype:", "高级搜索", "以图识图"],
+      "signals": ["搜索引擎", "搜索语法", "聚合", "必应", "搜狗", "360", "PubScholar"],
+      "typical_module_ranges": [[26, 28], [37, 37]],
+      "note": "搜索摘要不得作为最终证据；只能用来定位，结论必须回原站核验。"
+    },
+    {
+      "id": "WEBSITE_UI",
+      "name_zh": "网站界面/栏目",
+      "definition": "答案在某个网站的当前界面：栏目、菜单、入口、专题页。",
+      "intent_phrases": [
+        "导航栏", "下拉菜单", "栏目", "入口", "是否存在", "是否提供",
+        "首页", "专题网页", "网站中", "页面中", "板块", "功能包括"
+      ],
+      "signals": [
+        "网站", "页面", "首页", "栏目", "菜单", "入口", "专题", "平台",
+        "服务", "板块", "界面", "网页版", "在线版", "网站中"
+      ],
+      "typical_module_ranges": [[1, 7], [13, 20], [27, 30]],
+      "note": "界面会改版，结论必须带 observed_at；未实测不得给高置信度。"
+    }
+  ],
+  "multi_subtask": {
+    "rule": "一题可能包含多个子任务（例如「先在库里查数量，再按标准判断文献类型」）。",
+    "output": "subtasks: [{answer_intent, evidence_surface, target_field, platform}]",
+    "note": "单子任务时 subtasks 只有一项，顶层字段与之一致。"
+  }
+}

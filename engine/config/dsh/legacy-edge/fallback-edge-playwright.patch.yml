@@ -1,0 +1,44 @@
+# ===========================================================================
+# DSH MCP overlay — FALLBACK backend: Microsoft Edge + Playwright MCP Extension
+#
+# 只在下面三种情况启用（§17）：
+#   1. Chrome DevTools MCP 连接失败；
+#   2. 页面兼容性问题；
+#   3. DevTools MCP 当前版本 Bug。
+#
+# 不要与 PRIMARY overlay 同时启用：两套 MCP 的全量工具同时常驻会显著增加
+# tool schema 成本和模型选工具的时间（§17）。
+#
+# 用法：
+#     dsh --profile web --dump-config --patch config/dsh/fallback-edge-playwright.patch.yml
+#
+# 前提：Microsoft Edge 已安装官方 Playwright Extension，且扩展安装在
+#       --profile-dir-name 指定的 Profile 中。扩展安装必须由用户确认，
+#       不得绕过浏览器扩展安装确认。
+# ===========================================================================
+- insert:
+    - id: mcp-edge-playwright
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: edge-playwright
+        transport: stdio
+        command: npx
+        args:
+          - '-y'
+          - '@playwright/mcp@0.0.83'
+          - '--extension'
+          # 必须显式指定 msedge：否则 Playwright MCP 会去 Chrome 的 User Data
+          # （%LOCALAPPDATA%\Google\Chrome\User Data）找扩展，而不是用户 Edge。
+          - '--browser=msedge'
+          - '--profile-dir-name=Default'
+          # §18：浏览器层必须比 Agent 总预算更紧。默认 navigation 60s 太长。
+          - '--timeout-navigation=8000'
+          - '--timeout-action=5000'
+          - '--timeout-settle=500'
+        toolCallTimeoutMs: 15000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+          initialDelayMs: 1000
+          maxDelayMs: 30000
+          maxAttempts: 2

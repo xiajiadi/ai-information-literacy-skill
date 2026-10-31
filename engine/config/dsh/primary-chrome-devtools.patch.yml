@@ -1,0 +1,43 @@
+# ===========================================================================
+# DSH MCP overlay — PRIMARY backend: 专用 Google Chrome + Chrome DevTools MCP
+#
+# 用法（先干跑校验，再写入活动 profile）：
+#     dsh --profile web --dump-config --patch config/dsh/primary-chrome-devtools.patch.yml
+#
+# 前提：专用 Chrome 已由 scripts/start_research_chrome.py 启动：
+#       --remote-debugging-port=9223 --remote-debugging-address=127.0.0.1
+#       --user-data-dir=D:\Dev\tools\provincial-chrome-profile
+#
+# 用 --browser-url 连接，**不用 --autoConnect**：
+#   --autoConnect 依赖 Edge 的 edge://inspect 开关，每次都会要求人工授权，
+#   且其 CDP HTTP 发现端点返回 404。专用 Chrome 的 HTTP 发现正常（200）。
+#
+# 不含任何 Cookie / Token / Password / WebSocket secret。
+# ===========================================================================
+- insert:
+    - id: mcp-chrome-devtools
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: chrome-devtools
+        transport: stdio
+        command: npx
+        args:
+          - '-y'
+          - 'chrome-devtools-mcp@1.10.1'
+          - '--browser-url=http://127.0.0.1:9223'
+          - '--no-usage-statistics'
+          # 速度优先：关闭比赛不需要的工具类别（保留 input / navigation /
+          # debugging / network —— 即 snapshot、click、fill、JS、Network）。
+          - '--no-category-performance'
+          - '--no-category-memory'
+          - '--no-category-emulation'
+          # 比赛面隔离第二道防线：命中即静默 detach，不会读到比赛页 DOM。
+          - '--blockedUrlPattern=*://*.xxsuyang.com/*'
+          - '--blockedUrlPattern=*://xxsuyang.com/*'
+        toolCallTimeoutMs: 15000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+          initialDelayMs: 500
+          maxDelayMs: 30000
+          maxAttempts: 3

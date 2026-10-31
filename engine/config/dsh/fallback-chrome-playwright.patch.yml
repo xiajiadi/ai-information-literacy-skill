@@ -1,0 +1,43 @@
+# ===========================================================================
+# DSH MCP overlay — FALLBACK backend: 专用 Google Chrome + Playwright MCP (CDP)
+#
+# 只在下面三种情况启用（§17）：
+#   1. Chrome DevTools MCP 连接失败；
+#   2. 页面兼容性问题；
+#   3. DevTools MCP 当前版本 Bug。
+#
+# 用 --cdp-endpoint 连接**同一个**专用 Chrome，**不需要安装 Playwright
+# 浏览器扩展**（这是本次迁移相对 Edge 方案的一个实质改进）。
+#
+# 不要与 PRIMARY overlay 同时启用：两套 MCP 全量工具同时常驻会显著增加
+# tool schema 成本与模型选工具的时间。
+#
+# 用法：
+#     dsh --profile web --dump-config --patch config/dsh/fallback-chrome-playwright.patch.yml
+# ===========================================================================
+- insert:
+    - id: mcp-chrome-playwright
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: chrome-playwright
+        transport: stdio
+        command: npx
+        args:
+          - '-y'
+          - '@playwright/mcp@0.0.83'
+          - '--cdp-endpoint=http://127.0.0.1:9223'
+          # 比赛面隔离的纵深防御。官方文档明确说 --blocked-origins
+          # 「不是安全边界、也不影响重定向」，所以它只是附加一层，
+          # 不作为唯一防线（真正的第一层是 compliance_gate）。
+          - '--blocked-origins=https://csc.xxsuyang.com;https://xxsuyang.com;https://*.xxsuyang.com'
+          # §18：浏览器层必须比 Agent 总预算更紧。默认 navigation 60s 太长。
+          - '--timeout-navigation=8000'
+          - '--timeout-action=5000'
+          - '--timeout-settle=500'
+        toolCallTimeoutMs: 15000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+          initialDelayMs: 1000
+          maxDelayMs: 30000
+          maxAttempts: 2

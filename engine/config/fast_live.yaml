@@ -1,0 +1,159 @@
+# FAST_LIVE v1.0 · 极速答题运行配置
+#
+# 本文件定义与 PREP / DEEP_VERIFY 并行的**第三套运行模式**：
+# 目标是「规则允许范围内，最少工具调用、最短总耗时、输出最有价值的答案」。
+#
+# 它**不覆盖**：比赛合规边界、账号安全要求、真实来源标注要求。
+# 比赛面（*.xxsuyang.com 及其同源域）在任何模式下都是 HUMAN ONLY。
+
+schema_version: 1
+generated_at: "2026-10-08"
+agent: "Provincial Elimination Executor"
+mode: FAST_LIVE
+supersedes_for_live: ["PREP 的长检索流程", "TEAM_LIVE 的冗长证据汇报"]
+preserved_modes: ["PREP", "DEEP_VERIFY"]
+
+# ---------------------------------------------------------------------------
+# §1 输出格式（最多三行，默认 ≤100 汉字）
+# ---------------------------------------------------------------------------
+output:
+  max_lines: 3
+  default_max_chars: 100
+  template:
+    - "答案：{answer}｜建议：{advice}"
+    - "P：{probability}｜证据：{evidence_status}"
+    - "依据：{decisive_fact}"
+  unverified_template:
+    - "答案：候选{answer}｜建议：{advice}"
+    - "P：{probability}｜证据：未核验"
+    - "依据：{one_line_reason}"
+  forbidden:
+    - 搜索过程复述
+    - 长篇分析
+    - 网站列表
+    - 无关背景
+    - 自我评价
+    - 冗长道歉
+    - 无必要的下一步计划
+  expand_only_when_user_asks: true
+
+# ---------------------------------------------------------------------------
+# §3 极速浏览器路线（固定顺序，不得跳级重试）
+# ---------------------------------------------------------------------------
+browser_route:
+  order:
+    - DIRECT_KNOWLEDGE
+    - DIRECT_HTTP
+    - AGENT_BROWSER
+    - DEVTOOLS_MCP
+    - PLAYWRIGHT_MCP
+    - HUMAN_REQUIRED
+  reuse_existing_cdp: true
+  relaunch_chrome: false
+  reinit_mcp_per_question: false
+  multiple_search_engines: false
+  aim_browser_ops_for_simple_question: [1, 3]
+
+# ---------------------------------------------------------------------------
+# §4 时间预算（含模型推理 / 工具启动 / 网页等待 / 检索）
+# ---------------------------------------------------------------------------
+time_budget_seconds:
+  decide: 3
+  primary_retrieval: 15
+  form_answer: 25
+  continue_only_if_high_value: 25
+  hard_stop: 45
+  note: "计时包含一切环节；不得把浏览器本地操作耗时冒充整题耗时。"
+
+# ---------------------------------------------------------------------------
+# §5 作答策略（期望值）
+# ---------------------------------------------------------------------------
+answering:
+  scoring:
+    individual: {correct: 2, wrong: -1, skip: 0}
+    team: {correct: 4, wrong: -1, skip: 0}
+  min_probability_to_answer:
+    individual: 0.333
+    team: 0.20
+  true_false_must_choose: true
+  single_choice_after_one_elimination: 0.333
+  multi_select_rule: "必须估计整组答案全部正确的联合概率，不得用单选项正确率代替"
+  probability_must_be_conservative: true
+  stop_when_marginal_gain_is_low: true
+
+# ---------------------------------------------------------------------------
+# §6 域名判定（分层，取代「未知域名一律按比赛面」）
+# ---------------------------------------------------------------------------
+domain_policy:
+  tiers:
+    - id: COMPETITION_BLOCK
+      action: BLOCK
+      note: "最高优先级，任何模式都不放行，也不允许关闭隔离。"
+    - id: CONFIRMED_ALLOW
+      action: ALLOW_READONLY
+      note: "compliance_policy.research_surface.confirmed_hosts 与已实测登记的入口主机。"
+    - id: OPERATOR_CONFIRMED
+      action: ALLOW_READONLY
+      note: "Controller 在 FAST_LIVE 指令中点名核实的普通外部数据站；只读、可缓存。"
+    - id: PUBLIC_RESEARCH_HEURISTIC
+      action: ALLOW_READONLY
+      note: "本地 URL/域名安全检查通过的公开发布站点（政府/教育/科研后缀等），只读且缓存。"
+    - id: SENSITIVE_OPERATION
+      action: STOP
+      note: "涉及登录/验证码/支付/上传/删除等，或出现可疑跳转时停止。"
+    - id: UNCERTAIN
+      action: STOP_OR_HUMAN
+      note: "不能确认安全归属时停止或转人工。"
+  forbidden:
+    - 把所有未知域名一律视为比赛系统
+    - 为了提速关闭比赛域名隔离
+    - 每道题重复向 Controller 请求同一项授权
+    - 绕过网站真实的登录、验证码或访问限制
+  cache_ttl_seconds: 86400
+
+# Controller 在 FAST_LIVE 指令中**点名**要求核实并优先放行的正常外部数据站。
+# 只读访问；不得用于登录、下载敏感资源或任何写操作。
+operator_confirmed_hosts:
+  - host: gdp.gotohui.com
+    reason: "聚汇数据 2024 年长三角 27 城 GDP 排名表（页面自称来源为各市统计局）"
+    access: READ_ONLY
+    cross_check_required: true
+  - host: sh.gov.cn
+    reason: "上海市政府合作交流办，长三角 41 城经济数据"
+    access: READ_ONLY
+    cross_check_required: true
+  - host: tjj.ningbo.gov.cn
+    reason: "宁波市统计局，长三角城市季度共享数据"
+    access: READ_ONLY
+    cross_check_required: true
+
+# ---------------------------------------------------------------------------
+# §7 题库使用与盲测
+# ---------------------------------------------------------------------------
+question_bank_policy:
+  allowed_as_clue: ["可信知识", "已知入口", "历史答案作线索"]
+  must_label_source_as_one_of:
+    - 官方已核验
+    - 其他来源已核验
+    - 历史题库记录
+    - 模型推断
+    - 未核验
+  forbidden: "把『历史题库记录 B』写成『已经通过官网验证 B』"
+  variant_no_answer_reuse: true
+  blind_benchmark:
+    enabled_flag: BLIND_BENCHMARK
+    forbid_local_answer_lookup: true
+    forbid_local_explanation_lookup: true
+    allowed: ["独立导航", "真实检索"]
+
+# ---------------------------------------------------------------------------
+# §9 工程实现开关
+# ---------------------------------------------------------------------------
+engineering:
+  short_tool_timeouts_seconds: {agent_browser: 20, mcp_call: 15, page_load: 12}
+  reduce_exposed_tools: true
+  reuse_started_browser: true
+  cache_confirmed_research_hosts: true
+  limit_retries: {same_target: 1, same_platform: 1, search_engines: 1}
+  hide_debug_output_in_normal_answer: true
+  detailed_logs: {path: "data/quality/fast_live/", blocking: false}

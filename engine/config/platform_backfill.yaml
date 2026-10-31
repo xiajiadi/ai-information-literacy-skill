@@ -1,0 +1,289 @@
+# 平台条目补录（PHASE 2 修正 · Controller 决策 (b)）
+#
+# 来源：`data/quality/phase2/platform_gap.json` 的证据驱动缺口分析 ——
+# 只收录**在真实题库题干或正式 50 模块导航里实际出现过**、而当前别名索引
+# 认不出的平台。不收录凭印象觉得重要的平台。
+#
+# 两条纪律（沿用 DECISION 1）：
+#   1. **不臆造**。这里只补 `canonical_name` 与 `aliases`（解决"认不出"这个
+#      真实缺口）。`domains` 与 `official_entry` **一律留空**，因为我没有
+#      权威来源核实其官方域名/入口；留空由合规闸门按默认拒绝处理。
+#      待 Controller 核实后再补 domains 与 official_entry。
+#   2. 全部标记 `verification_status: UNVERIFIED`、
+#      `provenance: AUTHOR_CURATED_PENDING_REVIEW`，不得冒充已核实条目。
+#
+# 复现：uv run python scripts/phase2_platform_gap.py
+#
+# `parent_platform` 说明：许多被点名的「平台」其实是某个大平台的**子产品**。
+# 实测发现若把它们当独立平台，会**遮蔽**母平台标签（例如「知网研学」遮蔽 `cnki`），
+# 使点名题准确率从 86.3% 掉到 72.7%。因此显式记录父子关系，
+# 评估时**分别**报告严格命中与同族命中，不把同族命中混进严格口径。
+
+schema_version: 2
+generated_at: "2026-10-08"
+agent: "Provincial Elimination Executor"
+controller_decision: "(b) 为已出现路由错误的平台及高频学术数据库补条目"
+
+# 题型/模块归属只作为**线索**记录，不参与平台识别打分。
+platforms:
+  # --- 反馈最多的路由失败项（17 题因此返回 UNKNOWN）---
+  aizhishu:
+    canonical_name: AI知数
+    aliases: ["AI知数", "知数", "AI 知数"]
+    parent_platform: stats
+    module_hint: M09
+    evidence: "初赛-6 题干点名；M09 官方首选入口。属数据服务，归入 stats 族。"
+  leappspace:
+    canonical_name: LeapSpace
+    aliases: ["LeapSpace", "Leap Space", " leapspace"]
+    parent_platform: sciencedirect
+    module_hint: M05
+    evidence: "初赛-13 题干点名；LeapSpace 是 Elsevier/ScienceDirect 的 AI 工具，归入 sciencedirect 族。"
+  cnki_ai:
+    canonical_name: CNKI AI
+    aliases: ["CNKI AI", "知网AI", "CNKI-AI"]
+    parent_platform: cnki
+    module_hint: M05
+    evidence: "M05 官方首选入口（2 次）；CNKI 子产品。"
+  zhiwang_yanxue:
+    canonical_name: 知网研学
+    aliases: ["知网研学", "研学平台"]
+    parent_platform: cnki
+    module_hint: M46
+    evidence: "M05/M46 官方首选入口；CNKI 子产品。"
+  law_knowledge:
+    canonical_name: 中国法律知识资源总库
+    aliases: ["中国法律知识资源总库", "中国法律智库", "法律知识资源总库"]
+    parent_platform: cnki
+    module_hint: M10
+    evidence: "模拟-3 题干点名（2 次）；CNKI 子库。"
+  cnki_thesis_named:
+    canonical_name: CNKI 学位论文库
+    aliases: ["中国知网学位论文", "知网学位论文", "CNKI学位论文"]
+    parent_platform: cnki
+    module_hint: M23
+    evidence: "初赛-14/15 题干；CNKI 子库。"
+  xuexi_qiangguo_speech:
+    canonical_name: 习近平系列重要讲话数据库
+    aliases: ["习近平系列重要讲话数据库", "系列重要讲话数据库", "讲话数据库"]
+    parent_platform: jhsjk
+    module_hint: M08
+    evidence: "初赛-24、模拟题题干（3 次）；与既有 key `jhsjk` 同族。"
+  course_ideology:
+    canonical_name: 全国高校课程思政教学资源服务平台
+    aliases: ["全国高校课程思政教学资源服务平台", "课程思政教学资源服务平台"]
+    module_hint: M08
+    evidence: "M08 官方首选入口；题干（2 次）"
+  oxford_academic:
+    canonical_name: Oxford Academic
+    aliases: ["Oxford Academic", "牛津学术", "Oxford Academic Books", "牛津学术专著"]
+    parent_platform: oxford
+    module_hint: M19
+    evidence: "M19 官方首选入口；题干「牛津学术」（2 次）"
+  cambridge:
+    canonical_name: Cambridge Core
+    aliases: ["Cambridge Core", "剑桥学术数据库", "剑桥核心", "Cambridge"]
+    module_hint: M19
+    evidence: "初赛-40 题干点名「剑桥学术数据库」（复用既有 key `cambridge`）"
+  ncbi_bookshelf:
+    canonical_name: NCBI Bookshelf
+    aliases: ["NCBI Bookshelf", "NCBI书架", "Bookshelf"]
+    module_hint: M19
+    evidence: "M19 官方首选入口"
+  info_literacy_db:
+    canonical_name: 高校信息素养教育数据库
+    aliases: ["高校信息素养教育数据库", "信息素养教育数据库"]
+    module_hint: M18
+    evidence: "M18 官方首选入口；题干（2 次）"
+  cnki_thesis_named:
+    canonical_name: CNKI 学位论文库
+    aliases: ["中国知网学位论文", "知网学位论文", "CNKI学位论文"]
+    module_hint: M23
+    evidence: "初赛-14/15 题干；归并到 cnki 语义"
+  aminer:
+    canonical_name: AMiner
+    aliases: ["AMiner", "aminer"]
+    module_hint: M05
+    evidence: "M05 官方首选入口"
+  kimi:
+    canonical_name: Kimi
+    aliases: ["Kimi", "kimi", "月之暗面"]
+    module_hint: M03
+    evidence: "M03/M04 官方首选入口"
+  doubao:
+    canonical_name: 豆包
+    aliases: ["豆包", "Doubao"]
+    module_hint: M03
+    evidence: "M03/M04/M06 官方首选入口（最高频 AI 工具之一）"
+  zhipu:
+    canonical_name: 智谱清言
+    aliases: ["智谱清言", "智谱", "清影", "GLM"]
+    module_hint: M06
+    evidence: "M03/M06 官方首选入口"
+  tongyi:
+    canonical_name: 通义千问
+    aliases: ["通义千问", "通义", "千问", "通义万相"]
+    module_hint: M04
+    evidence: "M04/M06 官方首选入口"
+  wenxin:
+    canonical_name: 文心一言
+    aliases: ["文心一言", "文心"]
+    module_hint: M03
+    evidence: "M03/M04 官方首选入口"
+  spark:
+    canonical_name: 讯飞星火
+    aliases: ["讯飞星火", "星火", "讯飞AI大学堂", "AI大学堂"]
+    module_hint: M02
+    evidence: "M02/M05 官方首选入口"
+  aliyun_dev:
+    canonical_name: 阿里云开发者社区
+    aliases: ["阿里云开发者社区", "阿里云开发者"]
+    module_hint: M02
+    evidence: "M02 官方首选入口"
+  tencent_docs:
+    canonical_name: 腾讯文档
+    aliases: ["腾讯文档"]
+    module_hint: M38
+    evidence: "M38 官方首选入口"
+  wps:
+    canonical_name: WPS
+    aliases: ["WPS", "WPS Office", "金山办公"]
+    module_hint: M45
+    evidence: "M38/M45 官方首选入口"
+  zotero:
+    canonical_name: Zotero
+    aliases: ["Zotero", "zotero"]
+    module_hint: M46
+    evidence: "M46 官方首选入口"
+  mendeley:
+    canonical_name: Mendeley
+    aliases: ["Mendeley", "mendeley", "Mendeley Reference Manager"]
+    module_hint: M46
+    evidence: "初赛-9 题干点名"
+  citespace:
+    canonical_name: CiteSpace
+    aliases: ["CiteSpace", "citespace"]
+    module_hint: M50
+    evidence: "M50 官方首选入口"
+  vosviewer:
+    canonical_name: VOSviewer
+    aliases: ["VOSviewer", "vosviewer"]
+    module_hint: M50
+    evidence: "M50 官方首选入口"
+  echarts:
+    canonical_name: ECharts
+    aliases: ["ECharts", "echarts"]
+    module_hint: M49
+    evidence: "M49 官方首选入口"
+  weiciyun:
+    canonical_name: 微词云
+    aliases: ["微词云"]
+    module_hint: M49
+    evidence: "初赛-36 题干点名"
+  site_newthinking:
+    canonical_name: 赛特新思
+    aliases: ["赛特新思"]
+    module_hint: M50
+    evidence: "M50 官方首选入口"
+  baidu_xueshu:
+    canonical_name: 百度学术
+    aliases: ["百度学术"]
+    module_hint: M26
+    evidence: "M26/M44 官方首选入口（消歧后的限定形式）"
+  # --- 高频学术数据库（Controller：优先处理高频学术数据库）---
+  pubscholar:
+    canonical_name: PubScholar
+    aliases: ["PubScholar", "pubscholar", "公益学术平台"]
+    module_hint: M26
+    evidence: "M26 官方首选入口（导航 2 次）"
+  nstl:
+    canonical_name: 国家科技图书文献中心
+    aliases: ["国家科技图书文献中心", "NSTL", "nstl"]
+    module_hint: M26
+    evidence: "初赛-28 题干点名"
+  wiley:
+    canonical_name: Wiley
+    aliases: ["Wiley", "WILEY", "wiley", "威立"]
+    module_hint: M21
+    evidence: "初赛-21、样题-45 题干点名；M33 首选入口（导航 5 次，最高频外文库之一）"
+  tandf:
+    canonical_name: Taylor & Francis
+    aliases: ["Taylor & Francis", "Taylor and Francis", "T&F", "Taylor"]
+    module_hint: M21
+    evidence: "M21/M31 官方首选入口；题干多次出现"
+  acm:
+    canonical_name: ACM
+    aliases: ["ACM", "acm", "美国计算机学会"]
+    module_hint: M21
+    evidence: "题干 3 次；M21 官方首选入口"
+  uspto:
+    canonical_name: USPTO
+    aliases: ["USPTO", "uspto", "美国专利商标局"]
+    module_hint: M12
+    evidence: "M12 官方首选入口"
+  doaj:
+    canonical_name: DOAJ
+    aliases: ["DOAJ", "doaj", "开放获取期刊目录"]
+    module_hint: M24
+    evidence: "M24 官方首选入口"
+  oalib:
+    canonical_name: OALib
+    aliases: ["OALib", "oalib"]
+    module_hint: M24
+    evidence: "M24 官方首选入口"
+  # --- 题干里实际出现、当前认不出的平台 ---
+  zhihuishu:
+    canonical_name: 智慧树
+    aliases: ["智慧树", "智慧树网"]
+    module_hint: M17
+    evidence: "样题-1 题干点名（3 次）"
+  piyao:
+    canonical_name: 中国互联网联合辟谣平台
+    aliases: ["中国互联网联合辟谣平台", "联合辟谣平台", "辟谣平台"]
+    module_hint: M13
+    evidence: "M13 官方首选入口；题干（3 次）"
+  lawyer_credit:
+    canonical_name: 全国律师执业诚信信息公示平台
+    aliases: ["全国律师执业诚信信息公示平台", "律师执业诚信信息公示平台"]
+    module_hint: M16
+    evidence: "初赛-8 题干点名（2 次）"
+  nopss:
+    canonical_name: 国家社科基金项目数据库
+    aliases: ["国家社科基金项目数据库", "国家社科基金", "社科基金项目数据库"]
+    module_hint: M25
+    evidence: "初赛-22 题干点名（2 次）。注意：与国家哲学社会科学文献中心(ncpssd)不是同一平台。"
+  sac:
+    canonical_name: 中国证券业协会
+    aliases: ["中国证券业协会", "证券业协会"]
+    module_hint: M16
+    evidence: "题干点名（2 次）"
+  baidu_image:
+    canonical_name: 百度图片
+    aliases: ["百度图片"]
+    module_hint: M27
+    evidence: "M27 官方首选入口（消歧后的限定形式）"
+  sogou_image:
+    canonical_name: 搜狗图片
+    aliases: ["搜狗图片"]
+    module_hint: M27
+    evidence: "初赛-29 题干点名"
+  hao:
+    canonical_name: 优设导航
+    aliases: ["优设导航", "优设"]
+    module_hint: M28
+    evidence: "初赛-18 题干点名（复用既有 key `hao`，不新建重复条目）"
+  xuexi:
+    canonical_name: 学习强国
+    aliases: ["学习强国"]
+    module_hint: M18
+    evidence: "初赛-34 题干点名（复用既有 key `xuexi`）"
+  yuketang:
+    canonical_name: 雨课堂
+    aliases: ["雨课堂"]
+    module_hint: M39
+    evidence: "模拟题题干；M39 官方首选入口（复用既有 key `yuketang`）"
+  cambridge:
+    canonical_name: Cambridge Core
+    aliases: ["Cambridge Core", "剑桥学术数据库", "剑桥核心", "Cambridge"]
+    module_hint: M19
+    evidence: "初赛-40 题干点名「剑桥学术数据库」（复用既有 key `cambridge`）"

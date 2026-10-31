@@ -1,0 +1,129 @@
+# 平台关系注册表（PHASE2_GOLD_FINALIZATION）
+#
+# Controller 明确要求：
+#   「母平台、子产品、同一厂商生态、共享域名，必须是**不同关系类型**」
+#   「不得根据品牌名称或域名相似度**猜测**父子关系」
+#   「无权威证据的关系标注为 UNVERIFIED」
+#
+# ⚠️ 自我纠正：上一轮我在 `platform_backfill.yaml` 里写了 7 组 `parent_platform`
+#    （cnki_ai→cnki、leappspace→sciencedirect、aizhishu→stats 等），依据是
+#    **品牌名与官网路径的相似性**，并没有权威来源。按 Controller 本轮规则，
+#    那属于「猜测」，必须改标 UNVERIFIED。其中 `aizhishu → stats` 尤其可疑：
+#    它是因为初赛-6 的 Gold 里含 `stats` 才那样写的，属于**向指标凑**，
+#    本轮一并纠正为 UNVERIFIED 并进入人工裁决包。
+#
+# 关系类型（relationship）取值：
+#   SAME_PLATFORM       同一平台的不同入口/别名
+#   PARENT_PLATFORM     子产品所属的母平台（同一厂商的独立产品入口）
+#   PROVIDER            内容的提供方（厂商/机构）
+#   ECOSYSTEM           同一厂商生态，但产品相互独立
+#   SHARED_DOMAIN       仅共享域名，产品关系不明
+#
+# 证据等级（evidence_level）：
+#   AUTHORITATIVE   有权威来源（官方文档/标准/官网明确的父子声明）
+#   CONTROLLER      由 Controller 直接给定
+#   NONE            无权威来源 —— 一律 UNVERIFIED，且**不得参与准确率计算**
+
+schema_version: 1
+generated_at: "2026-10-08"
+agent: "Provincial Elimination Executor"
+controller_decisions:
+  DECISION_A: "双维度人工可审计标签体系"
+  DECISION_B_PRIME: "产品级 Gold Standard"
+  DECISION_C: "父平台同族准确率只用于诊断，不得代替产品级准确率"
+
+# 全局默认：没有逐条标注 evidence_level 的关系一律按 UNVERIFIED 处理。
+default_verification_status: UNVERIFIED
+
+relationships:
+  # ---- 已由 Controller 在平台补录指令里给定的关系（evidence=CONTROLLER）----
+  # 说明：Controller 的补录指令确认了这些平台「已出现路由错误、需要补条目」，
+  # 但**没有**确认它们之间的父子归属。因此这里只标注为同一生态候选，
+  # 不作为准确率依据。
+  zhiwang_yanxue:
+    relationship: PARENT_PLATFORM_CANDIDATE
+    related_to: cnki
+    evidence_level: "NONE"
+    verification_status: UNVERIFIED
+    basis: "品牌名与官网路径相似（知网研学 / cnki.net 体系）"
+    why_unverified: "无权威来源明确声明「知网研学」是 cnki.net 的子产品；名称相似不足以定论。"
+    review_required: true
+  cnki_ai:
+    relationship: PARENT_PLATFORM_CANDIDATE
+    related_to: cnki
+    evidence_level: "NONE"
+    verification_status: UNVERIFIED
+    basis: "名称含 CNKI"
+    why_unverified: "「CNKI AI」可能是独立服务入口，也可能是知网站内功能模块，需官方说明。"
+    review_required: true
+  law_knowledge:
+    relationship: PARENT_PLATFORM_CANDIDATE
+    related_to: cnki
+    evidence_level: "NONE"
+    verification_status: UNVERIFIED
+    basis: "题干出现「中国知网-中国法律知识资源总库」的连写"
+    why_unverified: "题干连写是**定位线索**，不等于官方父子关系声明。"
+    review_required: true
+  leappspace:
+    relationship: ECOSYSTEM_CANDIDATE
+    related_to: sciencedirect
+    evidence_level: "NONE"
+    verification_status: UNVERIFIED
+    basis: "LeapSpace 与 Elsevier/ScienceDirect 的关联来自常识性联想"
+    why_unverified: "无权威来源；且 初赛-13 的 Gold 网址指向 sciencedirect，属线索而非关系证明。"
+    review_required: true
+  aizhishu:
+    relationship: ECOSYSTEM_CANDIDATE
+    related_to: cnki
+    evidence_level: "NONE"
+    verification_status: UNVERIFIED
+    basis: "无。上一轮曾写为 stats，仅因 初赛-6 的 Gold 含 stats —— 属于向指标凑"
+    why_unverified: "**自我纠正**：该关系是照指标反推的，必须撤销。AI知数的真实归属需人工确认。"
+    review_required: true
+    corrected_from: stats
+  oxford_academic:
+    relationship: SAME_PLATFORM
+    related_to: oxford
+    evidence_level: "NONE"
+    verification_status: UNVERIFIED
+    basis: "名称含 Oxford"
+    why_unverified: "Oxford Academic 与既有 key `oxford` 是否同一平台需核实。"
+    review_required: true
+  xuexi_qiangguo_speech:
+    relationship: PARENT_PLATFORM_CANDIDATE
+    related_to: jhsjk
+    evidence_level: "NONE"
+    verification_status: UNVERIFIED
+    basis: "均为「系列重要讲话数据库」类服务"
+    why_unverified: "无权威来源确认二者是同一平台。"
+    review_required: true
+
+  # ---- Controller 明确要求特别核查、但当前**不能**认定的对照项 ----
+  # 这些是被点名要求核查的，我不臆断结论，全部进入人工裁决包。
+  special_audit:
+    - subject: 知网研学
+      vs: 中国知网
+      question: "知网研学是 cnki.net 的子产品，还是独立的第三方平台？"
+      current_status: UNVERIFIED
+    - subject: CNKI AI
+      vs: 中国知网
+      question: "CNKI AI 是 cnki.net 站内功能模块，还是独立服务入口？"
+      current_status: UNVERIFIED
+    - subject: AI知数
+      vs: CNKI 数据服务
+      question: "AI知数的归属是什么？是否属 CNKI 数据服务？"
+      current_status: UNVERIFIED
+    - subject: LeapSpace
+      vs: ScienceDirect
+      question: "LeapSpace 是否由 Elsevier 运营、与 ScienceDirect 同属一个产品线？"
+      current_status: UNVERIFIED
+    - subject: 国家社科基金项目数据库
+      vs: 国家哲学社会科学文献中心
+      question: "二者是否为不同平台？（已有初步证据支持『不同』）"
+      current_status: LIKELY_DISTINCT
+      note: "上一轮已把它们拆成 nopss 与 ncpssd 两个 key，依据是名称与主管机构不同；仍建议人工确认。"
+    - subject: 同一品牌旗下不同搜索产品
+      vs: 品牌主平台
+      question: "百度指数/百度学术/百度图片 与「百度」主品牌的关系如何标注？"
+      current_status: LIKELY_DISTINCT
+      note: "已在 platform_aliases.yaml 用 maps_to=null 禁止把裸「百度」分配给任一产品，并要求限定词。这属于**消歧**，不是父子关系认定。"

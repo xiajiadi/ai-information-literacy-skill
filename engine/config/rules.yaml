@@ -1,0 +1,36 @@
+version: 1
+question_stability:
+  STATIC: "法规原文、标准页码、引用格式、快捷键和稳定概念"
+  SEMI_DYNAMIC: "AI 产品功能、栏目、菜单、工具入口和网页展示"
+  DYNAMIC: "检索结果数量、排名、指数、词频、统计指标和实时目录"
+
+verification_status:
+  - OFFICIAL_ANSWER
+  - VERIFIED_OFFICIAL
+  - VERIFIED_PRIMARY
+  - PROVISIONAL
+  - NEEDS_HUMAN
+  - UNVERIFIED
+
+matching:
+  L0: "题干和选项内容精确匹配"
+  L1: "题干标准化匹配"
+  L2: "题干相似匹配"
+  L3: "题干和选项集合匹配"
+
+answer_policy:
+  seed_standard_answer: "保留公开来源答案"
+  practice_answer: "只写 provisional_answer"
+  dynamic_observation: "写 current_observed_value 和 observed_at，不覆盖 standard_answer"
+  conflict: "记录冲突，禁止静默覆盖"
+
+human_handoff:
+  trigger:
+    - captcha
+    - qr_login
+    - sms_verification
+    - campus_authentication
+    - app_only
+    - drm_pdf
+    - dynamic_player
+  response: "暂不提交答案，并给出最短人工操作路径和需要截图的结果。"

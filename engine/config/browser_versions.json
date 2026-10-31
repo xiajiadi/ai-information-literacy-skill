@@ -1,0 +1,103 @@
+{
+  "schema_version": "2.0",
+  "generated_at": "2026-10-08",
+  "verified_at": "2026-10-08",
+  "migration": "研究浏览器 Edge -> 专用 Google Chrome（2026-10-08 Controller 批准）",
+  "policy": "初始化探索阶段允许 @latest；确认兼容后固定为下列已实测版本。比赛当天禁止 npm update / pnpm update / latest pull。",
+  "host": {
+    "os": "Microsoft Windows 11 Pro",
+    "os_version": "10.0.26200",
+    "architecture": "AMD64"
+  },
+  "versions": {
+    "chrome": {
+      "version": "155.0.8059.40",
+      "channel": "stable",
+      "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "user_data_dir": "D:\\Dev\\tools\\provincial-chrome-profile",
+      "cdp_port": 9223,
+      "verified": true,
+      "source": "本地文件版本信息 + CDP /json/version + Google Update registry pv",
+      "update_history": [
+        {
+          "version": "147.0.7727.102",
+          "observed_at": "2026-10-08",
+          "note": "2026-10-08 迁移时的版本；当时 chrome.exe 与 CDP 均报 147。"
+        },
+        {
+          "version": "155.0.8059.40",
+          "observed_at": "2026-10-08T21:34+08:00",
+          "note": "Chrome 通过 Google Update 自动升级（版本目录 155.0.8059.40 写入于 21:34）。升级过程终止了当时的专用实例；Profile 与 Cookies 库完好，重新启动后沿用同一 Profile。"
+        }
+      ],
+      "update_check_at": "2026-10-08",
+      "update_check_result": "UP_TO_DATE",
+      "update_check_evidence": "磁盘 chrome.exe FileVersion=155.0.8059.40；Google Update 客户端注册表 pv=155.0.8059.40；磁盘仅有 155.0.8059.40 一个版本目录。与 Controller 指出的最新稳定版 155.0.8059.39/.40 一致，**无需升级**。"
+    },
+    "edge": {
+      "version": "154.0.4258.62",
+      "channel": "stable",
+      "executable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "verified": true,
+      "deprecated": true,
+      "note": "已停用。Edge 的 edge://inspect 开关每次连接都要求人工授权，且其 CDP HTTP 发现端点返回 404。配置与 overlay 已备份在 config/dsh/legacy-edge/。"
+    },
+    "node": {
+      "version": "24.15.0",
+      "path": "D:\\Software\\Node.js\\node.exe",
+      "verified": true
+    },
+    "npm": {
+      "version": "12.0.2",
+      "verified": true
+    },
+    "pnpm": {
+      "version": null,
+      "verified": false,
+      "note": "本机未安装 pnpm；corepack 可用。DSH 的 dsh plugin 子命令通过 pnpm 转发。"
+    },
+    "dsh": {
+      "version": "0.1.0-rc.6",
+      "path": "C:\\Users\\<user>\\AppData\\Roaming\\npm\\dsh.ps1",
+      "verified": true
+    },
+    "dsh-mcp-client": {
+      "version": "0.1.0-rc.6",
+      "verified": true,
+      "note": "已随 @deepseek-ai/dsh 作为依赖安装，位于 C:\\Users\\<user>\\.dsh\\profiles\\node_modules\\@deepseek-ai\\dsh-mcp-client。无需重复安装。"
+    },
+    "chrome-devtools-mcp": {
+      "version": "1.10.1",
+      "verified": true,
+      "verified_how": "对专用 Chrome 的 --browser-url 连接成功，tools/list 返回 24 个工具，list_pages 实测 103ms",
+      "latest_seen": "1.10.1"
+    },
+    "agent-browser": {
+      "version": "0.38.1",
+      "verified": true,
+      "install_path": "D:\\Dev\\tools\\browser-tools\\agent-browser",
+      "latest_seen": "0.38.2",
+      "note": "本机为本地安装（非 npm -g）。按 §28 保持已验证版本，不自动升级。"
+    },
+    "playwright-mcp": {
+      "version": "0.0.83",
+      "verified": true,
+      "verified_how": "以 --cdp-endpoint=http://127.0.0.1:9223 成功连接专用 Chrome，tools/list 返回 25 个工具",
+      "latest_seen": "0.0.83",
+      "connection_mode": "cdp-endpoint",
+      "requires_browser_extension": false
+    },
+    "playwright-extension": {
+      "version": null,
+      "verified": false,
+      "required": false,
+      "note": "迁移到 --cdp-endpoint 后**不再需要** Playwright 扩展。此项仅为 Edge 回滚路线保留。"
+    }
+  },
+  "freeze": {
+    "frozen": false,
+    "frozen_at": null,
+    "reason": "专用 Chrome 已通过技术验收，但用户登录态尚未建立、赛前复测未完成，暂不冻结。",
+    "freeze_target": "T-1 天"
+  }
+}

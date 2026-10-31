@@ -1,0 +1,75 @@
+version: 1
+# 考试当天浏览器策略：Microsoft Edge 优先，复用用户既有登录态。
+#
+# 本文件由 scripts/preflight_platforms.py --detect-edge 生成/校验，
+# 记录的是「本机实测事实」，不是期望值。路径变了必须重新探测，不要手改。
+#
+# 安全边界（硬性）：
+#   - 不读取、不打印、不导出 Cookie / Token / Session / 密码。
+#   - 不删除 SingletonLock / SingletonCookie / 任何浏览器锁文件。
+#   - 不强杀用户正在使用的 Edge，不修改用户 Profile 数据库。
+#   - 登录态只允许由浏览器自身使用，任何日志、JSON、YAML、Markdown 中
+#     都不得出现认证数据。
+
+browser: edge
+
+detected_at: "2026-09-19"
+
+executable:
+  path: "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+  version: "153.0.4234.32"
+  # 第二个候选路径在本机不存在，实测结果如下：
+  alternate_path: "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe"
+  alternate_exists: false
+
+user_data_dir: "C:\\Users\\<user>\\AppData\\Local\\Microsoft\\Edge\\User Data"
+user_data_exists: true
+
+profile:
+  directory: "Default"
+  display_name: "用户1"
+  # 本机只有一个 Profile，因此它必然就是当前活动 Profile。
+  all_profiles: ["Default"]
+  active_profile_source: "single_profile + running_edge"
+
+runtime_state:
+  edge_running: true
+  edge_process_count: 65
+  # 用户自己的 Edge 正在使用 Default Profile，Profile 处于占用状态。
+  profile_locked: true
+  # 本机没有任何 msedge 进程带用户指定的 --remote-debugging-port，
+  # 因此无法用 CDP 安全接管现有会话。
+  cdp_attach_available: false
+  singleton_lock_present: false
+
+reuse_login_state:
+  # 策略上要求复用；当前因 Profile 被占用而不可用。
+  policy: true
+  currently_available: false
+  reason: "用户 Edge 正在使用 Default Profile，且未开启远程调试端口；强占 Profile 或改锁文件均被禁止。"
+
+# 优先级（高 → 低）。低优先级只有在高优先级被明确判定不可用时才可降级，
+# 且降级必须写明理由，禁止静默回退到 Chrome / Chromium。
+priority:
+  - "用户现有 Edge 登录态（需 Edge 未运行或可安全接管）"
+  - "Edge + 用户既有 Profile"
+  - "Edge 自动化独立会话（无登录态）"
+  - "用户人工在 Edge 中操作（人工交接）"
+  - "其他浏览器（仅在题目无需登录且 Edge 技术性不可用时）"
+
+forbidden:
+  - "默认启动 Google Chrome"
+  - "默认启动 Playwright 自带 Chromium"
+  - "静默新建空白浏览器环境并声称登录态仍存在"
+  - "强杀用户 Edge / 删除锁文件 / 修改 Profile 数据库"
+  - "读取或导出 Cookie、Token、Session ID"
+
+# 登录态判定只允许用「页面表现」判断（是否显示用户名/退出登录），
+# 绝不读取认证数据。未在 Edge 中实测前，一律记为 UNKNOWN。
+platform_login_state:
+  note: "以下状态需在用户 Edge 中逐站实测；未实测前保持 UNKNOWN，不得推断为 YES。"
+  CNKI: "UNKNOWN"
+  "维普": "UNKNOWN"
+  "万方": "UNKNOWN"
+  "中国大学MOOC": "UNKNOWN"
+  "智慧树": "UNKNOWN"

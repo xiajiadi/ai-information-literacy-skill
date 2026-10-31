@@ -1,0 +1,166 @@
+version: 1
+config_id: PROVINCIAL_ELIMINATION_2026
+generated_at: "2026-10-07"
+status: DRAFT_PENDING_CONTROLLER
+# 本文件是「省赛淘汰赛」运行参数。它是新增文件，不修改 config/rules.yaml、
+# config/fast_profile.yaml、config/platforms.yaml 等校赛期配置。
+#
+# ⚠️ 省赛淘汰赛的真实规则（题型 / 时间 / 分值 / 是否允许联网 / 平台集合）
+# Controller 尚未确认。下面 team_live 段的数值来自本次任务书 §23 的假设语义，
+# 标记为 CONTROLLER_PROVIDED。**赛前必须以官方规则复核并改写本段。**
+
+mode:
+  default: PREP
+  available:
+    - PREP
+    - TEAM_LIVE
+  # 未经 Controller 明确下达「开始正式答题 / 模拟测试」命令，
+  # 执行体必须停留在 PREP，不得自行进入 TEAM_LIVE。
+  live_activation_requires_controller_command: true
+  prep_has_hard_timeout: false
+
+team_live:
+  source: CONTROLLER_PROVIDED
+  verified_against_official_rules: false
+  question_total: 10
+  duration_seconds: 900
+  seconds_per_question_budget: 90
+  score_correct: 4
+  score_wrong: -1
+  score_skip: 0
+  # 正期望阈值：P(correct) > 4/(4+1) 的倒数 = 0.20
+  decision_threshold: 0.20
+  threshold_derivation: "correct 4 / wrong -1 -> 盈亏平衡 P = 1/(1+4) = 0.20"
+  multi_select_rule: "P 必须表示整个选项组合完全正确的概率，不得由单项概率相乘或取最小值冒充。"
+  final_decision_owner: HUMAN
+
+# 个人赛阈值：本执行体主要用于团队对抗，但必须同时记录，避免未来复用混用。
+individual_mode:
+  decision_threshold: 0.3333
+  threshold_derivation: "correct 1 / wrong -0.5 -> 盈亏平衡 P = 1/3"
+  note: "个人赛模型与本执行体不是同一个运行角色；此段仅用于防止阈值混用。"
+
+timing:
+  gate_recognition_seconds: 10
+  target_first_result_seconds: 20
+  soft_search_limit_seconds: 45
+  target_answer_or_handoff_seconds: 60
+  hard_agent_limit_seconds: 65
+  human_reserve_seconds: 25
+  # 平台级预算
+  platform_first_failure: CLASSIFY_THEN_DECIDE
+  platform_obvious_auth_or_captcha: HANDOFF_AT_SECOND_1
+  platform_route_retry_max: 1
+  platform_risk_control_signal: STOP_RETRYING
+  # 禁止为了把 70% 提升到 80% 而耗尽整题时间
+  diminishing_return_guard: true
+
+compliance:
+  # 与 config/compliance_policy.yaml 保持一致；此处只是运行期开关镜像。
+  # 冲突时以 compliance_policy.yaml 为准（P0）。
+  policy_file: config/compliance_policy.yaml
+  competition_surface_automation: false
+  competition_dom_read: false
+  competition_api_access: false
+  competition_auto_fill: false
+  competition_auto_submit: false
+  auto_ocr_question_capture: false
+  clipboard_question_watcher: false
+  external_research_browser: true
+  question_ingress: HUMAN_ONLY
+  answer_egress: HUMAN_ONLY
+
+retrieval:
+  official_source_first: true
+  deep_link_first: true
+  exact_match_enabled: true
+  variant_answer_reuse: false
+  platform_recipe_enabled: true
+  query_template_enabled: true
+  cross_platform_syntax_mixing: false
+  search_engine_is_last_resort: true
+  source_priority:
+    - P1_OFFICIAL_PLATFORM_LIVE
+    - P2_QUESTION_DESIGNATED_DATABASE
+    - P3_SAME_INSTITUTION_ENTRY_OR_ORIGINAL_PDF
+    - P4_SECONDARY_THIRD_PARTY
+    - P5_MODEL_REASONING
+
+risk:
+  bypass_captcha: false
+  bypass_waf: false
+  bypass_login: false
+  bypass_cloudflare: false
+  bypass_rate_limit: false
+  retry_same_route_max: 1
+  max_browser_failures_per_question: 2
+  credential_storage: forbidden
+
+routing:
+  # 新中心：题目 -> 模块识别 -> 任务类型 -> 平台 -> Recipe -> 检索式 -> 检索 -> 证据 -> 候选答案
+  primary_key: module_id
+  # 旧库 questions.module_name 已知被污染（与 module_id 不一致），只作线索
+  trust_module_name: false
+  trust_official_platform_field: false
+  trust_retrieval_path_field: false
+  required_analysis_fields:
+    - module_id
+    - task_type
+    - target_platform
+    - required_fields
+    - filters
+    - time_constraint
+    - expected_output
+
+browser:
+  # 沿用 config/edge_profile.yaml 的安全边界，不改写该校赛期文件。
+  edge_policy_file: config/edge_profile.yaml
+  priority:
+    - existing_edge_login
+    - edge_with_existing_profile
+    - edge_automation_standalone_session
+    - human_operates_edge
+    - other_browser_only_when_no_login_needed
+  never_silently_fallback_to_chrome: true
+  never_kill_user_edge: true
+  never_delete_profile_lock: true
+  never_read_or_export_credentials: true
+  # 本机实测（2026-09-19）：用户 Edge 占用 Default Profile 且无远程调试端口，
+  # 登录态复用当前不可用 -> 受控平台默认人工交接。
+  remote_debug_attach_available: false
+  smoke_test_targets: PUBLIC_SITES_ONLY
+  competition_surface_forbidden_as_test_target: true
+
+budgets:
+  module_nav_lookup: 5
+  task_type_detection: 5
+  platform_routing: 5
+  query_generation: 5
+  first_candidate_answer: 20
+  official_evidence: 45
+  answer_or_handoff: 60
+  hard_stop: 65
+
+output:
+  mode: SHORT
+  answer_first: true
+  max_lines: 6
+  forbidden_in_live:
+    - long_chain_of_thought
+    - tutorial
+    - background_essay
+    - unrelated_links
+    - lets_research_more
+  required:
+    - answer
+    - probability
+    - decision
+    - evidence_level
+  confidence_scale: [20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 95]
+  fake_precision_forbidden: true
+  handoff_format_required_fields:
+    - official_url
+    - steps
+    - copyable_query
+    - target_field
+    - what_to_report_back

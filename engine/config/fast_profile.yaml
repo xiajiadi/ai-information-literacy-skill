@@ -1,0 +1,79 @@
+version: 1
+# FAST Replica 执行档位。
+#
+# 本文件是「附加档位」，不修改普通 Agent 的原有配置：
+#   - config/official_urls.json -> runtime_policy.hard_timeout_seconds 仍为 180
+#   - config/rules.yaml、config/sources.yaml、config/platforms.yaml 不变
+# 只有显式启用 FAST EXAM MODE 时才适用本文件的时间预算。
+
+mode: FAST
+
+timeouts:
+  local_match_timeout_seconds: 3
+  routing_timeout_seconds: 10
+  simple_web_timeout_seconds: 30
+  browser_soft_timeout_seconds: 75
+  browser_abort_prepare_seconds: 90
+  hard_timeout_seconds: 120       # 普通 Agent 为 180，FAST 收紧到 120
+
+browser:
+  max_browser_failures: 2         # 同一题自动化失败 2 次即停止
+  prefer: agent-browser           # 简单导航与读取
+  fallback: playwright            # 复杂表单；两者不同时运行，切换最多 1 次
+  early_stop_requires_human:
+    - captcha
+    - block_puzzle
+    - qr_login
+    - sms_verification
+    - campus_authentication
+    - app_only
+    - wechat_mp_or_miniprogram
+    - drm_pdf
+    - dynamic_player
+    - manual_chart_interaction
+    - automation_failed_twice
+
+output:
+  answer_first: true
+  verbose: false
+  max_lines_on_hit: 2             # 题库命中最多两行
+  exam_mode_flag: "--exam-mode"
+
+evidence:
+  official_source_required_for_high: true
+  confidence_scale: [HIGH, MEDIUM, LOW, NEEDS_HUMAN]
+
+answer_policy:
+  # 与 config/rules.yaml 的 answer_policy 保持一致，FAST 不放宽证据要求。
+  seed_standard_answer: "保留公开来源答案"
+  practice_answer: "只写 provisional_answer"
+  dynamic_observation: "写 current_observed_value 和 observed_at，不覆盖 standard_answer"
+  conflict: "记录冲突，禁止静默覆盖"
+  official_answer_over_explanation: true   # official_answer 优先于解析文字
+
+manual_handoff_enabled: true
+manual_handoff_must_include:
+  - official_url
+  - entry_path
+  - copyable_query
+  - target_field
+  - what_to_report_back
+
+# 题库档位说明（重要）：
+#   P0_OFFICIAL  = source_type != '用户提供模拟题整理'，standard_answer 有值，
+#                  confidence=HIGH，verification_status=OFFICIAL_ANSWER  -> 🟢
+#   P0_PRACTICE  = source_type == '用户提供模拟题整理'（150 题），仅 provisional_answer，
+#                  confidence=LOW，verification_status=PROVISIONAL        -> 🟠
+# 150 道模拟题命中时立即作答（速度不变），但来源标注保持「题源参考答案（未官方核验）」，
+# 不升级为 🟢 HIGH。若用户提供官方依据，再按 reconcile_answers.py 回填 standard_answer。
+confidence_labels:
+  standard_answer: "🟢 HIGH"
+  provisional_answer: "🟠 题源参考答案（未官方核验）"
+  unresolved_option_mismatch: "需要核对选项内容"
+
+# 选项重排：按选项「内容」重映射，绝不按字母。
+option_remap:
+  enabled: true
+  compare_by: option_content        # 实现见 scripts/match_engine.py:remap_answer
+  duplicate_options: refuse         # 出现重复选项时输出「需要核对选项内容」，不猜字母
+  missing_option: refuse

@@ -1,0 +1,35 @@
+version: 1
+# Test fixture: same shape as config/fast_profile.yaml but with small budgets so
+# the timeout / early-stop logic can be exercised without a 120s wait.
+# The real profile is never modified by tests.
+
+mode: FAST
+
+timeouts:
+  local_match_timeout_seconds: 3
+  routing_timeout_seconds: 3
+  simple_web_timeout_seconds: 2
+  browser_soft_timeout_seconds: 3
+  browser_abort_prepare_seconds: 4
+  hard_timeout_seconds: 6
+
+browser:
+  max_browser_failures: 2
+  prefer: agent-browser
+  fallback: playwright
+  early_stop_requires_human:
+    - captcha
+    - block_puzzle
+    - qr_login
+    - sms_verification
+    - campus_authentication
+    - app_only
+    - wechat_mp_or_miniprogram
+    - drm_pdf
+    - dynamic_player
+    - manual_chart_interaction
+    - automation_failed_twice
+
+output:
+  answer_first: true
+  verbose: false

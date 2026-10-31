@@ -1,0 +1,5217 @@
+{
+  "schema_version": "2.0",
+  "generated_at": "2026-10-08T22:36:44+08:00",
+  "agent": "Provincial Elimination Executor",
+  "artifact_status": "OFFICIAL",
+  "source": "OFFICIAL_CONTROLLER",
+  "official_file": "D:\\Download\\AI信息素养省赛_50模块极速导航.md",
+  "official_sha256": "444fee70e78c39244c0dd38f3556c7306440d0922f40cea47d605fa7537c9355",
+  "status_note": "本导航由 Controller 提供的正式版《50 模块极速导航》解析生成。官方措辞保持原样（见每模块的 official 字段）；平台/深链接/字段等为**派生**内容，位于 derived 命名空间，仅供参考，不构成官方结论。",
+  "counts": {
+    "modules": 50,
+    "with_primary_entry": 50,
+    "with_trigger_terms": 50,
+    "with_derived_platform": 37,
+    "platform_from_official_entry": 31,
+    "platform_from_db_heuristic": 6,
+    "platform_unresolved": 13,
+    "with_derived_deep_link": 31
+  },
+  "modules": [
+    {
+      "module_no": 1,
+      "module_code": "M01",
+      "module_id": "知识模块01",
+      "module_name": "AI基础知识与伦理规范",
+      "section_title": "AI素养-AI基础知识与伦理规范",
+      "category": "AI素养",
+      "category_section": "AI素养",
+      "trigger_terms": [
+        "AI法规",
+        "伦理",
+        "AIGC使用边界",
+        "UNESCO框架",
+        "规范文件",
+        "正文页码/表格"
+      ],
+      "typical_operations": [
+        "题目给文件名→找官方PDF→直接页内定位条款/页码/表格标题；问原则时先按文件适用范围区分。"
+      ],
+      "main_traps": [
+        "“正文页码”与PDF页码可能不同",
+        "相邻条款极易做成干扰项",
+        "AI印象不能替代原文。"
+      ],
+      "official": {
+        "primary_entry": "国家网信办/全国网安标委原文；UNESCO Digital Library；高校/科研机构官方规范",
+        "fast_path": "题目给文件名→找官方PDF→直接页内定位条款/页码/表格标题；问原则时先按文件适用范围区分。",
+        "traps": "“正文页码”与PDF页码可能不同；相邻条款极易做成干扰项；AI印象不能替代原文。",
+        "answering_mode": "`PDF定位 / 原文核验`",
+        "question_anchors": [
+          "`模拟-16`"
+        ],
+        "table_name": "AI基础知识与伦理规范",
+        "table_triggers": [
+          "AI法规",
+          "伦理",
+          "AIGC使用边界"
+        ],
+        "table_action": "PDF定位 / 原文核验；国家网信办/全国网安标委原文；UNESCO Digital Library；高校/科研机构官方规范"
+      },
+      "derived": {
+        "official_platform_names": [
+          "UNESCO Digital Library",
+          "UNESCO"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "unesco",
+        "primary_platform_name": "UNESCO Digital Library",
+        "fallback_platforms": [],
+        "deep_link": "https://unesdoc.unesco.org/ark:/48223/pf0000393559",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "ARK 编号",
+          "题名",
+          "作者",
+          "DOI",
+          "ISBN",
+          "页数",
+          "语言",
+          "出版年份"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 3,
+        "url_recipe_count": 2
+      },
+      "primary_platform": "unesco",
+      "primary_platform_name": "UNESCO Digital Library",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "UNESCO Digital Library",
+        "UNESCO"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "https://unesdoc.unesco.org/ark:/48223/pf0000393559",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "ARK 编号",
+        "题名",
+        "作者",
+        "DOI",
+        "ISBN",
+        "页数",
+        "语言",
+        "出版年份"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "判断题",
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0001",
+        "Q0057"
+      ],
+      "question_count_in_bank": 3,
+      "url_recipe_count": 2,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 2,
+      "module_code": "M02",
+      "module_id": "知识模块02",
+      "module_name": "AI学习资源的获取与利用",
+      "section_title": "AI素养-AI学习资源的获取与利用",
+      "category": "AI素养",
+      "category_section": "AI素养",
+      "trigger_terms": [
+        "AI学习路线",
+        "AI大学堂",
+        "昇腾",
+        "动手学深度学习",
+        "Elements of AI",
+        "高校AI专题"
+      ],
+      "typical_operations": [
+        "平台名→站内课程/栏目→直接核对课程阶段、栏目名称、资源类型。"
+      ],
+      "main_traps": [
+        "产品/栏目名称会改版",
+        "题目常问“包括/不包括”，优先看当前页面。"
+      ],
+      "official": {
+        "primary_entry": "阿里云开发者社区、讯飞AI大学堂、华为云开发者学堂、各高校图书馆AI专题",
+        "fast_path": "平台名→站内课程/栏目→直接核对课程阶段、栏目名称、资源类型。",
+        "traps": "产品/栏目名称会改版；题目常问“包括/不包括”，优先看当前页面。",
+        "answering_mode": "`原站核验`",
+        "question_anchors": [
+          "`模拟-22`",
+          "`模拟-81`",
+          "`模拟-89`"
+        ],
+        "table_name": "AI学习资源的获取与利用",
+        "table_triggers": [
+          "AI学习路线",
+          "AI大学堂",
+          "昇腾"
+        ],
+        "table_action": "原站核验；阿里云开发者社区、讯飞AI大学堂"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 5
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0002"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 5,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 3,
+      "module_code": "M03",
+      "module_id": "知识模块03",
+      "module_name": "通用AI工具认知与应用",
+      "section_title": "AI素养-通用AI工具认知与应用",
+      "category": "AI素养",
+      "category_section": "AI素养",
+      "trigger_terms": [
+        "DeepSeek",
+        "豆包",
+        "元宝",
+        "智谱",
+        "千问",
+        "Kimi",
+        "星火",
+        "文心",
+        "纳米AI；首页/侧栏/模型选择"
+      ],
+      "typical_operations": [
+        "工具名→官网首页或对应功能页→核对当前可选模型、入口、侧栏项目。"
+      ],
+      "main_traps": [
+        "典型动态UI题，模型记忆容易过期",
+        "未看页面时置信度降档。"
+      ],
+      "official": {
+        "primary_entry": "各AI产品官方网页版/APP",
+        "fast_path": "工具名→官网首页或对应功能页→核对当前可选模型、入口、侧栏项目。",
+        "traps": "典型动态UI题，模型记忆容易过期；未看页面时置信度降档。",
+        "answering_mode": "`动态UI / 原站核验`",
+        "question_anchors": [
+          "`模拟-42`",
+          "`模拟-132`"
+        ],
+        "table_name": "通用AI工具认知与应用",
+        "table_triggers": [
+          "DeepSeek",
+          "豆包",
+          "元宝"
+        ],
+        "table_action": "动态UI / 原站核验；各AI产品官方网页版/APP"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 3,
+        "url_recipe_count": 6
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0003"
+      ],
+      "question_count_in_bank": 3,
+      "url_recipe_count": 6,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 4,
+      "module_code": "M04",
+      "module_id": "知识模块04",
+      "module_name": "办公场景下的AI工具",
+      "section_title": "AI素养-办公场景下的AI工具",
+      "category": "AI素养",
+      "category_section": "AI素养",
+      "trigger_terms": [
+        "PPT生成",
+        "写作",
+        "会议记录",
+        "录音纪要",
+        "办公AI",
+        "知识库排序"
+      ],
+      "typical_operations": [
+        "识别办公场景→进入对应工具功能→核对功能名、模板/风格/语言/排序选项。"
+      ],
+      "main_traps": [
+        "相似工具功能名不同",
+        "“会议记录/录音纪要/听课助手”常被混作干扰项。"
+      ],
+      "official": {
+        "primary_entry": "千问、豆包、Kimi、智谱、文心、讯飞星火、腾讯ima",
+        "fast_path": "识别办公场景→进入对应工具功能→核对功能名、模板/风格/语言/排序选项。",
+        "traps": "相似工具功能名不同；“会议记录/录音纪要/听课助手”常被混作干扰项。",
+        "answering_mode": "`动态UI / 原站核验`",
+        "question_anchors": [
+          "`模拟-5`",
+          "`模拟-35`",
+          "`模拟-73`"
+        ],
+        "table_name": "办公场景下的AI工具",
+        "table_triggers": [
+          "PPT生成",
+          "写作",
+          "会议记录"
+        ],
+        "table_action": "动态UI / 原站核验；千问、豆包"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 7,
+        "url_recipe_count": 7
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0004",
+        "Q0058"
+      ],
+      "question_count_in_bank": 7,
+      "url_recipe_count": 7,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 5,
+      "module_code": "M05",
+      "module_id": "知识模块05",
+      "module_name": "科研场景下的AI工具",
+      "section_title": "AI素养-科研场景下的AI工具",
+      "category": "AI素养",
+      "category_section": "AI素养",
+      "trigger_terms": [
+        "科研AI",
+        "CNKI AI",
+        "LeapSpace",
+        "Claim Radar",
+        "Trust Card",
+        "Deep Research",
+        "星火科研助手",
+        "AI选题/对比阅读"
+      ],
+      "typical_operations": [
+        "先判断题目问“功能名”还是“实际输出”→进入对应科研AI→选择正确模块/检索范围→观察结果结构。"
+      ],
+      "main_traps": [
+        "同一平台多个模块功能相近",
+        "LeapSpace/CNKI AI持续迭代，旧功能名不可硬背。"
+      ],
+      "official": {
+        "primary_entry": "CNKI AI/知网研学、中国法律知识资源总库AI、LeapSpace、星火科研助手、AMiner",
+        "fast_path": "先判断题目问“功能名”还是“实际输出”→进入对应科研AI→选择正确模块/检索范围→观察结果结构。",
+        "traps": "同一平台多个模块功能相近；LeapSpace/CNKI AI持续迭代，旧功能名不可硬背。",
+        "answering_mode": "`功能定位 / 原站核验`",
+        "question_anchors": [
+          "`模拟-3`",
+          "`模拟-30`",
+          "`模拟-34`"
+        ],
+        "table_name": "科研场景下的AI工具",
+        "table_triggers": [
+          "科研AI",
+          "CNKI AI",
+          "LeapSpace"
+        ],
+        "table_action": "功能定位 / 原站核验；CNKI AI/知网研学、中国法律知识资源总库AI"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI AI",
+          "CNKI",
+          "知网研学",
+          "知网",
+          "中国法律知识资源总库"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "sciencedirect"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 12,
+        "url_recipe_count": 11
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI AI",
+        "CNKI",
+        "知网研学",
+        "知网",
+        "中国法律知识资源总库"
+      ],
+      "fallback_platforms": [
+        "sciencedirect"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0005",
+        "Q0006",
+        "Q0007"
+      ],
+      "question_count_in_bank": 12,
+      "url_recipe_count": 11,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 6,
+      "module_code": "M06",
+      "module_id": "知识模块06",
+      "module_name": "多模态AI工具",
+      "section_title": "AI素养-多模态AI工具",
+      "category": "AI素养",
+      "category_section": "AI素养",
+      "trigger_terms": [
+        "AI画图",
+        "AI生视频",
+        "音乐生成",
+        "首尾帧",
+        "风格",
+        "数字人"
+      ],
+      "typical_operations": [
+        "工具→多模态入口→展开模式/风格/时长/提示词模板。"
+      ],
+      "main_traps": [
+        "生成时长、风格菜单最易随版本变化",
+        "题目多考当前UI。"
+      ],
+      "official": {
+        "primary_entry": "豆包、智谱清言/清影、通义万相、可灵、文心、讯飞星火",
+        "fast_path": "工具→多模态入口→展开模式/风格/时长/提示词模板。",
+        "traps": "生成时长、风格菜单最易随版本变化；题目多考当前UI。",
+        "answering_mode": "`动态UI / 原站核验`",
+        "question_anchors": [
+          "`模拟-7`",
+          "`模拟-74`",
+          "`模拟-147`"
+        ],
+        "table_name": "多模态AI工具",
+        "table_triggers": [
+          "AI画图",
+          "AI生视频",
+          "音乐生成"
+        ],
+        "table_action": "动态UI / 原站核验；豆包、智谱清言/清影"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0008"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 4,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 7,
+      "module_code": "M07",
+      "module_id": "知识模块07",
+      "module_name": "AI开源与开放数据资源的获取与利用",
+      "section_title": "AI素养-AI开源与开放数据资源的获取与利用",
+      "category": "AI素养",
+      "category_section": "AI素养",
+      "trigger_terms": [
+        "GitHub",
+        "ModelScope",
+        "AI Studio",
+        "开源项目",
+        "README",
+        "License",
+        "Release",
+        "数据集"
+      ],
+      "typical_operations": [
+        "项目名/模型名→精准进入仓库或资源页→看README、LICENSE、Releases/Projects、数据集说明。"
+      ],
+      "main_traps": [
+        "Releases≠Tags",
+        "GitHub API可能限流，必要时直接数分页",
+        "注意分支与文件路径。"
+      ],
+      "official": {
+        "primary_entry": "GitHub、ModelScope、百度AI Studio、天池、OpenDataLab、OpenML、UCI",
+        "fast_path": "项目名/模型名→精准进入仓库或资源页→看README、LICENSE、Releases/Projects、数据集说明。",
+        "traps": "Releases≠Tags；GitHub API可能限流，必要时直接数分页；注意分支与文件路径。",
+        "answering_mode": "`原站精确定位`",
+        "question_anchors": [
+          "`模拟-67`",
+          "`模拟-142`"
+        ],
+        "table_name": "AI开源与开放数据资源的获取与利用",
+        "table_triggers": [
+          "GitHub",
+          "ModelScope",
+          "AI Studio"
+        ],
+        "table_action": "原站精确定位；GitHub、ModelScope"
+      },
+      "derived": {
+        "official_platform_names": [
+          "GitHub",
+          "ModelScope"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "github",
+        "primary_platform_name": "github.com",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "github",
+      "primary_platform_name": "github.com",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "GitHub",
+        "ModelScope"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0009",
+        "Q0059"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 4,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 8,
+      "module_code": "M08",
+      "module_id": "知识模块08",
+      "module_name": "思政信息资源",
+      "section_title": "政府开放信息-思政信息资源",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "讲话数据库",
+        "共产党员网",
+        "课程思政",
+        "署名文章",
+        "先进典型"
+      ],
+      "typical_operations": [
+        "人物/关键词→全文检索→按时间或栏目核对；课程题进入教学设计看学时/内容。"
+      ],
+      "main_traps": [
+        "高频关键词不等于栏目名",
+        "“第一次提到”必须检查更早记录。"
+      ],
+      "official": {
+        "primary_entry": "习近平系列重要讲话数据库、共产党员网、全国高校课程思政教学资源服务平台",
+        "fast_path": "人物/关键词→全文检索→按时间或栏目核对；课程题进入教学设计看学时/内容。",
+        "traps": "高频关键词不等于栏目名；“第一次提到”必须检查更早记录。",
+        "answering_mode": "`官方站点 / 时间核验`",
+        "question_anchors": [
+          "`模拟-43`",
+          "`模拟-87`"
+        ],
+        "table_name": "思政信息资源",
+        "table_triggers": [
+          "讲话数据库",
+          "共产党员网",
+          "课程思政"
+        ],
+        "table_action": "官方站点 / 时间核验；习近平系列重要讲话数据库、共产党员网"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "DB_HEURISTIC",
+        "primary_platform": "cnipa",
+        "primary_platform_name": "国家知识产权局",
+        "fallback_platforms": [],
+        "deep_link": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "申请号",
+          "专利名称",
+          "申请人",
+          "专利类型",
+          "同族",
+          "技术领域",
+          "附图"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 7
+      },
+      "primary_platform": "cnipa",
+      "primary_platform_name": "国家知识产权局",
+      "platform_source": "DB_HEURISTIC",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "申请号",
+        "专利名称",
+        "申请人",
+        "专利类型",
+        "同族",
+        "技术领域",
+        "附图"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "判断题",
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0010",
+        "Q0060"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 7,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 9,
+      "module_code": "M09",
+      "module_id": "知识模块09",
+      "module_name": "开放数据资源",
+      "section_title": "政府开放信息-开放数据资源",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "国家统计局",
+        "地区/年度数据",
+        "AI知数",
+        "就业/GDP/产量/增长率",
+        "开放数据"
+      ],
+      "typical_operations": [
+        "先判口径(全国/地区/年度/城市群)→选指标树→设年份地区→读数或计算。"
+      ],
+      "main_traps": [
+        "单位(人/万人/亿元)、统计口径、城市群范围最易错",
+        "同比需基期。"
+      ],
+      "official": {
+        "primary_entry": "国家统计局国家数据、AI知数、ScienceDB、世界银行开放数据",
+        "fast_path": "先判口径(全国/地区/年度/城市群)→选指标树→设年份地区→读数或计算。",
+        "traps": "单位(人/万人/亿元)、统计口径、城市群范围最易错；同比需基期。",
+        "answering_mode": "`数据查询 / 计算`",
+        "question_anchors": [
+          "`模拟-19`",
+          "`模拟-56`",
+          "`模拟-92`"
+        ],
+        "table_name": "开放数据资源",
+        "table_triggers": [
+          "国家统计局",
+          "地区/年度数据",
+          "AI知数"
+        ],
+        "table_action": "数据查询 / 计算；国家统计局国家数据、AI知数"
+      },
+      "derived": {
+        "official_platform_names": [
+          "国家统计局"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "stats",
+        "primary_platform_name": "国家统计局",
+        "fallback_platforms": [
+          "cnipa"
+        ],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 7,
+        "url_recipe_count": 5
+      },
+      "primary_platform": "stats",
+      "primary_platform_name": "国家统计局",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "国家统计局"
+      ],
+      "fallback_platforms": [
+        "cnipa"
+      ],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0011",
+        "Q0012",
+        "Q0061"
+      ],
+      "question_count_in_bank": 7,
+      "url_recipe_count": 5,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 10,
+      "module_code": "M10",
+      "module_id": "知识模块10",
+      "module_name": "法律信息资源",
+      "section_title": "政府开放信息-法律信息资源",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "法律法规",
+        "案例",
+        "执行信息",
+        "案号",
+        "失信被执行人",
+        "法院案例库"
+      ],
+      "typical_operations": [
+        "法律名/主体/案号→选对应数据库→用唯一标识检索→打开详情核对金额/日期/文号。"
+      ],
+      "main_traps": [
+        "司法网站常有验证码/WAF",
+        "第三方结果只能备选，正式判断优先官方详情。"
+      ],
+      "official": {
+        "primary_entry": "国家法律法规数据库、中国法律知识资源总库、人民法院案例库、中国执行信息公开网等",
+        "fast_path": "法律名/主体/案号→选对应数据库→用唯一标识检索→打开详情核对金额/日期/文号。",
+        "traps": "司法网站常有验证码/WAF；第三方结果只能备选，正式判断优先官方详情。",
+        "answering_mode": "`官方数据库 / 精确字段`",
+        "question_anchors": [],
+        "table_name": "法律信息资源",
+        "table_triggers": [
+          "法律法规",
+          "案例",
+          "执行信息"
+        ],
+        "table_action": "官方数据库 / 精确字段；国家法律法规数据库、中国法律知识资源总库"
+      },
+      "derived": {
+        "official_platform_names": [
+          "中国法律知识资源总库"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 2,
+        "url_recipe_count": 1
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "中国法律知识资源总库"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0013",
+        "Q0014"
+      ],
+      "question_count_in_bank": 2,
+      "url_recipe_count": 1,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 11,
+      "module_code": "M11",
+      "module_id": "知识模块11",
+      "module_name": "标准与商标信息资源",
+      "section_title": "政府开放信息-标准与商标信息资源",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "国家标准",
+        "行业/地方标准",
+        "标准号",
+        "起草人",
+        "商标",
+        "ISSN/标准数据库"
+      ],
+      "typical_operations": [
+        "标准号优先→详情/下载PDF→定位起草人、状态、发布日期；商标用注册号。"
+      ],
+      "main_traps": [
+        "标准“现行/作废/即将实施”与检索字段口径",
+        "题目可能把期刊收录信息混入。"
+      ],
+      "official": {
+        "primary_entry": "国家标准全文公开系统、全国标准信息公共服务平台、CNKI/万方/维普标准库、商标查询系统",
+        "fast_path": "标准号优先→详情/下载PDF→定位起草人、状态、发布日期；商标用注册号。",
+        "traps": "标准“现行/作废/即将实施”与检索字段口径；题目可能把期刊收录信息混入。",
+        "answering_mode": "`标准号/注册号精确查`",
+        "question_anchors": [
+          "`模拟-8`",
+          "`模拟-77`"
+        ],
+        "table_name": "标准与商标信息资源",
+        "table_triggers": [
+          "国家标准",
+          "行业/地方标准",
+          "标准号"
+        ],
+        "table_action": "标准号/注册号精确查；国家标准全文公开系统、全国标准信息公共服务平台"
+      },
+      "derived": {
+        "official_platform_names": [
+          "国家标准全文公开系统",
+          "全国标准信息公共服务平台",
+          "CNKI",
+          "万方",
+          "维普"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "standards",
+        "primary_platform_name": "国家标准",
+        "fallback_platforms": [
+          "cnki",
+          "wanfang"
+        ],
+        "deep_link": "https://openstd.samr.gov.cn/",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "标准号",
+          "标准名称",
+          "起草单位",
+          "实施日期"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 5
+      },
+      "primary_platform": "standards",
+      "primary_platform_name": "国家标准",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "国家标准全文公开系统",
+        "全国标准信息公共服务平台",
+        "CNKI",
+        "万方",
+        "维普"
+      ],
+      "fallback_platforms": [
+        "cnki",
+        "wanfang"
+      ],
+      "deep_link": "https://openstd.samr.gov.cn/",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "标准号",
+        "标准名称",
+        "起草单位",
+        "实施日期"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0015",
+        "Q0062"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 5,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 12,
+      "module_code": "M12",
+      "module_id": "知识模块12",
+      "module_name": "专利和地理标志",
+      "section_title": "政府开放信息-专利和地理标志",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "专利",
+        "申请号/专利号",
+        "同族",
+        "说明书",
+        "技术领域",
+        "附图",
+        "地理标志"
+      ],
+      "typical_operations": [
+        "专利名或申请号→详情→先判专利类型，再看说明书/同族/法律状态；地标走CNIPA政务服务。"
+      ],
+      "main_traps": [
+        "发明申请与授权号不同",
+        "公布/授权文本不同",
+        "通配符?与%及可用字段需看系统规则。"
+      ],
+      "official": {
+        "primary_entry": "CNIPA专利检索及分析/专利公布公告、USPTO、Espacenet、WIPO Patentscope、地理标志查询",
+        "fast_path": "专利名或申请号→详情→先判专利类型，再看说明书/同族/法律状态；地标走CNIPA政务服务。",
+        "traps": "发明申请与授权号不同；公布/授权文本不同；通配符?与%及可用字段需看系统规则。",
+        "answering_mode": "`专利号精确查 / 原文`",
+        "question_anchors": [
+          "`模拟-12`",
+          "`模拟-55`",
+          "`模拟-141`"
+        ],
+        "table_name": "专利和地理标志",
+        "table_triggers": [
+          "专利",
+          "申请号/专利号",
+          "同族"
+        ],
+        "table_action": "专利号精确查 / 原文；CNIPA专利检索及分析/专利公布公告、USPTO"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNIPA",
+          "专利检索及分析",
+          "专利公布公告"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnipa",
+        "primary_platform_name": "国家知识产权局",
+        "fallback_platforms": [],
+        "deep_link": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "申请号",
+          "专利名称",
+          "申请人",
+          "专利类型",
+          "同族",
+          "技术领域",
+          "附图"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 5,
+        "url_recipe_count": 6
+      },
+      "primary_platform": "cnipa",
+      "primary_platform_name": "国家知识产权局",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNIPA",
+        "专利检索及分析",
+        "专利公布公告"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "申请号",
+        "专利名称",
+        "申请人",
+        "专利类型",
+        "同族",
+        "技术领域",
+        "附图"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0016",
+        "Q0063"
+      ],
+      "question_count_in_bank": 5,
+      "url_recipe_count": 6,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 13,
+      "module_code": "M13",
+      "module_id": "知识模块13",
+      "module_name": "反诈防骗信息资源",
+      "section_title": "政府开放信息-反诈防骗信息资源",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "辟谣",
+        "较真AI",
+        "谣言查证",
+        "反诈",
+        "线索提交"
+      ],
+      "typical_operations": [
+        "平台→查证/分类/提交入口→核对栏目、分类、回复结构。"
+      ],
+      "main_traps": [
+        "“同类流言汇总”等看似合理但可能不是官方回复结构",
+        "分类名要逐字核。"
+      ],
+      "official": {
+        "primary_entry": "中国互联网联合辟谣平台、国家反诈中心、全民较真/腾讯较真",
+        "fast_path": "平台→查证/分类/提交入口→核对栏目、分类、回复结构。",
+        "traps": "“同类流言汇总”等看似合理但可能不是官方回复结构；分类名要逐字核。",
+        "answering_mode": "`原站核验`",
+        "question_anchors": [
+          "`模拟-29`",
+          "`模拟-88`",
+          "`模拟-127`"
+        ],
+        "table_name": "反诈防骗信息资源",
+        "table_triggers": [
+          "辟谣",
+          "较真AI",
+          "谣言查证"
+        ],
+        "table_action": "原站核验；中国互联网联合辟谣平台、国家反诈中心"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 2
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0017"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 2,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 14,
+      "module_code": "M14",
+      "module_id": "知识模块14",
+      "module_name": "医卫信息查询",
+      "section_title": "政府开放信息-医卫信息查询",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "卫健委",
+        "药监局",
+        "药品批准文号",
+        "医疗器械注册证",
+        "托育机构",
+        "CHKD AI/PICO"
+      ],
+      "typical_operations": [
+        "对象唯一编号优先→机构/药品/器械对应数据库→详情字段；医学AI题看PICO等功能。"
+      ],
+      "main_traps": [
+        "批准文号、本位码、注册证号不要混",
+        "机构性质需看官方名单字段。"
+      ],
+      "official": {
+        "primary_entry": "国家卫健委、国家药监局数据查询、CHKD AI",
+        "fast_path": "对象唯一编号优先→机构/药品/器械对应数据库→详情字段；医学AI题看PICO等功能。",
+        "traps": "批准文号、本位码、注册证号不要混；机构性质需看官方名单字段。",
+        "answering_mode": "`官方编号查询`",
+        "question_anchors": [
+          "`模拟-20`",
+          "`模拟-51`",
+          "`模拟-115`"
+        ],
+        "table_name": "医卫信息查询",
+        "table_triggers": [
+          "卫健委",
+          "药监局",
+          "药品批准文号"
+        ],
+        "table_action": "官方编号查询；国家卫健委、国家药监局数据查询"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "DB_HEURISTIC",
+        "primary_platform": "nmpa",
+        "primary_platform_name": "国家药品监督管理局",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 6,
+        "url_recipe_count": 2
+      },
+      "primary_platform": "nmpa",
+      "primary_platform_name": "国家药品监督管理局",
+      "platform_source": "DB_HEURISTIC",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "判断题",
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0018",
+        "Q0019",
+        "Q0064"
+      ],
+      "question_count_in_bank": 6,
+      "url_recipe_count": 2,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 15,
+      "module_code": "M15",
+      "module_id": "知识模块15",
+      "module_name": "文教信息查询",
+      "section_title": "政府开放信息-文教信息查询",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "研招网",
+        "考试",
+        "招生",
+        "双一流",
+        "专项计划",
+        "国际组织实习/就业"
+      ],
+      "typical_operations": [
+        "专业/岗位→先设硬筛选条件→再逐条看院校属性/截止日期/学历/地区。"
+      ],
+      "main_traps": [
+        "“筛选结果里出现”≠满足全部条件",
+        "截止日期需逐条核验。"
+      ],
+      "official": {
+        "primary_entry": "中国教育考试网、研招网、国家大学生就业服务平台、国际组织实习任职平台",
+        "fast_path": "专业/岗位→先设硬筛选条件→再逐条看院校属性/截止日期/学历/地区。",
+        "traps": "“筛选结果里出现”≠满足全部条件；截止日期需逐条核验。",
+        "answering_mode": "`多条件筛选`",
+        "question_anchors": [
+          "`模拟-33`",
+          "`模拟-103`",
+          "`模拟-120`"
+        ],
+        "table_name": "文教信息查询",
+        "table_triggers": [
+          "研招网",
+          "考试",
+          "招生"
+        ],
+        "table_action": "多条件筛选；中国教育考试网、研招网"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 5,
+        "url_recipe_count": 2
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0020",
+        "Q0065"
+      ],
+      "question_count_in_bank": 5,
+      "url_recipe_count": 2,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 16,
+      "module_code": "M16",
+      "module_id": "知识模块16",
+      "module_name": "证书资格查询",
+      "section_title": "政府开放信息-证书资格查询",
+      "category": "政府开放信息",
+      "category_section": "政府开放信息",
+      "trigger_terms": [
+        "学信网",
+        "资格证",
+        "律师/证券/基金/银行/CPA/记者资格"
+      ],
+      "typical_operations": [
+        "姓名+证书/登记编号或机构→官方公示→详情字段。"
+      ],
+      "main_traps": [
+        "同名人员",
+        "证书号后几位需确认负责人身份",
+        "协会平台可能验证码/WAF。"
+      ],
+      "official": {
+        "primary_entry": "学信网及各行业协会官方查询平台",
+        "fast_path": "姓名+证书/登记编号或机构→官方公示→详情字段。",
+        "traps": "同名人员；证书号后几位需确认负责人身份；协会平台可能验证码/WAF。",
+        "answering_mode": "`身份/编号精确查`",
+        "question_anchors": [
+          "`模拟-13`",
+          "`模拟-65`",
+          "`模拟-99`"
+        ],
+        "table_name": "证书资格查询",
+        "table_triggers": [
+          "学信网",
+          "资格证",
+          "律师/证券/基金/银行/CPA/记者资格"
+        ],
+        "table_action": "身份/编号精确查；学信网及各行业协会官方查询平台"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 6,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0021",
+        "Q0066"
+      ],
+      "question_count_in_bank": 6,
+      "url_recipe_count": 4,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 17,
+      "module_code": "M17",
+      "module_id": "知识模块17",
+      "module_name": "在线开放课程资源",
+      "section_title": "实用学习资源-在线开放课程资源",
+      "category": "实用学习资源",
+      "category_section": "实用学习资源",
+      "trigger_terms": [
+        "MOOC",
+        "学堂在线",
+        "智慧树",
+        "国家智慧教育平台",
+        "课程章节/教师"
+      ],
+      "typical_operations": [
+        "课程名+教师→课程详情→课程大纲/章节→定位节次或选课数据。"
+      ],
+      "main_traps": [
+        "同名课程/多轮开课",
+        "“国家金课”与普通课需看标识。"
+      ],
+      "official": {
+        "primary_entry": "中国大学MOOC、学堂在线、智慧树、SmartEdu各平台、虚拟仿真实验平台",
+        "fast_path": "课程名+教师→课程详情→课程大纲/章节→定位节次或选课数据。",
+        "traps": "同名课程/多轮开课；“国家金课”与普通课需看标识。",
+        "answering_mode": "`课程详情定位`",
+        "question_anchors": [
+          "`模拟-121`",
+          "`模拟-143`"
+        ],
+        "table_name": "在线开放课程资源",
+        "table_triggers": [
+          "MOOC",
+          "学堂在线",
+          "智慧树"
+        ],
+        "table_action": "课程详情定位；中国大学MOOC、学堂在线"
+      },
+      "derived": {
+        "official_platform_names": [
+          "中国大学MOOC",
+          "学堂在线"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "icourse163",
+        "primary_platform_name": "中国大学MOOC",
+        "fallback_platforms": [],
+        "deep_link": "https://www.icourse163.org/search.htm",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "课程名称",
+          "学校",
+          "教师"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "STATIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 5,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "icourse163",
+      "primary_platform_name": "中国大学MOOC",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "中国大学MOOC",
+        "学堂在线"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "https://www.icourse163.org/search.htm",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "课程名称",
+        "学校",
+        "教师"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "STATIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0022",
+        "Q0067"
+      ],
+      "question_count_in_bank": 5,
+      "url_recipe_count": 4,
+      "offline_judgeable": "YES",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 18,
+      "module_code": "M18",
+      "module_id": "知识模块18",
+      "module_name": "开放平台中的学习资源",
+      "section_title": "实用学习资源-开放平台中的学习资源",
+      "category": "实用学习资源",
+      "category_section": "实用学习资源",
+      "trigger_terms": [
+        "公益讲座",
+        "知网大讲堂",
+        "学习强国",
+        "一席",
+        "B站",
+        "开放学习平台",
+        "高校AI专题"
+      ],
+      "typical_operations": [
+        "资源名/讲者→站内搜索→详情或视频页→核时长/栏目/功能。"
+      ],
+      "main_traps": [
+        "开放平台内容随时间变化",
+        "视频时长与页面显示需现场核。"
+      ],
+      "official": {
+        "primary_entry": "高校信息素养教育数据库、知网学术大讲堂、学习强国、一席、B站等",
+        "fast_path": "资源名/讲者→站内搜索→详情或视频页→核时长/栏目/功能。",
+        "traps": "开放平台内容随时间变化；视频时长与页面显示需现场核。",
+        "answering_mode": "`站内搜索 / 动态内容`",
+        "question_anchors": [
+          "`模拟-23`",
+          "`模拟-50`",
+          "`模拟-63`"
+        ],
+        "table_name": "开放平台中的学习资源",
+        "table_triggers": [
+          "公益讲座",
+          "知网大讲堂",
+          "学习强国"
+        ],
+        "table_action": "站内搜索 / 动态内容；高校信息素养教育数据库、知网学术大讲堂"
+      },
+      "derived": {
+        "official_platform_names": [
+          "知网"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "wanfang"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 6,
+        "url_recipe_count": 3
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "知网"
+      ],
+      "fallback_platforms": [
+        "wanfang"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0023"
+      ],
+      "question_count_in_bank": 6,
+      "url_recipe_count": 3,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 19,
+      "module_code": "M19",
+      "module_id": "知识模块19",
+      "module_name": "免费电子书",
+      "section_title": "实用学习资源-免费电子书",
+      "category": "实用学习资源",
+      "category_section": "实用学习资源",
+      "trigger_terms": [
+        "免费电子书",
+        "Open full book PDF",
+        "Cambridge/Oxford/NCBI Bookshelf"
+      ],
+      "typical_operations": [
+        "书名精准搜索→书目详情→确认OA→下载/打开章节PDF→数页/图/作者/出版社。"
+      ],
+      "main_traps": [
+        "网页“页码”与PDF页码/正文页码不同",
+        "整书与章节PDF不要混。"
+      ],
+      "official": {
+        "primary_entry": "Cambridge Core、Oxford Academic Books、NCBI Bookshelf",
+        "fast_path": "书名精准搜索→书目详情→确认OA→下载/打开章节PDF→数页/图/作者/出版社。",
+        "traps": "网页“页码”与PDF页码/正文页码不同；整书与章节PDF不要混。",
+        "answering_mode": "`电子书 / PDF定位`",
+        "question_anchors": [
+          "`模拟-69`"
+        ],
+        "table_name": "免费电子书",
+        "table_triggers": [
+          "免费电子书",
+          "Open full book PDF",
+          "Cambridge/Oxford/NCBI Bookshelf"
+        ],
+        "table_action": "电子书 / PDF定位；Cambridge Core、Oxford Academic Books"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "STATIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 2,
+        "url_recipe_count": 5
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "STATIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0024"
+      ],
+      "question_count_in_bank": 2,
+      "url_recipe_count": 5,
+      "offline_judgeable": "YES",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 20,
+      "module_code": "M20",
+      "module_id": "知识模块20",
+      "module_name": "国家图书馆免费数字资源",
+      "section_title": "实用学习资源-国家图书馆免费数字资源",
+      "category": "实用学习资源",
+      "category_section": "实用学习资源",
+      "trigger_terms": [
+        "国家图书馆",
+        "古籍",
+        "民国文献",
+        "民族文字",
+        "美国国会图书馆"
+      ],
+      "typical_operations": [
+        "资源类型→专题库→题名/文字/年代检索→在线阅览→定位册数、页码、索书号。"
+      ],
+      "main_traps": [
+        "主站搜索与专题库不是同一入口",
+        "复本/册数/数字化对象要区分。"
+      ],
+      "official": {
+        "primary_entry": "国家图书馆、中华古籍资源库、民国时期文献库、美国国会图书馆",
+        "fast_path": "资源类型→专题库→题名/文字/年代检索→在线阅览→定位册数、页码、索书号。",
+        "traps": "主站搜索与专题库不是同一入口；复本/册数/数字化对象要区分。",
+        "answering_mode": "`专题馆藏 / 原文`",
+        "question_anchors": [
+          "`模拟-14`",
+          "`模拟-60`",
+          "`模拟-116`"
+        ],
+        "table_name": "国家图书馆免费数字资源",
+        "table_triggers": [
+          "国家图书馆",
+          "古籍",
+          "民国文献"
+        ],
+        "table_action": "专题馆藏 / 原文；国家图书馆、中华古籍资源库"
+      },
+      "derived": {
+        "official_platform_names": [
+          "国家图书馆"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "nlc",
+        "primary_platform_name": "国家图书馆",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "STATIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 6
+      },
+      "primary_platform": "nlc",
+      "primary_platform_name": "国家图书馆",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "国家图书馆"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "STATIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "判断题"
+      ],
+      "sample_question_ids": [
+        "Q0025"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 6,
+      "offline_judgeable": "YES",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 21,
+      "module_code": "M21",
+      "module_id": "知识模块21",
+      "module_name": "期刊论文的检索",
+      "section_title": "学术信息资源-期刊论文的检索",
+      "category": "学术信息资源",
+      "category_section": "学术信息资源",
+      "trigger_terms": [
+        "期刊论文",
+        "CNKI/万方/维普",
+        "ScienceDirect/Wiley/T&F/ACM",
+        "作者/期刊/全文"
+      ],
+      "typical_operations": [
+        "篇名优先精确检索→详情→核作者、期刊、年份、页数、原文获取。"
+      ],
+      "main_traps": [
+        "题目可能要求“在哪些库能找到”而非内容",
+        "数据库收录随时间变化。"
+      ],
+      "official": {
+        "primary_entry": "CNKI、万方、维普及主流外文学术数据库",
+        "fast_path": "篇名优先精确检索→详情→核作者、期刊、年份、页数、原文获取。",
+        "traps": "题目可能要求“在哪些库能找到”而非内容；数据库收录随时间变化。",
+        "answering_mode": "`篇名精确检索`",
+        "question_anchors": [
+          "`模拟-37`"
+        ],
+        "table_name": "期刊论文的检索",
+        "table_triggers": [
+          "期刊论文",
+          "CNKI/万方/维普",
+          "ScienceDirect/Wiley/T&F/ACM"
+        ],
+        "table_action": "篇名精确检索；CNKI、万方"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "wanfang",
+          "ncpssd",
+          "sciencedirect"
+        ],
+        "deep_link": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "Title",
+          "Title/Abstract",
+          "Author",
+          "MeSH Terms",
+          "Journal",
+          "Date - Publication"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 3,
+        "url_recipe_count": 13
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普"
+      ],
+      "fallback_platforms": [
+        "wanfang",
+        "ncpssd",
+        "sciencedirect"
+      ],
+      "deep_link": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "Title",
+        "Title/Abstract",
+        "Author",
+        "MeSH Terms",
+        "Journal",
+        "Date - Publication"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0026",
+        "Q0068"
+      ],
+      "question_count_in_bank": 3,
+      "url_recipe_count": 13,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 22,
+      "module_code": "M22",
+      "module_id": "知识模块22",
+      "module_name": "学术会议论文及会议信息的检索",
+      "section_title": "学术信息资源-学术会议论文及会议信息的检索",
+      "category": "学术信息资源",
+      "category_section": "学术信息资源",
+      "trigger_terms": [
+        "会议论文",
+        "会议名称",
+        "IEEE会议",
+        "CNKI中国学术会议网",
+        "召开时间/地点/投稿截止"
+      ],
+      "typical_operations": [
+        "会议名/年份→会议页→筛地点/领域/视频/论文集→核投稿截止或收录论文。"
+      ],
+      "main_traps": [
+        "会议主页与论文数据库信息更新不同步",
+        "同名历届会议要按年份。"
+      ],
+      "official": {
+        "primary_entry": "CNKI中国学术会议网、万方会议、IEEE会议检索",
+        "fast_path": "会议名/年份→会议页→筛地点/领域/视频/论文集→核投稿截止或收录论文。",
+        "traps": "会议主页与论文数据库信息更新不同步；同名历届会议要按年份。",
+        "answering_mode": "`会议详情 / 时间核验`",
+        "question_anchors": [
+          "`模拟-21`"
+        ],
+        "table_name": "学术会议论文及会议信息的检索",
+        "table_triggers": [
+          "会议论文",
+          "会议名称",
+          "IEEE会议"
+        ],
+        "table_action": "会议详情 / 时间核验；CNKI中国学术会议网、万方会议"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "IEEE"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [],
+        "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "Document Title",
+          "Author",
+          "Publication Year",
+          "Author Affiliations",
+          "Publication Title",
+          "Abstract",
+          "Index Terms"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 3,
+        "url_recipe_count": 6
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "IEEE"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "Document Title",
+        "Author",
+        "Publication Year",
+        "Author Affiliations",
+        "Publication Title",
+        "Abstract",
+        "Index Terms"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0027",
+        "Q0069"
+      ],
+      "question_count_in_bank": 3,
+      "url_recipe_count": 6,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 23,
+      "module_code": "M23",
+      "module_id": "知识模块23",
+      "module_name": "学位论文及资源获取",
+      "section_title": "学术信息资源-学位论文及资源获取",
+      "category": "学术信息资源",
+      "category_section": "学术信息资源",
+      "trigger_terms": [
+        "学位论文",
+        "导师",
+        "学位授予单位",
+        "博士/硕士",
+        "MIT Theses"
+      ],
+      "typical_operations": [
+        "篇名或导师+单位→限制文献类型=学位论文→详情→导师/专业/年度/PDF页数。"
+      ],
+      "main_traps": [
+        "CNKI左侧“学科”≠学位论文“学科专业”",
+        "不同库可检字段不一样。"
+      ],
+      "official": {
+        "primary_entry": "CNKI/万方/维普学位论文、国家图书馆博士论文、MIT DSpace",
+        "fast_path": "篇名或导师+单位→限制文献类型=学位论文→详情→导师/专业/年度/PDF页数。",
+        "traps": "CNKI左侧“学科”≠学位论文“学科专业”；不同库可检字段不一样。",
+        "answering_mode": "`学位字段 / 精确检索`",
+        "question_anchors": [],
+        "table_name": "学位论文及资源获取",
+        "table_triggers": [
+          "学位论文",
+          "导师",
+          "学位授予单位"
+        ],
+        "table_action": "学位字段 / 精确检索；CNKI/万方/维普学位论文、国家图书馆博士论文"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普",
+          "国家图书馆"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "wanfang"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 2,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普",
+        "国家图书馆"
+      ],
+      "fallback_platforms": [
+        "wanfang"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0028",
+        "Q0070"
+      ],
+      "question_count_in_bank": 2,
+      "url_recipe_count": 4,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 24,
+      "module_code": "M24",
+      "module_id": "知识模块24",
+      "module_name": "OA、预印本及其他免费资源",
+      "section_title": "学术信息资源-OA、预印本及其他免费资源",
+      "category": "学术信息资源",
+      "category_section": "学术信息资源",
+      "trigger_terms": [
+        "OA",
+        "开放获取",
+        "预印本",
+        "arXiv/ChinaXiv/medRxiv",
+        "DOAJ",
+        "全文免费"
+      ],
+      "typical_operations": [
+        "篇名/标识符→平台→确认OA/预印本状态→原文链接/PDF。"
+      ],
+      "main_traps": [
+        "“能检索到”不等于“可免费全文”",
+        "预印本版本与正式发表版本分开。"
+      ],
+      "official": {
+        "primary_entry": "DOAJ、OALib、arXiv、ChinaXiv、medRxiv、PubScholar、LeapSpace等",
+        "fast_path": "篇名/标识符→平台→确认OA/预印本状态→原文链接/PDF。",
+        "traps": "“能检索到”不等于“可免费全文”；预印本版本与正式发表版本分开。",
+        "answering_mode": "`OA渠道 / 全文核验`",
+        "question_anchors": [
+          "`模拟-54`",
+          "`模拟-101`"
+        ],
+        "table_name": "OA、预印本及其他免费资源",
+        "table_triggers": [
+          "OA",
+          "开放获取",
+          "预印本"
+        ],
+        "table_action": "OA渠道 / 全文核验；DOAJ、OALib"
+      },
+      "derived": {
+        "official_platform_names": [
+          "arXiv"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "arxiv",
+        "primary_platform_name": "arxiv",
+        "fallback_platforms": [
+          "ncpssd",
+          "sciencedirect"
+        ],
+        "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "Document Title",
+          "Author",
+          "Publication Year",
+          "Author Affiliations",
+          "Publication Title",
+          "Abstract",
+          "Index Terms"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 8
+      },
+      "primary_platform": "arxiv",
+      "primary_platform_name": "arxiv",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "arXiv"
+      ],
+      "fallback_platforms": [
+        "ncpssd",
+        "sciencedirect"
+      ],
+      "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "Document Title",
+        "Author",
+        "Publication Year",
+        "Author Affiliations",
+        "Publication Title",
+        "Abstract",
+        "Index Terms"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0029",
+        "Q0071"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 8,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 25,
+      "module_code": "M25",
+      "module_id": "知识模块25",
+      "module_name": "科研项目数据库",
+      "section_title": "学术信息资源-科研项目数据库",
+      "category": "学术信息资源",
+      "category_section": "学术信息资源",
+      "trigger_terms": [
+        "国家社科基金",
+        "NSFC",
+        "项目批准号",
+        "负责人",
+        "立项/结项",
+        "申请代码"
+      ],
+      "typical_operations": [
+        "项目名/负责人/单位→筛立项年/结项年/代码→详情核批准号、类别、年度评价。"
+      ],
+      "main_traps": [
+        "批准号数字对调、立项年份与批准号前缀",
+        "结题年度≠立项年度。"
+      ],
+      "official": {
+        "primary_entry": "国家社科基金项目数据库、国家自然科学基金大数据知识管理服务门户",
+        "fast_path": "项目名/负责人/单位→筛立项年/结项年/代码→详情核批准号、类别、年度评价。",
+        "traps": "批准号数字对调、立项年份与批准号前缀；结题年度≠立项年度。",
+        "answering_mode": "`项目字段精确查`",
+        "question_anchors": [
+          "`模拟-25`",
+          "`模拟-79`"
+        ],
+        "table_name": "科研项目数据库",
+        "table_triggers": [
+          "国家社科基金",
+          "NSFC",
+          "项目批准号"
+        ],
+        "table_action": "项目字段精确查；国家社科基金项目数据库、国家自然科学基金大数据知识管理服务门户"
+      },
+      "derived": {
+        "official_platform_names": [
+          "国家自然科学基金"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "nsfc",
+        "primary_platform_name": "国家自然科学基金",
+        "fallback_platforms": [
+          "cnki"
+        ],
+        "deep_link": "https://kd.nsfc.cn/finalProjectInit",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "结题年度",
+          "资助类型/项目类型",
+          "申请代码",
+          "依托单位",
+          "负责人"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 5
+      },
+      "primary_platform": "nsfc",
+      "primary_platform_name": "国家自然科学基金",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "国家自然科学基金"
+      ],
+      "fallback_platforms": [
+        "cnki"
+      ],
+      "deep_link": "https://kd.nsfc.cn/finalProjectInit",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "结题年度",
+        "资助类型/项目类型",
+        "申请代码",
+        "依托单位",
+        "负责人"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "判断题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0030",
+        "Q0072"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 5,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 26,
+      "module_code": "M26",
+      "module_id": "知识模块26",
+      "module_name": "学术搜索",
+      "section_title": "信息检索系统-学术搜索",
+      "category": "信息检索系统",
+      "category_section": "信息检索系统",
+      "trigger_terms": [
+        "百度学术",
+        "PubMed",
+        "PubScholar",
+        "NSTL",
+        "学术搜索/全文渠道"
+      ],
+      "typical_operations": [
+        "篇名/DOI精准搜→查看来源与全文渠道；需要分析时再用平台分析功能。"
+      ],
+      "main_traps": [
+        "学术搜索聚合原文链接但不保证有权限",
+        "“可获得原文”常是判断陷阱。"
+      ],
+      "official": {
+        "primary_entry": "百度学术、PubMed、PubScholar、NSTL",
+        "fast_path": "篇名/DOI精准搜→查看来源与全文渠道；需要分析时再用平台分析功能。",
+        "traps": "学术搜索聚合原文链接但不保证有权限；“可获得原文”常是判断陷阱。",
+        "answering_mode": "`聚合检索 / 原文渠道`",
+        "question_anchors": [
+          "`模拟-78`",
+          "`模拟-106`"
+        ],
+        "table_name": "学术搜索",
+        "table_triggers": [
+          "百度学术",
+          "PubMed",
+          "PubScholar"
+        ],
+        "table_action": "聚合检索 / 原文渠道；百度学术、PubMed"
+      },
+      "derived": {
+        "official_platform_names": [
+          "PubMed"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "pubmed",
+        "primary_platform_name": "PubMed",
+        "fallback_platforms": [
+          "ncpssd"
+        ],
+        "deep_link": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "Title",
+          "Title/Abstract",
+          "Author",
+          "MeSH Terms",
+          "Journal",
+          "Date - Publication"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 5,
+        "url_recipe_count": 9
+      },
+      "primary_platform": "pubmed",
+      "primary_platform_name": "PubMed",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "PubMed"
+      ],
+      "fallback_platforms": [
+        "ncpssd"
+      ],
+      "deep_link": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "Title",
+        "Title/Abstract",
+        "Author",
+        "MeSH Terms",
+        "Journal",
+        "Date - Publication"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0031",
+        "Q0073",
+        "Q0074"
+      ],
+      "question_count_in_bank": 5,
+      "url_recipe_count": 9,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 27,
+      "module_code": "M27",
+      "module_id": "知识模块27",
+      "module_name": "图片搜索",
+      "section_title": "信息检索系统-图片搜索",
+      "category": "信息检索系统",
+      "category_section": "信息检索系统",
+      "trigger_terms": [
+        "图片搜索",
+        "以图识图",
+        "尺寸/颜色/版权",
+        "学术图片"
+      ],
+      "typical_operations": [
+        "关键词/上传图片→展开筛选→核尺寸、颜色、使用权限、类型；学术图走CNKI图片库。"
+      ],
+      "main_traps": [
+        "各搜索引擎尺寸档位名称不同",
+        "“查版权/以图识图”入口不同。"
+      ],
+      "official": {
+        "primary_entry": "百度图片、搜狗图片、360图片、Bing视觉搜索、iconfont、Unsplash、Pixabay、CNKI学术图片库",
+        "fast_path": "关键词/上传图片→展开筛选→核尺寸、颜色、使用权限、类型；学术图走CNKI图片库。",
+        "traps": "各搜索引擎尺寸档位名称不同；“查版权/以图识图”入口不同。",
+        "answering_mode": "`图片筛选 / 动态UI`",
+        "question_anchors": [
+          "`模拟-76`",
+          "`模拟-128`"
+        ],
+        "table_name": "图片搜索",
+        "table_triggers": [
+          "图片搜索",
+          "以图识图",
+          "尺寸/颜色/版权"
+        ],
+        "table_action": "图片筛选 / 动态UI；百度图片、搜狗图片"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 3
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0032",
+        "Q0075"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 3,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 28,
+      "module_code": "M28",
+      "module_id": "知识模块28",
+      "module_name": "网址导航",
+      "section_title": "信息检索系统-网址导航",
+      "category": "信息检索系统",
+      "category_section": "信息检索系统",
+      "trigger_terms": [
+        "网址导航",
+        "优设导航",
+        "HIPPTER",
+        "古典文献导航",
+        "AI工具导航"
+      ],
+      "typical_operations": [
+        "导航站→指定栏目→读收录站点/分类。"
+      ],
+      "main_traps": [
+        "站内存在同名相近栏目",
+        "题目常把别的栏目条目混入。"
+      ],
+      "official": {
+        "primary_entry": "优设导航、HIPPTER/奎章阁、中国古典文献资源导航、AI工具集",
+        "fast_path": "导航站→指定栏目→读收录站点/分类。",
+        "traps": "站内存在同名相近栏目；题目常把别的栏目条目混入。",
+        "answering_mode": "`栏目核验`",
+        "question_anchors": [
+          "`模拟-48`",
+          "`模拟-118`"
+        ],
+        "table_name": "网址导航",
+        "table_triggers": [
+          "网址导航",
+          "优设导航",
+          "HIPPTER"
+        ],
+        "table_action": "栏目核验；优设导航、HIPPTER/奎章阁"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "DB_HEURISTIC",
+        "primary_platform": "nlc",
+        "primary_platform_name": "国家图书馆",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 3,
+        "url_recipe_count": 2
+      },
+      "primary_platform": "nlc",
+      "primary_platform_name": "国家图书馆",
+      "platform_source": "DB_HEURISTIC",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0033"
+      ],
+      "question_count_in_bank": 3,
+      "url_recipe_count": 2,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 29,
+      "module_code": "M29",
+      "module_id": "知识模块29",
+      "module_name": "网络指数",
+      "section_title": "信息检索系统-网络指数",
+      "category": "信息检索系统",
+      "category_section": "信息检索系统",
+      "trigger_terms": [
+        "百度指数",
+        "微信指数",
+        "抖音指数",
+        "品牌指数",
+        "人群画像",
+        "趋势对比"
+      ],
+      "typical_operations": [
+        "关键词/行业→设日期+地区+指标→读排名/趋势；多词时添加对比。"
+      ],
+      "main_traps": [
+        "默认日期可能无数据",
+        "历史日榜必须手动切日期",
+        "指数口径不同不可跨平台直接比绝对值。"
+      ],
+      "official": {
+        "primary_entry": "百度指数、微信指数、抖音指数/巨量算数",
+        "fast_path": "关键词/行业→设日期+地区+指标→读排名/趋势；多词时添加对比。",
+        "traps": "默认日期可能无数据；历史日榜必须手动切日期；指数口径不同不可跨平台直接比绝对值。",
+        "answering_mode": "`时间序列 / 动态数据`",
+        "question_anchors": [
+          "`模拟-1`",
+          "`模拟-96`",
+          "`模拟-131`"
+        ],
+        "table_name": "网络指数",
+        "table_triggers": [
+          "百度指数",
+          "微信指数",
+          "抖音指数"
+        ],
+        "table_action": "时间序列 / 动态数据；百度指数、微信指数"
+      },
+      "derived": {
+        "official_platform_names": [
+          "百度指数",
+          "微信指数"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "baidu-index",
+        "primary_platform_name": "baidu-index",
+        "fallback_platforms": [],
+        "deep_link": "https://index.baidu.com/",
+        "deep_link_status": "AUTH",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "关键词",
+          "行业",
+          "时间范围",
+          "地域"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "baidu-index",
+      "primary_platform_name": "baidu-index",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "百度指数",
+        "微信指数"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "https://index.baidu.com/",
+      "deep_link_status": "AUTH",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "关键词",
+        "行业",
+        "时间范围",
+        "地域"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0034"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 4,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 30,
+      "module_code": "M30",
+      "module_id": "知识模块30",
+      "module_name": "馆藏查询系统",
+      "section_title": "信息检索系统-馆藏查询系统",
+      "category": "信息检索系统",
+      "category_section": "信息检索系统",
+      "trigger_terms": [
+        "OPAC",
+        "馆藏目录",
+        "索书号",
+        "复本",
+        "馆藏地",
+        "中图分类号"
+      ],
+      "typical_operations": [
+        "书名+版本/作者→馆藏目录→馆藏状态→索书号/馆藏地/复本；再由索书号读中图分类。"
+      ],
+      "main_traps": [
+        "不同版本索书号不同",
+        "电子资源与纸本馆藏入口不同。"
+      ],
+      "official": {
+        "primary_entry": "国家图书馆/高校/公共图书馆馆藏查询系统",
+        "fast_path": "书名+版本/作者→馆藏目录→馆藏状态→索书号/馆藏地/复本；再由索书号读中图分类。",
+        "traps": "不同版本索书号不同；电子资源与纸本馆藏入口不同。",
+        "answering_mode": "`馆藏精确查`",
+        "question_anchors": [
+          "`模拟-98`",
+          "`模拟-126`",
+          "`模拟-149`"
+        ],
+        "table_name": "馆藏查询系统",
+        "table_triggers": [
+          "OPAC",
+          "馆藏目录",
+          "索书号"
+        ],
+        "table_action": "馆藏精确查；国家图书馆/高校/公共图书馆馆藏查询系统"
+      },
+      "derived": {
+        "official_platform_names": [
+          "国家图书馆"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "nlc",
+        "primary_platform_name": "国家图书馆",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 5,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "nlc",
+      "primary_platform_name": "国家图书馆",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "国家图书馆"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0035",
+        "Q0076"
+      ],
+      "question_count_in_bank": 5,
+      "url_recipe_count": 4,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 31,
+      "module_code": "M31",
+      "module_id": "知识模块31",
+      "module_name": "高级检索",
+      "section_title": "信息检索理论与技术-高级检索",
+      "category": "信息检索理论与技术",
+      "category_section": "信息检索理论与技术",
+      "trigger_terms": [
+        "高级检索",
+        "多条件",
+        "时间范围",
+        "文献类型",
+        "来源类别",
+        "百度高级搜索"
+      ],
+      "typical_operations": [
+        "把自然语言条件拆成字段+逻辑+时间+类型→逐项设置→检索后核结果/分面。"
+      ],
+      "main_traps": [
+        "高级检索字段每个平台不同",
+        "先筛后查/先查后筛可能产生不同结果。"
+      ],
+      "official": {
+        "primary_entry": "CNKI、万方、维普、ScienceDirect、Wiley、T&F、PubMed、IEEE、百度高级搜索等",
+        "fast_path": "把自然语言条件拆成字段+逻辑+时间+类型→逐项设置→检索后核结果/分面。",
+        "traps": "高级检索字段每个平台不同；先筛后查/先查后筛可能产生不同结果。",
+        "answering_mode": "`条件拆解 / 检索式`",
+        "question_anchors": [
+          "`模拟-6`",
+          "`模拟-9`",
+          "`模拟-39`"
+        ],
+        "table_name": "高级检索",
+        "table_triggers": [
+          "高级检索",
+          "多条件",
+          "时间范围"
+        ],
+        "table_action": "条件拆解 / 检索式；CNKI、万方"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普",
+          "ScienceDirect",
+          "PubMed",
+          "IEEE"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "nsfc",
+          "vip",
+          "wanfang"
+        ],
+        "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "Document Title",
+          "Author",
+          "Publication Year",
+          "Author Affiliations",
+          "Publication Title",
+          "Abstract",
+          "Index Terms"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 11,
+        "url_recipe_count": 14
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普",
+        "ScienceDirect",
+        "PubMed",
+        "IEEE"
+      ],
+      "fallback_platforms": [
+        "nsfc",
+        "vip",
+        "wanfang"
+      ],
+      "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "Document Title",
+        "Author",
+        "Publication Year",
+        "Author Affiliations",
+        "Publication Title",
+        "Abstract",
+        "Index Terms"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0036",
+        "Q0077"
+      ],
+      "question_count_in_bank": 11,
+      "url_recipe_count": 14,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 32,
+      "module_code": "M32",
+      "module_id": "知识模块32",
+      "module_name": "布尔逻辑检索",
+      "section_title": "信息检索理论与技术-布尔逻辑检索",
+      "category": "信息检索理论与技术",
+      "category_section": "信息检索理论与技术",
+      "trigger_terms": [
+        "AND/OR/NOT",
+        "与/或/非",
+        "多字段组合",
+        "布尔逻辑"
+      ],
+      "typical_operations": [
+        "同义词用OR、概念交集AND、排除NOT；先括号分组，再映射到数据库字段。"
+      ],
+      "main_traps": [
+        "中文库符号可能是* + -而非英文AND/OR",
+        "运算符错一个结论可完全反转。"
+      ],
+      "official": {
+        "primary_entry": "CNKI、万方、维普、ScienceDirect、Wiley、PubMed、IEEE、ACM",
+        "fast_path": "同义词用OR、概念交集AND、排除NOT；先括号分组，再映射到数据库字段。",
+        "traps": "中文库符号可能是* + -而非英文AND/OR；运算符错一个结论可完全反转。",
+        "answering_mode": "`逻辑推演`",
+        "question_anchors": [
+          "`模拟-11`",
+          "`模拟-27`",
+          "`模拟-53`"
+        ],
+        "table_name": "布尔逻辑检索",
+        "table_triggers": [
+          "AND/OR/NOT",
+          "与/或/非",
+          "多字段组合"
+        ],
+        "table_action": "逻辑推演；CNKI、万方"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普",
+          "ScienceDirect",
+          "PubMed",
+          "IEEE"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "pubmed",
+          "sciencedirect",
+          "wanfang"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 6,
+        "url_recipe_count": 8
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普",
+        "ScienceDirect",
+        "PubMed",
+        "IEEE"
+      ],
+      "fallback_platforms": [
+        "pubmed",
+        "sciencedirect",
+        "wanfang"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0037"
+      ],
+      "question_count_in_bank": 6,
+      "url_recipe_count": 8,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 33,
+      "module_code": "M33",
+      "module_id": "知识模块33",
+      "module_name": "截词检索",
+      "section_title": "信息检索理论与技术-截词检索",
+      "category": "信息检索理论与技术",
+      "category_section": "信息检索理论与技术",
+      "trigger_terms": [
+        "截词",
+        "通配符",
+        "comput*",
+        "?/%",
+        "analyse/analyze",
+        "词尾变化"
+      ],
+      "typical_operations": [
+        "先查目标库支持的截词符和位置→再构造词根；若平台不支持则改OR枚举。"
+      ],
+      "main_traps": [
+        "ScienceDirect等平台可能不支持预期截词",
+        "不同库 * ? % 含义不同。"
+      ],
+      "official": {
+        "primary_entry": "PubMed、Wiley、ACM、中国专利公布公告系统等",
+        "fast_path": "先查目标库支持的截词符和位置→再构造词根；若平台不支持则改OR枚举。",
+        "traps": "ScienceDirect等平台可能不支持预期截词；不同库 * ? % 含义不同。",
+        "answering_mode": "`语法规则 / 平台核验`",
+        "question_anchors": [
+          "`模拟-47`"
+        ],
+        "table_name": "截词检索",
+        "table_triggers": [
+          "截词",
+          "通配符",
+          "comput*"
+        ],
+        "table_action": "语法规则 / 平台核验；PubMed、Wiley"
+      },
+      "derived": {
+        "official_platform_names": [
+          "PubMed",
+          "专利公布公告"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "pubmed",
+        "primary_platform_name": "PubMed",
+        "fallback_platforms": [
+          "sciencedirect"
+        ],
+        "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "Document Title",
+          "Author",
+          "Publication Year",
+          "Author Affiliations",
+          "Publication Title",
+          "Abstract",
+          "Index Terms"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 2,
+        "url_recipe_count": 3
+      },
+      "primary_platform": "pubmed",
+      "primary_platform_name": "PubMed",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "PubMed",
+        "专利公布公告"
+      ],
+      "fallback_platforms": [
+        "sciencedirect"
+      ],
+      "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "Document Title",
+        "Author",
+        "Publication Year",
+        "Author Affiliations",
+        "Publication Title",
+        "Abstract",
+        "Index Terms"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0038"
+      ],
+      "question_count_in_bank": 2,
+      "url_recipe_count": 3,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 34,
+      "module_code": "M34",
+      "module_id": "知识模块34",
+      "module_name": "精确与模糊匹配",
+      "section_title": "信息检索理论与技术-精确与模糊匹配",
+      "category": "信息检索理论与技术",
+      "category_section": "信息检索理论与技术",
+      "trigger_terms": [
+        "精确匹配",
+        "模糊匹配",
+        "短语检索",
+        "严格匹配"
+      ],
+      "typical_operations": [
+        "题意要完整词组/姓名→精确；要扩展变体→模糊；比较选项时模拟检索命中逻辑。"
+      ],
+      "main_traps": [
+        "作者名模糊可能带来同名",
+        "短语检索与词拆分要看数据库语法。"
+      ],
+      "official": {
+        "primary_entry": "CNKI、万方、维普及各学术库",
+        "fast_path": "题意要完整词组/姓名→精确；要扩展变体→模糊；比较选项时模拟检索命中逻辑。",
+        "traps": "作者名模糊可能带来同名；短语检索与词拆分要看数据库语法。",
+        "answering_mode": "`匹配逻辑`",
+        "question_anchors": [
+          "`模拟-18`",
+          "`模拟-36`",
+          "`模拟-38`"
+        ],
+        "table_name": "精确与模糊匹配",
+        "table_triggers": [
+          "精确匹配",
+          "模糊匹配",
+          "短语检索"
+        ],
+        "table_action": "匹配逻辑；CNKI、万方"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "pubmed",
+          "vip",
+          "wanfang"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 9,
+        "url_recipe_count": 8
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普"
+      ],
+      "fallback_platforms": [
+        "pubmed",
+        "vip",
+        "wanfang"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0039",
+        "Q0078"
+      ],
+      "question_count_in_bank": 9,
+      "url_recipe_count": 8,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 35,
+      "module_code": "M35",
+      "module_id": "知识模块35",
+      "module_name": "结果筛选",
+      "section_title": "信息检索理论与技术-结果筛选",
+      "category": "信息检索理论与技术",
+      "category_section": "信息检索理论与技术",
+      "trigger_terms": [
+        "结果筛选",
+        "分面",
+        "年份",
+        "文献类型",
+        "OA",
+        "作者",
+        "来源",
+        "学科"
+      ],
+      "typical_operations": [
+        "先检索→看左侧/顶部分面→按题目条件逐层收窄→记录每层结果数。"
+      ],
+      "main_traps": [
+        "“筛选项是否存在”与“筛选后的数量”是两类题",
+        "筛选条件可能互相联动。"
+      ],
+      "official": {
+        "primary_entry": "CNKI、万方、维普、ScienceDirect、Wiley、T&F、PubMed、IEEE",
+        "fast_path": "先检索→看左侧/顶部分面→按题目条件逐层收窄→记录每层结果数。",
+        "traps": "“筛选项是否存在”与“筛选后的数量”是两类题；筛选条件可能互相联动。",
+        "answering_mode": "`分面筛选`",
+        "question_anchors": [
+          "`模拟-61`",
+          "`模拟-66`",
+          "`模拟-97`"
+        ],
+        "table_name": "结果筛选",
+        "table_triggers": [
+          "结果筛选",
+          "分面",
+          "年份"
+        ],
+        "table_action": "分面筛选；CNKI、万方"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普",
+          "ScienceDirect",
+          "PubMed",
+          "IEEE"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "pubmed",
+          "vip",
+          "ieee",
+          "standards"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 7,
+        "url_recipe_count": 11
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普",
+        "ScienceDirect",
+        "PubMed",
+        "IEEE"
+      ],
+      "fallback_platforms": [
+        "pubmed",
+        "vip",
+        "ieee",
+        "standards"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0040",
+        "Q0079"
+      ],
+      "question_count_in_bank": 7,
+      "url_recipe_count": 11,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 36,
+      "module_code": "M36",
+      "module_id": "知识模块36",
+      "module_name": "字段限制检索",
+      "section_title": "信息检索理论与技术-字段限制检索",
+      "category": "信息检索理论与技术",
+      "category_section": "信息检索理论与技术",
+      "trigger_terms": [
+        "字段限制",
+        "篇名/作者/导师/第一单位/作者单位/摘要/主题/ISBN/ISSN"
+      ],
+      "typical_operations": [
+        "先确认数据库是否有该字段→再选字段+值；特殊字段如CNKI“第一单位”优先。"
+      ],
+      "main_traps": [
+        "题库已出现“维普高级检索无导师/学位授予单位”等坑",
+        "结果页分组不等于可检字段。"
+      ],
+      "official": {
+        "primary_entry": "CNKI、万方、维普、PubMed、Wiley、ACM等",
+        "fast_path": "先确认数据库是否有该字段→再选字段+值；特殊字段如CNKI“第一单位”优先。",
+        "traps": "题库已出现“维普高级检索无导师/学位授予单位”等坑；结果页分组不等于可检字段。",
+        "answering_mode": "`字段存在性 / 精确查`",
+        "question_anchors": [
+          "`模拟-2`",
+          "`模拟-40`",
+          "`模拟-45`"
+        ],
+        "table_name": "字段限制检索",
+        "table_triggers": [
+          "字段限制",
+          "篇名/作者/导师/第一单位/作者单位/摘要/主题/ISBN/ISSN"
+        ],
+        "table_action": "字段存在性 / 精确查；CNKI、万方"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普",
+          "PubMed"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "vip",
+          "ieee",
+          "nlc",
+          "pubmed"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 8,
+        "url_recipe_count": 10
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普",
+        "PubMed"
+      ],
+      "fallback_platforms": [
+        "vip",
+        "ieee",
+        "nlc",
+        "pubmed"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0041",
+        "Q0080"
+      ],
+      "question_count_in_bank": 8,
+      "url_recipe_count": 10,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 37,
+      "module_code": "M37",
+      "module_id": "知识模块37",
+      "module_name": "搜索引擎检索语法和高级搜索",
+      "section_title": "信息检索理论与技术-搜索引擎检索语法和高级搜索",
+      "category": "信息检索理论与技术",
+      "category_section": "信息检索理论与技术",
+      "trigger_terms": [
+        "搜索引擎高级搜索",
+        "site:",
+        "filetype:",
+        "标题/URL位置",
+        "时间筛选"
+      ],
+      "typical_operations": [
+        "先判是高级搜索面板功能还是结果页快捷筛选；关键词位置/filetype/site分别设置。"
+      ],
+      "main_traps": [
+        "“按时间排序”≠“限定一周内”",
+        "不同搜索引擎高级功能不一致。"
+      ],
+      "official": {
+        "primary_entry": "百度高级搜索、搜狗/360等",
+        "fast_path": "先判是高级搜索面板功能还是结果页快捷筛选；关键词位置/filetype/site分别设置。",
+        "traps": "“按时间排序”≠“限定一周内”；不同搜索引擎高级功能不一致。",
+        "answering_mode": "`搜索语法 / UI核验`",
+        "question_anchors": [],
+        "table_name": "搜索引擎检索语法和高级搜索",
+        "table_triggers": [
+          "搜索引擎高级搜索",
+          "site:",
+          "filetype:"
+        ],
+        "table_action": "搜索语法 / UI核验；百度高级搜索、搜狗/360等"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "DB_HEURISTIC",
+        "primary_platform": "ieee",
+        "primary_platform_name": "IEEE Xplore",
+        "fallback_platforms": [],
+        "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "Document Title",
+          "Author",
+          "Publication Year",
+          "Author Affiliations",
+          "Publication Title",
+          "Abstract",
+          "Index Terms"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 1,
+        "url_recipe_count": 1
+      },
+      "primary_platform": "ieee",
+      "primary_platform_name": "IEEE Xplore",
+      "platform_source": "DB_HEURISTIC",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "https://ieeexplore.ieee.org/search/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "Document Title",
+        "Author",
+        "Publication Year",
+        "Author Affiliations",
+        "Publication Title",
+        "Abstract",
+        "Index Terms"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0042"
+      ],
+      "question_count_in_bank": 1,
+      "url_recipe_count": 1,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 38,
+      "module_code": "M38",
+      "module_id": "知识模块38",
+      "module_name": "思维导图、笔记软件、问卷调查",
+      "section_title": "知识管理工具-思维导图、笔记软件、问卷调查",
+      "category": "知识管理工具",
+      "category_section": "知识管理工具",
+      "trigger_terms": [
+        "思维导图",
+        "脑图",
+        "笔记",
+        "流程图",
+        "问卷星",
+        "AI创建",
+        "问卷设置"
+      ],
+      "typical_operations": [
+        "工具→对应编辑器/设置页→核免费功能、快捷键、导出格式、提交控制。"
+      ],
+      "main_traps": [
+        "桌面端快捷键≠网页版",
+        "问卷星企业版功能会作为干扰项。"
+      ],
+      "official": {
+        "primary_entry": "腾讯文档、WPS、有道云笔记、问卷星",
+        "fast_path": "工具→对应编辑器/设置页→核免费功能、快捷键、导出格式、提交控制。",
+        "traps": "桌面端快捷键≠网页版；问卷星企业版功能会作为干扰项。",
+        "answering_mode": "`工具实操 / 版本差异`",
+        "question_anchors": [
+          "`模拟-44`",
+          "`模拟-72`",
+          "`模拟-133`"
+        ],
+        "table_name": "思维导图、笔记软件、问卷调查",
+        "table_triggers": [
+          "思维导图",
+          "脑图",
+          "笔记"
+        ],
+        "table_action": "工具实操 / 版本差异；腾讯文档、WPS"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "DB_HEURISTIC",
+        "primary_platform": "wenjuanxing",
+        "primary_platform_name": "问卷星",
+        "fallback_platforms": [],
+        "deep_link": "https://www.wjx.cn/newwjx/manage/myquestionnaires.aspx",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "PREFLIGHT",
+        "supported_fields": [],
+        "evidence_level_cap": "HUMAN_REQUIRED",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 5,
+        "url_recipe_count": 3
+      },
+      "primary_platform": "wenjuanxing",
+      "primary_platform_name": "问卷星",
+      "platform_source": "DB_HEURISTIC",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "https://www.wjx.cn/newwjx/manage/myquestionnaires.aspx",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "PREFLIGHT",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "HUMAN_REQUIRED",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "判断题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0043",
+        "Q0081"
+      ],
+      "question_count_in_bank": 5,
+      "url_recipe_count": 3,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 39,
+      "module_code": "M39",
+      "module_id": "知识模块39",
+      "module_name": "OFFICE插件和浏览器插件",
+      "section_title": "知识管理工具-OFFICE插件和浏览器插件",
+      "category": "知识管理工具",
+      "category_section": "知识管理工具",
+      "trigger_terms": [
+        "雨课堂",
+        "小恐龙公文排版",
+        "OfficeAI",
+        "浏览器插件",
+        "PPT插件"
+      ],
+      "typical_operations": [
+        "先看支持宿主/安装范围→再进入插件功能菜单核题型、排版或自动化能力。"
+      ],
+      "main_traps": [
+        "小恐龙支持Word/WPS不支持Excel",
+        "插件版本会影响功能上限。"
+      ],
+      "official": {
+        "primary_entry": "雨课堂、小恐龙公文排版助手、OfficeAI助手、Edge扩展商店等",
+        "fast_path": "先看支持宿主/安装范围→再进入插件功能菜单核题型、排版或自动化能力。",
+        "traps": "小恐龙支持Word/WPS不支持Excel；插件版本会影响功能上限。",
+        "answering_mode": "`插件实操`",
+        "question_anchors": [
+          "`模拟-15`"
+        ],
+        "table_name": "OFFICE插件和浏览器插件",
+        "table_triggers": [
+          "雨课堂",
+          "小恐龙公文排版",
+          "OfficeAI"
+        ],
+        "table_action": "插件实操；雨课堂、小恐龙公文排版助手"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 3,
+        "url_recipe_count": 2
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "判断题"
+      ],
+      "sample_question_ids": [
+        "Q0044",
+        "Q0082"
+      ],
+      "question_count_in_bank": 3,
+      "url_recipe_count": 2,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 40,
+      "module_code": "M40",
+      "module_id": "知识模块40",
+      "module_name": "截图与录屏",
+      "section_title": "知识管理工具-截图与录屏",
+      "category": "知识管理工具",
+      "category_section": "知识管理工具",
+      "trigger_terms": [
+        "QQ截图",
+        "贴图",
+        "录屏",
+        "快捷键",
+        "LICEcap",
+        "工具栏图标"
+      ],
+      "typical_operations": [
+        "直接启动工具→做一次截图/录屏→逐个核工具栏图标和快捷键。"
+      ],
+      "main_traps": [
+        "静态截图与QQ内置录屏口径可能不同",
+        "Win+G不是QQ。"
+      ],
+      "official": {
+        "primary_entry": "QQ、LICEcap及软件内快捷键设置",
+        "fast_path": "直接启动工具→做一次截图/录屏→逐个核工具栏图标和快捷键。",
+        "traps": "静态截图与QQ内置录屏口径可能不同；Win+G不是QQ。",
+        "answering_mode": "`本机实操`",
+        "question_anchors": [
+          "`模拟-26`",
+          "`模拟-75`",
+          "`模拟-112`"
+        ],
+        "table_name": "截图与录屏",
+        "table_triggers": [
+          "QQ截图",
+          "贴图",
+          "录屏"
+        ],
+        "table_action": "本机实操；QQ、LICEcap及软件内快捷键设置"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 2
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0045"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 2,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 41,
+      "module_code": "M41",
+      "module_id": "知识模块41",
+      "module_name": "PDF文件处理",
+      "section_title": "知识管理工具-PDF文件处理",
+      "category": "知识管理工具",
+      "category_section": "知识管理工具",
+      "trigger_terms": [
+        "PDF转Word/合并/拆分/压缩/加密/加页",
+        "Office转PDF",
+        "PDF页数"
+      ],
+      "typical_operations": [
+        "工具题直接进云展网功能页；页数/图表题必须下载PDF并区分PDF页码与正文页码。"
+      ],
+      "main_traps": [
+        "“可编辑PDF”表述要谨慎",
+        "整书/章节PDF与网页页码不要混。"
+      ],
+      "official": {
+        "primary_entry": "Office内置导出、云展网PDF工具、具体论文/电子书PDF",
+        "fast_path": "工具题直接进云展网功能页；页数/图表题必须下载PDF并区分PDF页码与正文页码。",
+        "traps": "“可编辑PDF”表述要谨慎；整书/章节PDF与网页页码不要混。",
+        "answering_mode": "`PDF实操 / 页码核验`",
+        "question_anchors": [
+          "`模拟-24`",
+          "`模拟-70`",
+          "`模拟-71`"
+        ],
+        "table_name": "PDF文件处理",
+        "table_triggers": [
+          "PDF转Word/合并/拆分/压缩/加密/加页",
+          "Office转PDF",
+          "PDF页数"
+        ],
+        "table_action": "PDF实操 / 页码核验；Office内置导出、云展网PDF工具"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "DB_HEURISTIC",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 11,
+        "url_recipe_count": 9
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "DB_HEURISTIC",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0046",
+        "Q0083",
+        "Q0084"
+      ],
+      "question_count_in_bank": 11,
+      "url_recipe_count": 9,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 42,
+      "module_code": "M42",
+      "module_id": "知识模块42",
+      "module_name": "学术评价与投稿选刊",
+      "section_title": "学术写作-学术评价与投稿选刊",
+      "category": "学术写作",
+      "category_section": "学术写作",
+      "trigger_terms": [
+        "影响因子",
+        "H指数",
+        "核心期刊",
+        "SCI/CSSCI/CSCD/AMI",
+        "智能选刊/选题分析"
+      ],
+      "typical_operations": [
+        "先确认期刊真伪/收录→再看评价指标；选题/选刊题进入对应平台模块核维度。"
+      ],
+      "main_traps": [
+        "综合影响因子/复合影响因子/H指数不是一回事",
+        "期刊收录版本有年度。"
+      ],
+      "official": {
+        "primary_entry": "CNKI、万方、维普、百度学术分析、国家新闻出版署、CNKI写作投稿、LeapSpace",
+        "fast_path": "先确认期刊真伪/收录→再看评价指标；选题/选刊题进入对应平台模块核维度。",
+        "traps": "综合影响因子/复合影响因子/H指数不是一回事；期刊收录版本有年度。",
+        "answering_mode": "`期刊评价 / 原站核验`",
+        "question_anchors": [
+          "`模拟-10`",
+          "`模拟-52`"
+        ],
+        "table_name": "学术评价与投稿选刊",
+        "table_triggers": [
+          "影响因子",
+          "H指数",
+          "核心期刊"
+        ],
+        "table_action": "期刊评价 / 原站核验；CNKI、万方"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "wanfang",
+          "sciencedirect",
+          "vip"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "STATIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 3,
+        "url_recipe_count": 7
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普"
+      ],
+      "fallback_platforms": [
+        "wanfang",
+        "sciencedirect",
+        "vip"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "STATIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0047"
+      ],
+      "question_count_in_bank": 3,
+      "url_recipe_count": 7,
+      "offline_judgeable": "YES",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 43,
+      "module_code": "M43",
+      "module_id": "知识模块43",
+      "module_name": "学术伦理",
+      "section_title": "学术写作-学术伦理",
+      "category": "学术写作",
+      "category_section": "学术写作",
+      "trigger_terms": [
+        "学术不端",
+        "一稿多投",
+        "剽窃",
+        "AIGC学术边界",
+        "科研诚信"
+      ],
+      "typical_operations": [
+        "行为描述→对照标准定义/例外→判断；问具体页码则下载标准PDF定位。"
+      ],
+      "main_traps": [
+        "退稿后再投通常不属于一稿多投",
+        "会议论文扩充后再投有条件例外。"
+      ],
+      "official": {
+        "primary_entry": "CY/T 174-2019、教育部相关办法、负责任研究行为规范、AIGC使用边界指南、万方科研诚信",
+        "fast_path": "行为描述→对照标准定义/例外→判断；问具体页码则下载标准PDF定位。",
+        "traps": "退稿后再投通常不属于一稿多投；会议论文扩充后再投有条件例外。",
+        "answering_mode": "`规范条文 / 情境判断`",
+        "question_anchors": [
+          "`模拟-41`",
+          "`模拟-59`",
+          "`模拟-90`"
+        ],
+        "table_name": "学术伦理",
+        "table_triggers": [
+          "学术不端",
+          "一稿多投",
+          "剽窃"
+        ],
+        "table_action": "规范条文 / 情境判断；CY/T 174-2019、教育部相关办法"
+      },
+      "derived": {
+        "official_platform_names": [
+          "万方"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "wanfang",
+        "primary_platform_name": "万方数据",
+        "fallback_platforms": [
+          "cnki"
+        ],
+        "deep_link": "https://openstd.samr.gov.cn/",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "标准号",
+          "标准名称",
+          "起草单位",
+          "实施日期"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "STATIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 5,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "wanfang",
+      "primary_platform_name": "万方数据",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "万方"
+      ],
+      "fallback_platforms": [
+        "cnki"
+      ],
+      "deep_link": "https://openstd.samr.gov.cn/",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "标准号",
+        "标准名称",
+        "起草单位",
+        "实施日期"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "STATIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0048"
+      ],
+      "question_count_in_bank": 5,
+      "url_recipe_count": 4,
+      "offline_judgeable": "YES",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 44,
+      "module_code": "M44",
+      "module_id": "知识模块44",
+      "module_name": "参考文献著录格式",
+      "section_title": "学术写作-参考文献著录格式",
+      "category": "学术写作",
+      "category_section": "学术写作",
+      "trigger_terms": [
+        "GB/T 7714-2025",
+        "APA",
+        "MLA",
+        "文献类型标识M/J/D/C/P/S",
+        "引文导出"
+      ],
+      "typical_operations": [
+        "先判文献载体类型→对应标识→再看著录顺序与标点；格式题可用数据库导出作核验。"
+      ],
+      "main_traps": [
+        "选项字母与文献类型字母会故意混淆",
+        "“发表在页码”≠“引用了页码内容”。"
+      ],
+      "official": {
+        "primary_entry": "国家标准、CNKI/万方/维普/百度学术引文导出",
+        "fast_path": "先判文献载体类型→对应标识→再看著录顺序与标点；格式题可用数据库导出作核验。",
+        "traps": "选项字母与文献类型字母会故意混淆；“发表在页码”≠“引用了页码内容”。",
+        "answering_mode": "`规则直答 / 格式核验`",
+        "question_anchors": [
+          "`模拟-4`",
+          "`模拟-68`",
+          "`模拟-130`"
+        ],
+        "table_name": "参考文献著录格式",
+        "table_triggers": [
+          "GB/T 7714-2025",
+          "APA",
+          "MLA"
+        ],
+        "table_action": "规则直答 / 格式核验；国家标准、CNKI/万方/维普/百度学术引文导出"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "万方",
+          "维普"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "vip",
+          "wanfang"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 6,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "万方",
+        "维普"
+      ],
+      "fallback_platforms": [
+        "vip",
+        "wanfang"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0049",
+        "Q0085",
+        "Q0086"
+      ],
+      "question_count_in_bank": 6,
+      "url_recipe_count": 4,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 45,
+      "module_code": "M45",
+      "module_id": "知识模块45",
+      "module_name": "论文排版",
+      "section_title": "学术写作-论文排版",
+      "category": "学术写作",
+      "category_section": "学术写作",
+      "trigger_terms": [
+        "Word/WPS排版",
+        "替换",
+        "^p/^m/^g",
+        "标题样式",
+        "目录",
+        "分页",
+        "页眉页脚"
+      ],
+      "typical_operations": [
+        "能本机试就直接试；特殊符号题进入“查找替换→特殊格式”；目录题先设置标题样式。"
+      ],
+      "main_traps": [
+        "Ctrl+Enter才是分页",
+        "特殊代码易混",
+        "源题库个别模块标签历史错位，按实际功能判断。"
+      ],
+      "official": {
+        "primary_entry": "Word/WPS本机功能、小恐龙公文排版助手",
+        "fast_path": "能本机试就直接试；特殊符号题进入“查找替换→特殊格式”；目录题先设置标题样式。",
+        "traps": "Ctrl+Enter才是分页；特殊代码易混；源题库个别模块标签历史错位，按实际功能判断。",
+        "answering_mode": "`本机操作 / 稳定知识`",
+        "question_anchors": [
+          "`模拟-31`",
+          "`模拟-84`",
+          "`模拟-93`"
+        ],
+        "table_name": "论文排版",
+        "table_triggers": [
+          "Word/WPS排版",
+          "替换",
+          "^p/^m/^g"
+        ],
+        "table_action": "本机操作 / 稳定知识；Word/WPS本机功能、小恐龙公文排版助手"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 6,
+        "url_recipe_count": 0
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "判断题",
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0050",
+        "Q0087"
+      ],
+      "question_count_in_bank": 6,
+      "url_recipe_count": 0,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 46,
+      "module_code": "M46",
+      "module_id": "知识模块46",
+      "module_name": "文献管理工具",
+      "section_title": "科研工具-文献管理工具",
+      "category": "科研工具",
+      "category_section": "科研工具",
+      "trigger_terms": [
+        "Zotero",
+        "Mendeley",
+        "知网研学",
+        "DOI/ISBN/PMID导入",
+        "文献管理"
+      ],
+      "typical_operations": [
+        "添加条目→标识符/数据库/本地导入→核支持类型与同步/管理功能。"
+      ],
+      "main_traps": [
+        "ISSN通常不是单篇文献导入标识符",
+        "“能找到文献”不等于“能拿全文”。"
+      ],
+      "official": {
+        "primary_entry": "Zotero、Mendeley、知网研学E-study",
+        "fast_path": "添加条目→标识符/数据库/本地导入→核支持类型与同步/管理功能。",
+        "traps": "ISSN通常不是单篇文献导入标识符；“能找到文献”不等于“能拿全文”。",
+        "answering_mode": "`工具实操`",
+        "question_anchors": [
+          "`模拟-80`"
+        ],
+        "table_name": "文献管理工具",
+        "table_triggers": [
+          "Zotero",
+          "Mendeley",
+          "知网研学"
+        ],
+        "table_action": "工具实操；Zotero、Mendeley"
+      },
+      "derived": {
+        "official_platform_names": [
+          "知网研学",
+          "知网"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "STATIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 4,
+        "url_recipe_count": 2
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "知网研学",
+        "知网"
+      ],
+      "fallback_platforms": [],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "STATIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "判断题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0051",
+        "Q0052",
+        "Q0088"
+      ],
+      "question_count_in_bank": 4,
+      "url_recipe_count": 2,
+      "offline_judgeable": "YES",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 47,
+      "module_code": "M47",
+      "module_id": "知识模块47",
+      "module_name": "文献追踪工具",
+      "section_title": "科研工具-文献追踪工具",
+      "category": "科研工具",
+      "category_section": "科研工具",
+      "trigger_terms": [
+        "RSS",
+        "Create alert",
+        "主题订阅",
+        "期刊订阅",
+        "学者订阅",
+        "文献追踪"
+      ],
+      "typical_operations": [
+        "检索结果/期刊详情→Create alert/RSS/主题定制/订阅→核入口和分隔符等细节。"
+      ],
+      "main_traps": [
+        "CNKI RSS地址代码容易混",
+        "万方多个单位用分号而非逗号等UI细节会考。"
+      ],
+      "official": {
+        "primary_entry": "PubMed、CNKI、万方智研平台",
+        "fast_path": "检索结果/期刊详情→Create alert/RSS/主题定制/订阅→核入口和分隔符等细节。",
+        "traps": "CNKI RSS地址代码容易混；万方多个单位用分号而非逗号等UI细节会考。",
+        "answering_mode": "`订阅功能 / 动态UI`",
+        "question_anchors": [
+          "`模拟-28`",
+          "`模拟-64`",
+          "`模拟-123`"
+        ],
+        "table_name": "文献追踪工具",
+        "table_triggers": [
+          "RSS",
+          "Create alert",
+          "主题订阅"
+        ],
+        "table_action": "订阅功能 / 动态UI；PubMed、CNKI"
+      },
+      "derived": {
+        "official_platform_names": [
+          "PubMed",
+          "CNKI",
+          "万方"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "pubmed",
+        "primary_platform_name": "PubMed",
+        "fallback_platforms": [
+          "cnki"
+        ],
+        "deep_link": "https://s.wanfangdata.com.cn/paper",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "题名",
+          "关键词",
+          "摘要",
+          "作者",
+          "作者单位",
+          "期刊名称",
+          "日期",
+          "基金"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 6,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "pubmed",
+      "primary_platform_name": "PubMed",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "PubMed",
+        "CNKI",
+        "万方"
+      ],
+      "fallback_platforms": [
+        "cnki"
+      ],
+      "deep_link": "https://s.wanfangdata.com.cn/paper",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "题名",
+        "关键词",
+        "摘要",
+        "作者",
+        "作者单位",
+        "期刊名称",
+        "日期",
+        "基金"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题",
+        "多选题"
+      ],
+      "sample_question_ids": [
+        "Q0053",
+        "Q0089",
+        "Q0090"
+      ],
+      "question_count_in_bank": 6,
+      "url_recipe_count": 4,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 48,
+      "module_code": "M48",
+      "module_id": "知识模块48",
+      "module_name": "数据处理工具",
+      "section_title": "科研工具-数据处理工具",
+      "category": "科研工具",
+      "category_section": "科研工具",
+      "trigger_terms": [
+        "Excel函数",
+        "LEFT/RIGHT/MID/FIND/TRIM/SUBSTITUTE/VLOOKUP/COUNTIFS/SUMIFS/INDEX/MATCH",
+        "数据清洗"
+      ],
+      "typical_operations": [
+        "先确定“提取/查找/条件统计/替换”任务→选函数→用最小示例心算或本机验证。"
+      ],
+      "main_traps": [
+        "MID起始位从1算",
+        "VLOOKUP返回列号相对区域",
+        "文本/数字类型会影响匹配。"
+      ],
+      "official": {
+        "primary_entry": "Excel本机；开放数据集平台作为数据来源",
+        "fast_path": "先确定“提取/查找/条件统计/替换”任务→选函数→用最小示例心算或本机验证。",
+        "traps": "MID起始位从1算；VLOOKUP返回列号相对区域；文本/数字类型会影响匹配。",
+        "answering_mode": "`计算优先 / 可直接答`",
+        "question_anchors": [
+          "`模拟-17`",
+          "`模拟-49`",
+          "`模拟-62`"
+        ],
+        "table_name": "数据处理工具",
+        "table_triggers": [
+          "Excel函数",
+          "LEFT/RIGHT/MID/FIND/TRIM/SUBSTITUTE/VLOOKUP/COUNTIFS/SUMIFS/INDEX/MATCH",
+          "数据清洗"
+        ],
+        "table_action": "计算优先 / 可直接答；Excel本机；开放数据集平台作为数据来源"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "SEMI_DYNAMIC",
+        "requires_login": "NO_OR_UNKNOWN",
+        "question_count_in_bank": 8,
+        "url_recipe_count": 1
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "SEMI_DYNAMIC",
+      "requires_login": "NO_OR_UNKNOWN",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0054",
+        "Q0091",
+        "Q0092"
+      ],
+      "question_count_in_bank": 8,
+      "url_recipe_count": 1,
+      "offline_judgeable": "PARTIAL",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 49,
+      "module_code": "M49",
+      "module_id": "知识模块49",
+      "module_name": "数据可视化工具",
+      "section_title": "科研工具-数据可视化工具",
+      "category": "科研工具",
+      "category_section": "科研工具",
+      "trigger_terms": [
+        "ECharts",
+        "图表类型",
+        "3D示例",
+        "词云",
+        "微词云",
+        "可视化匹配"
+      ],
+      "typical_operations": [
+        "图表库题直接进Examples；词云题导入全文→默认分词→看词频；选择图表先看变量类型。"
+      ],
+      "main_traps": [
+        "词频受分词/停用词参数影响",
+        "免费次数有限，比赛当天不要无意义消耗。"
+      ],
+      "official": {
+        "primary_entry": "ECharts示例库、微词云、Excel图表/AI数据分析",
+        "fast_path": "图表库题直接进Examples；词云题导入全文→默认分词→看词频；选择图表先看变量类型。",
+        "traps": "词频受分词/停用词参数影响；免费次数有限，比赛当天不要无意义消耗。",
+        "answering_mode": "`可视化实操`",
+        "question_anchors": [
+          "`模拟-32`",
+          "`模拟-122`"
+        ],
+        "table_name": "数据可视化工具",
+        "table_triggers": [
+          "ECharts",
+          "图表类型",
+          "3D示例"
+        ],
+        "table_action": "可视化实操；ECharts示例库、微词云"
+      },
+      "derived": {
+        "official_platform_names": [],
+        "platform_source": "NONE",
+        "primary_platform": "",
+        "primary_platform_name": "",
+        "fallback_platforms": [],
+        "deep_link": "",
+        "deep_link_status": "UNKNOWN",
+        "deep_link_source": "",
+        "supported_fields": [],
+        "evidence_level_cap": "",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 3,
+        "url_recipe_count": 5
+      },
+      "primary_platform": "",
+      "primary_platform_name": "",
+      "platform_source": "NONE",
+      "official_platform_names": [],
+      "fallback_platforms": [],
+      "deep_link": "",
+      "deep_link_status": "UNKNOWN",
+      "deep_link_source": "",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [],
+      "evidence_level_cap": "",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "判断题"
+      ],
+      "sample_question_ids": [
+        "Q0055"
+      ],
+      "question_count_in_bank": 3,
+      "url_recipe_count": 5,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    },
+    {
+      "module_no": 50,
+      "module_code": "M50",
+      "module_id": "知识模块50",
+      "module_name": "文献可视化工具",
+      "section_title": "科研工具-文献可视化工具",
+      "category": "科研工具",
+      "category_section": "科研工具",
+      "trigger_terms": [
+        "CiteSpace",
+        "VOSviewer",
+        "赛特新思",
+        "CNKI/万方/维普可视化",
+        "作者分布/发文趋势/知识图谱"
+      ],
+      "typical_operations": [
+        "先完成检索→进入“分析/可视化分析”→按作者、机构、年份、主题查看排序/网络。"
+      ],
+      "main_traps": [
+        "第一作者单位/作者单位口径影响排名",
+        "分析的是“当前检索结果”，检索条件必须先正确。"
+      ],
+      "official": {
+        "primary_entry": "赛特新思、CNKI/CNKI AI、万方、维普、CiteSpace/VOSviewer",
+        "fast_path": "先完成检索→进入“分析/可视化分析”→按作者、机构、年份、主题查看排序/网络。",
+        "traps": "第一作者单位/作者单位口径影响排名；分析的是“当前检索结果”，检索条件必须先正确。",
+        "answering_mode": "`检索后分析`",
+        "question_anchors": [],
+        "table_name": "文献可视化工具",
+        "table_triggers": [
+          "CiteSpace",
+          "VOSviewer",
+          "赛特新思"
+        ],
+        "table_action": "检索后分析；赛特新思、CNKI/CNKI AI"
+      },
+      "derived": {
+        "official_platform_names": [
+          "CNKI",
+          "CNKI AI",
+          "万方",
+          "维普"
+        ],
+        "platform_source": "OFFICIAL_ENTRY",
+        "primary_platform": "cnki",
+        "primary_platform_name": "CNKI 中国知网",
+        "fallback_platforms": [
+          "vip",
+          "wanfang"
+        ],
+        "deep_link": "https://kns.cnki.net/starter/advanced",
+        "deep_link_status": "DIRECT",
+        "deep_link_source": "KNOWN_HISTORY",
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "dynamicity": "DYNAMIC",
+        "requires_login": "SOMETIMES",
+        "question_count_in_bank": 2,
+        "url_recipe_count": 4
+      },
+      "primary_platform": "cnki",
+      "primary_platform_name": "CNKI 中国知网",
+      "platform_source": "OFFICIAL_ENTRY",
+      "official_platform_names": [
+        "CNKI",
+        "CNKI AI",
+        "万方",
+        "维普"
+      ],
+      "fallback_platforms": [
+        "vip",
+        "wanfang"
+      ],
+      "deep_link": "https://kns.cnki.net/starter/advanced",
+      "deep_link_status": "DIRECT",
+      "deep_link_source": "KNOWN_HISTORY",
+      "deep_link_verified_at": "",
+      "deep_link_route_type": "",
+      "deep_link_surface": "",
+      "supported_fields": [
+        "主题",
+        "篇关摘",
+        "关键词",
+        "篇名",
+        "全文",
+        "作者",
+        "第一作者",
+        "通讯作者",
+        "作者单位",
+        "基金",
+        "摘要",
+        "小标题",
+        "参考文献",
+        "分类号",
+        "文献来源",
+        "DOI"
+      ],
+      "evidence_level_cap": "VERIFIED_PRIMARY",
+      "dynamicity": "DYNAMIC",
+      "requires_login": "SOMETIMES",
+      "common_question_types": [
+        "单选题"
+      ],
+      "sample_question_ids": [
+        "Q0056",
+        "Q0093"
+      ],
+      "question_count_in_bank": 2,
+      "url_recipe_count": 4,
+      "offline_judgeable": "NO",
+      "source": "OFFICIAL_CONTROLLER"
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+version: 2
+stack_id: PROVINCIAL_ELIMINATION_BROWSER_STACK
+generated_at: "2026-10-08"
+status: CHROME_MIGRATION_PENDING_LOGIN
+migrated_from: "Microsoft Edge（2026-10-07 配置，已停用并备份）"
+# ===========================================================================
+# 省赛淘汰赛浏览器执行栈。
+#
+# 2026-10-08 Controller 批准迁移：研究浏览器 Edge -> **专用 Google Chrome**。
+# 迁移理由（实测）：
+#   - Edge 的 edge://inspect 开关每次连接都要人工授权，且其 CDP HTTP 发现
+#     端点返回 404（实测 /json/version = 404），导致 agent-browser tab list
+#     稳定报 os error 10060。
+#   - 专用 Chrome 用 --remote-debugging-port 启动，HTTP 发现正常（200），
+#     无授权弹窗，且 profile 持久。
+#
+# 三条路线已冻结，禁止引入第四套浏览器自动化框架：
+#   FAST CLI   : Chrome + CDP + agent-browser CLI
+#   PRIMARY MCP: Chrome + Chrome DevTools MCP (--browser-url)
+#   FALLBACK   : Chrome + Playwright MCP (--cdp-endpoint)
+#
+# 本文件不含任何 Cookie / Token / Password / WebSocket secret。
+# ===========================================================================
+
+browser:
+  primary: chrome
+  reason: "Controller 批准迁移；专用 Chrome 可持久运行、复用登录态、无重复授权弹窗。"
+  never_modify_daily_chrome_profile: true
+  edge_legacy:
+    deprecated: true
+    note: "Edge 路线已停用；配置与 MCP overlay 备份保留用于回滚。"
+    executable: "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+    version: "154.0.4258.62"
+    user_data_dir: "C:\\Users\\<user>\\AppData\\Local\\Microsoft\\Edge\\User Data"
+    overlay_backup: "config/dsh/legacy-edge/primary-edge-devtools.patch.yml"
+  chrome:
+    executable: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    version: "155.0.8059.40"
+    channel: stable
+    # 专用、持久、与日常 Chrome 完全隔离的 User Data
+    user_data_dir: "D:\\Dev\\tools\\provincial-chrome-profile"
+    is_dedicated_profile: true
+    copies_edge_user_data: false
+    incognito: false
+    temporary_profile: false
+    remote_debugging:
+      enabled: true
+      address: "127.0.0.1"
+      port: 9223
+      fallback_ports: [9224, 9225, 9226]
+      exposed_to_lan_or_public: false
+      auto_connect: false
+      note: "由 scripts/start_research_chrome.py 启动与复用；不随 Agent 退出而停止，不删除 Profile。"
+    launcher:
+      script: scripts/start_research_chrome.py
+      extra_flags: ["--no-first-run", "--no-default-browser-check"]
+      extra_flags_reason: "仅跳过首次运行 UI；不影响沙箱 / 安全浏览 / 证书检查。"
+    security:
+      sandbox_disabled: false
+      safe_browsing_disabled: false
+      certificate_checks_disabled: false
+      stealth_or_fingerprint_tools: false
+  forbidden_operations:
+    - delete_edge_profile
+    - rebuild_edge_profile
+    - delete_dedicated_chrome_profile
+    - modify_daily_chrome_profile
+    - copy_edge_user_data_directory
+    - change_default_browser
+    - clear_cookies
+    - clear_sessions
+    - sign_out_websites
+    - overwrite_existing_browser_config
+    - read_or_print_password
+    - read_or_print_cookie_plaintext
+    - read_or_print_token
+    - read_or_print_session_secret
+    - read_browser_password_database
+    - kill_processes_by_name_only
+
+backends:
+  fast:
+    type: agent-browser
+    transport: cdp
+    session: provincial-research
+    pin_tab: true
+    command: agent-browser
+    version: "0.38.1"
+    install_path: "D:\\Dev\\tools\\browser-tools\\agent-browser"
+    connect_style: "--cdp 9223"
+    endpoint: "http://127.0.0.1:9223"
+    note: "普通确定性短操作（1-4 次 browser command）。"
+    forbidden_flags:
+      - "--allowed-domains"
+    forbidden_flags_reason: "agent-browser 明确拒绝与 --cdp 同时使用，启用会让 CDP 路线失效。"
+
+  primary:
+    type: chrome-devtools-mcp
+    server_name: chrome-devtools
+    transport: stdio
+    command: npx
+    package: chrome-devtools-mcp
+    version: "1.10.1"
+    connection_mode: browser-url
+    browser_url: "http://127.0.0.1:9223"
+    auto_connect: false
+    user_data_dir: null
+    page_id_routing: true
+    usage_statistics: false
+    blocked_url_patterns:
+      - "*://*.xxsuyang.com/*"
+      - "*://xxsuyang.com/*"
+    disabled_categories:
+      - performance
+      - memory
+      - emulation
+    enabled_categories:
+      - input
+      - navigation
+      - debugging
+      - network
+    tool_call_timeout_ms: 15000
+    fail_on_startup_error: false
+    reconnect:
+      enabled: true
+      initial_delay_ms: 500
+      max_delay_ms: 30000
+      max_attempts: 3
+    note: "复杂 DOM / JS / Network / 异步 XHR 页面。--browser-url 取代 --autoConnect。"
+
+  fallback:
+    type: playwright-mcp
+    server_name: chrome-playwright
+    transport: stdio
+    command: npx
+    package: "@playwright/mcp"
+    version: "0.0.83"
+    connection_mode: cdp-endpoint
+    cdp_endpoint: "http://127.0.0.1:9223"
+    extension: false
+    extension_required: false
+    timeout_navigation_ms: 8000
+    timeout_action_ms: 5000
+    timeout_settle_ms: 500
+    fail_on_startup_error: false
+    note: "CDP 模式连接同一专用 Chrome；**不依赖浏览器扩展**，无需安装 Playwright Extension。"
+
+routing:
+  order:
+    - DIRECT
+    - AGENT_BROWSER
+    - EDGE_DEVTOOLS_MCP
+    - PLAYWRIGHT_MCP
+    - HUMAN_REQUIRED
+  simple_ui: fast
+  complex_ui: primary
+  javascript: primary
+  network: primary
+  snapshot_insufficient: primary
+  spa_state: primary
+  multi_tab: primary
+  cli_two_consecutive_failures: primary
+  primary_failure: fallback
+  auth_challenge: human
+  captcha: human
+  waf: human
+  qr_or_sms_or_2fa: human
+  never_run_two_backends_on_same_tab: true
+
+tab_isolation:
+  research_tabs:
+    - Research-1
+    - Research-2
+  competition_tab: HUMAN_ONLY
+  pin_tab: true
+  on_bound_tab_closed: TAB_GONE_HUMAN_REQUIRED
+  never_auto_take_over_other_tab: true
+  require_explicit_research_page_selection: true
+  # 隔离不能只靠 --pin-tab：另有 compliance_gate 归属校验 +
+  # MCP blockedUrlPattern + backend router 的并发互斥，共四层。
+  isolation_layers:
+    - pin_tab
+    - compliance_gate_surface_classification
+    - mcp_blocked_url_pattern
+    - backend_router_exclusive_per_tab
+
+timeouts:
+  navigation_ms: 8000
+  interaction_ms: 5000
+  snapshot_ms: 5000
+  page_settle: "no_networkidle_by_default"
+  mcp_tool_call_timeout_ms: 15000
+  mcp_tool_call_timeout_max_ms: 20000
+  must_fit_inside_question_budget: 65000
+
+competition:
+  automate_competition_surface: false
+  dom_read: false
+  screenshot_question_capture: false
+  ocr_question_capture: false
+  api_listen: false
+  clipboard_capture: false
+  auto_fill_answer: false
+  auto_click_next: false
+  auto_submit: false
+  question_ingress: HUMAN_ONLY
+  answer_egress: HUMAN_ONLY
+  policy_file: config/compliance_policy.yaml
+
+security:
+  save_auth_state_to_repo: false
+  export_cookies: false
+  dump_password_database: false
+  commit_storage_state: false
+  write_auth_token_to_repo: false
+  print_authorization_header: false
+  archive_browser_profile: false
+  upload_captcha_or_qr_screenshot: false
+  storage_state_tool_use: forbidden_without_controller_approval
+  profile_in_git: false
+
+forbidden_optimizations:
+  - stealth_browser_plugin
+  - captcha_solver
+  - captcha_bypass_service
+  - waf_bypass_tool
+  - anti_detect_browser
+  - fingerprint_spoofing
+  - residential_proxy_rotation
+  - cookie_stealing_or_import_tool
+
+process_hygiene:
+  # 2026-10-07 曾按名字批量杀 node.exe，误杀了其他 IDE / draw.io 的 MCP 服务。
+  # 以下为防回归要求。
+  forbid_kill_by_name_only: true
+  require_pid_and_commandline_and_parent_check: true
+  require_project_ownership_proof: true
+  protected_process_families:
+    - other_ide_mcp_servers
+    - codex
+    - drawio_mcp
+    - standalone_mcp_services
+    - deepseek_harness_host
+  evidence_required_before_kill:
+    - resolved_pid
+    - full_command_line
+    - parent_process_id
+    - project_ownership_marker
+
+update_policy:
+  t_minus_3_days: allow_evaluate_update
+  t_minus_1_day: freeze_versions
+  competition_day: forbid_update
+  forbidden_on_competition_day:
+    - "npm update"
+    - "pnpm update"
+    - "latest pull"
+    - "extension auto-replace"
+  exception_requires_controller_approval: true
+  versions_file: config/browser_versions.json

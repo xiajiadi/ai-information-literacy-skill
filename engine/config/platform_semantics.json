@@ -1,0 +1,5572 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-08T23:56:19+08:00",
+  "agent": "Provincial Elimination Executor",
+  "purpose": "平台语义层。**不覆盖** config/platform_capabilities.json，也不改动 config/platform_registry.json（FAST 路线）。",
+  "controller_decisions": {
+    "DECISION_1": "APPROVED — 重建平台语义注册表",
+    "canonical_name_policy": "旧数据只有域名、无可靠名称时记 UNKNOWN，不臆造官方名称。",
+    "competition_url_policy": "比赛平台 URL 不得作为外部研究入口，构建时已过闸门剔除。"
+  },
+  "counts": {
+    "platforms": 172,
+    "canonical_name_resolved": 78,
+    "canonical_name_unknown": 94,
+    "with_official_entry": 23,
+    "rejected_competition_or_unknown_urls": 102,
+    "alias_collisions": 0,
+    "backfilled_new_platforms": 44,
+    "backfilled_from_decision_b": 48
+  },
+  "disambiguation": {
+    "百度": {
+      "maps_to": null,
+      "reason": "「百度」单独出现无法判定是百度指数 / 百度学术 / 百度图片 / AI Studio。禁止分配给任一平台，必须搭配限定词。",
+      "qualified_forms": {
+        "百度指数": "baidu-index",
+        "百度学术": "baidu_xueshu",
+        "百度图片": "baidu_image",
+        "百度AI Studio": "aistudio"
+      }
+    },
+    "知网": {
+      "maps_to": "cnki",
+      "reason": "「知网 / CNKI / 中国知网」指向同一平台，合并为 cnki。"
+    },
+    "国家标准": {
+      "maps_to": "standards",
+      "reason": "国家标准化管理委员会体系下的唯一权威入口；行业/地方标准需另判。"
+    },
+    "卫健委": {
+      "maps_to": "nhc",
+      "reason": "默认指国家卫生健康委员会；省市级卫健委需另判。"
+    },
+    "github": {
+      "maps_to": "github",
+      "reason": "docs.github.com 是 github.com 的子域，品牌名相同，按子域归并。"
+    }
+  },
+  "alias_collisions": {},
+  "rejected_urls": [
+    {
+      "platform_key": "202",
+      "url": "http://202.115.54.22/genai/static/wenjian/%E3%80%8A%E5%9B%9B%E5%B7%9D%E5%A4%A7%E5%AD%A6%E6%9C%AC%E7%A7%91%E6%95%99%E8%82%B2%E6%95%99%E5%AD%A6%E4%BA%BA%E5%B7%A5%",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "ai_bot",
+      "url": "https://ai-bot.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "ailongmiao",
+      "url": "https://ailongmiao.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "aisg",
+      "url": "https://aisg.tongji.edu.cn/info/1005/1192.htm",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "aistudio",
+      "url": "https://aistudio.baidu.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "amac",
+      "url": "https://www.amac.org.cn/fwdt/wyc",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "archive",
+      "url": "https://archive.ics.uci.edu/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "archive_beta",
+      "url": "https://archive-beta.ics.uci.edu/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "ascend",
+      "url": "https://ascend.developer.huaweicloud.com/home",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "asmedigitalcollection",
+      "url": "https://asmedigitalcollection.asme.org/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "baidu",
+      "url": "https://www.baidu.com/gaoji/advanced.html",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "basic",
+      "url": "https://basic.smartedu.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "bilibili",
+      "url": "https://www.bilibili.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "bioone",
+      "url": "https://bioone.org/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "cac",
+      "url": "https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "cambridge",
+      "url": "https://www.cambridge.org/core",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "cas",
+      "url": "https://www.cas.cn/sygz/202409/t20240910_5031186.shtml",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "cell",
+      "url": "https://www.cell.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "china_cba",
+      "url": "https://www.china-cba.net/Index/lists/catid/31.htm",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "chkd",
+      "url": "https://chkd.cnki.net/ai",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "citexs",
+      "url": "https://www.citexs.com/Paperpicky",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "cmis",
+      "url": "https://cmis.cicpa.org.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "csc",
+      "url": "https://csc.xxsuyang.com/",
+      "surface": "COMPETITION_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "cx",
+      "url": "https://cx.wanfangdata.com.cn/e-training",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "cy",
+      "url": "https://cy.ncss.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "data",
+      "url": "https://data.worldbank.org/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "datafountain",
+      "url": "https://www.datafountain.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "dspace",
+      "url": "https://dspace.mit.edu/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "eci",
+      "url": "https://eci.elsevier.cn/resource/LeapSpace.html?fid=165&menuid=358&infoid=2004",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "elementsofai",
+      "url": "https://www.elementsofai.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "elsevier",
+      "url": "https://www.elsevier.com/products/leapspace",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "escience",
+      "url": "https://www.escience.org.cn/data-center",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "flk",
+      "url": "https://flk.npc.gov.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "gb2760",
+      "url": "http://gb2760.cfsa.net.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "ggfw",
+      "url": "https://ggfw.cnipa.gov.cn/dlbzs",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "gj",
+      "url": "https://gj.ncss.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "gongbao",
+      "url": "http://gongbao.court.gov.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "gov",
+      "url": "http://www.gov.cn/zhengce/xzfgk",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "graduate",
+      "url": "https://graduate.smartedu.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "gs",
+      "url": "https://gs.sac.net.cn/pages/registration/new-sac-publicity-org.html",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "gw",
+      "url": "https://gw.xkonglong.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "hao",
+      "url": "https://hao.uisdc.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "heywhale",
+      "url": "https://www.heywhale.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "higher",
+      "url": "https://higher.smartedu.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "hulianhutongshequ",
+      "url": "https://hulianhutongshequ.cn/upload/tank/report/2024/202403/1/28716c58bcc84f6db5242dd90363c98c.pdf",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "icourses",
+      "url": "https://www.icourses.cn/courseInfo?co",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "ie",
+      "url": "https://ie.espacenet.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "image",
+      "url": "https://image.baidu.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "iopscience",
+      "url": "https://iopscience.iop.org/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "jhsjk",
+      "url": "http://jhsjk.people.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "jstor",
+      "url": "https://www.jstor.org/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "k",
+      "url": "https://k.cnki.net/home",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "lib",
+      "url": "https://lib.caskm.edu.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "lifelong",
+      "url": "https://lifelong.smartedu.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "loc",
+      "url": "https://www.loc.gov/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "mee",
+      "url": "https://www.mee.gov.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "modernhistory",
+      "url": "https://www.modernhistory.org.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "mohurd",
+      "url": "https://www.mohurd.gov.cn/gongkai/fdzdgknr/bzgg/inde",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "moj",
+      "url": "https://www.moj.gov.cn/pub/sfbgw/gwygzk/index.html",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "mp",
+      "url": "https://mp.weixin.qq.com/s/YozwFYMEX7QUjYFDDT0LmA",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "neea",
+      "url": "https://www.neea.edu.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "nhc",
+      "url": "http://www.nhc.gov.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "nlc",
+      "url": "https://www.nlc.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "nmpa",
+      "url": "https://www.nmpa.gov.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "note",
+      "url": "https://note.youdao.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "office_ai",
+      "url": "https://www.office-ai.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "opendatalab",
+      "url": "https://opendatalab.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "openml",
+      "url": "https://www.openml.org/search?type=data",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "paper",
+      "url": "https://paper.iflytek.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "patentscope2",
+      "url": "https://patentscope2.wipo.int/search/en/search.jsf",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "pic",
+      "url": "https://pic.sogou.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "pku",
+      "url": "http://www.pku.edu.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "publishmedia",
+      "url": "https://publishmedia.cbpt.cnki.net/portal/minio/webs/zghd/media/web/2026/05/28/%E6%96%87%E5%90%8E%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E8%91%97%E5%BD%95%E8%A7%84",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "research",
+      "url": "https://research.bjmu.edu.cn/kycx/0a2253cf83e34201b07578de02cb743a.htm",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "rmfyalk",
+      "url": "https://rmfyalk.court.gov.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "sbj",
+      "url": "https://sbj.cnipa.gov.cn/sbj/sbc",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "scidb",
+      "url": "https://www.scidb.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "scidraw",
+      "url": "https://scidraw.io/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "science",
+      "url": "https://www.science.org/journal/science",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "site",
+      "url": "https://site.sciping.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "sjtu",
+      "url": "https://www.sjtu.edu.cn/tg/20250304/207682.html",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "smart",
+      "url": "https://smart.servier.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "spiedigitallibrary",
+      "url": "https://www.spiedigitallibrary.org/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "sppt",
+      "url": "https://sppt.cfsa.net.cn:8086/db",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "static",
+      "url": "https://static.zxhnzq.com/zsjs/prod/front/20250626141846whNzAx.png",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "suyang",
+      "url": "https://suyang.zxhnzq.com/lecture",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "ted",
+      "url": "https://www.ted.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "tianchi",
+      "url": "https://tianchi.aliyun.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "trendinsight",
+      "url": "https://trendinsight.oceanengine.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "uspto",
+      "url": "https://www.uspto.gov/patents/search/p",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "video",
+      "url": "https://video.wanfangdata.com.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "vocational",
+      "url": "https://vocational.smartedu.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "wenshu",
+      "url": "https://wenshu.court.gov.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "x",
+      "url": "https://x.cnki.net/web/search#/down",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "xhsz",
+      "url": "https://xhsz.news.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "xiaohongshu",
+      "url": "https://www.xiaohongshu.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "xuexi",
+      "url": "https://www.xuexi.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "xzfg",
+      "url": "http://xzfg.moj.gov.cn/sear",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "yuanbao",
+      "url": "https://yuanbao.tencent.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "yz",
+      "url": "https://yz.chsi.com.cn/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "zh",
+      "url": "https://zh.d2l.ai/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    },
+    {
+      "platform_key": "zhihu",
+      "url": "https://www.zhihu.com/",
+      "surface": "UNKNOWN_SURFACE",
+      "reason": "比赛面或未确认归属，禁止作为研究入口"
+    }
+  ],
+  "unresolved_name_keys": [
+    "202",
+    "ai_bot",
+    "ailongmiao",
+    "aisg",
+    "aistudio",
+    "amac",
+    "archive",
+    "archive_beta",
+    "ascend",
+    "asmedigitalcollection",
+    "baidu",
+    "basic",
+    "bilibili",
+    "bioone",
+    "cac",
+    "cambridge",
+    "cas",
+    "cell",
+    "china_cba",
+    "chkd",
+    "citexs",
+    "cmis",
+    "cn",
+    "csc",
+    "cx",
+    "cy",
+    "data",
+    "datafountain",
+    "docs",
+    "dspace",
+    "eci",
+    "elementsofai",
+    "elsevier",
+    "epub",
+    "escience",
+    "flk",
+    "gb2760",
+    "ggfw",
+    "github",
+    "gj",
+    "gongbao",
+    "gov",
+    "graduate",
+    "gs",
+    "gw",
+    "hao",
+    "heywhale",
+    "higher",
+    "hulianhutongshequ",
+    "icourses",
+    "ie",
+    "image",
+    "iopscience",
+    "jhsjk",
+    "jstor",
+    "k",
+    "lib",
+    "lifelong",
+    "loc",
+    "mee",
+    "modelscope",
+    "modernhistory",
+    "mohurd",
+    "moj",
+    "mp",
+    "neea",
+    "nhc",
+    "note",
+    "nppa",
+    "office_ai",
+    "opendatalab",
+    "openml",
+    "paper",
+    "patentscope2",
+    "pic",
+    "pku",
+    "press",
+    "publishmedia",
+    "research",
+    "rmfyalk",
+    "sbj",
+    "scidb",
+    "scidraw",
+    "science",
+    "site",
+    "sjtu",
+    "smart",
+    "spiedigitallibrary",
+    "static",
+    "suyang",
+    "ted",
+    "tianchi",
+    "trendinsight",
+    "uspto",
+    "video",
+    "vocational",
+    "wenshu",
+    "x",
+    "xhsz",
+    "xiaohongshu",
+    "xuexi",
+    "xzfg",
+    "yuanbao",
+    "yz",
+    "zh",
+    "zhihu",
+    "zxgk",
+    "arxiv",
+    "baidu-index",
+    "wanfang_zhiyan"
+  ],
+  "platforms": {
+    "202": {
+      "platform_key": "202",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "202.115.54.22"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "ai_bot": {
+      "platform_key": "ai_bot",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "ai-bot.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "ailongmiao": {
+      "platform_key": "ailongmiao",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "ailongmiao.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "aisg": {
+      "platform_key": "aisg",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "aisg.tongji.edu.cn",
+        "tongji.edu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "aistudio": {
+      "platform_key": "aistudio",
+      "canonical_name": "百度AI Studio",
+      "aliases": [
+        "AI Studio",
+        "飞桨",
+        "PaddlePaddle"
+      ],
+      "domains": [
+        "aistudio.baidu.com",
+        "baidu.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "amac": {
+      "platform_key": "amac",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.amac.org.cn",
+        "amac.org.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "archive": {
+      "platform_key": "archive",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "archive.ics.uci.edu",
+        "uci.edu"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "archive_beta": {
+      "platform_key": "archive_beta",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "archive-beta.ics.uci.edu",
+        "uci.edu"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "ascend": {
+      "platform_key": "ascend",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "ascend.developer.huaweicloud.com",
+        "huaweicloud.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "asmedigitalcollection": {
+      "platform_key": "asmedigitalcollection",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "asmedigitalcollection.asme.org",
+        "asme.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "baidu": {
+      "platform_key": "baidu",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.baidu.com",
+        "baidu.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "basic": {
+      "platform_key": "basic",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "basic.smartedu.cn",
+        "smartedu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "bilibili": {
+      "platform_key": "bilibili",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.bilibili.com",
+        "bilibili.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "bioone": {
+      "platform_key": "bioone",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "bioone.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cac": {
+      "platform_key": "cac",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.cac.gov.cn",
+        "cac.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cambridge": {
+      "platform_key": "cambridge",
+      "canonical_name": "Cambridge Core",
+      "aliases": [
+        "Cambridge Core",
+        "剑桥学术数据库",
+        "剑桥核心",
+        "Cambridge"
+      ],
+      "domains": [
+        "www.cambridge.org",
+        "cambridge.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）",
+        "backfill": "DECISION_B_MERGED"
+      }
+    },
+    "cas": {
+      "platform_key": "cas",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.cas.cn",
+        "cas.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cell": {
+      "platform_key": "cell",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.cell.com",
+        "cell.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "china_cba": {
+      "platform_key": "china_cba",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.china-cba.net",
+        "china-cba.net"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "chkd": {
+      "platform_key": "chkd",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "chkd.cnki.net",
+        "cnki.net"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "citexs": {
+      "platform_key": "citexs",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.citexs.com",
+        "citexs.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cmis": {
+      "platform_key": "cmis",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "cmis.cicpa.org.cn",
+        "cicpa.org.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cn": {
+      "platform_key": "cn",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "cn.bing.com",
+        "bing.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://cn.bing.com/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cnipa": {
+      "platform_key": "cnipa",
+      "canonical_name": "CNIPA",
+      "aliases": [
+        "国家知识产权局",
+        "中国专利公布公告",
+        "专利公布公告",
+        "专利检索及分析",
+        "中国专利公布公告系统",
+        "专利检索",
+        "pss-system"
+      ],
+      "domains": [
+        "pss-system.cponline.cnipa.gov.cn",
+        "cnipa.gov.cn",
+        "www.cnipa.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "申请号",
+          "专利名称",
+          "申请人",
+          "专利类型",
+          "同族",
+          "技术领域",
+          "附图"
+        ],
+        "query_syntax": [
+          {
+            "template_key": "CNIPA",
+            "name": "专利常规检索",
+            "entry": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+            "pattern": null,
+            "operators": null,
+            "fields": [
+              "申请号",
+              "专利名称",
+              "申请人",
+              "专利类型",
+              "同族",
+              "技术领域",
+              "附图"
+            ],
+            "verified": true,
+            "verification_note": "入口本机 HTTP 实测可达。"
+          }
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cnki": {
+      "platform_key": "cnki",
+      "canonical_name": "CNKI",
+      "aliases": [
+        "中国知网",
+        "知网",
+        "CNKI中国知网",
+        "中国学术期刊网络出版总库"
+      ],
+      "domains": [
+        "www.cnki.net",
+        "cnki.net"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "主题",
+          "篇关摘",
+          "关键词",
+          "篇名",
+          "全文",
+          "作者",
+          "第一作者",
+          "通讯作者",
+          "作者单位",
+          "基金",
+          "摘要",
+          "小标题",
+          "参考文献",
+          "分类号",
+          "文献来源",
+          "DOI"
+        ],
+        "query_syntax": [
+          {
+            "template_key": "CNKI",
+            "name": "CNKI 检索式（高级检索裸表达式 / 专业检索字段代码）",
+            "entry": "https://kns.cnki.net/starter/advanced",
+            "pattern": null,
+            "operators": null,
+            "fields": null,
+            "verified": true,
+            "verification_note": "高级检索页本机浏览器实测可打开（starter/advanced），16 个检索项与运算符规则取自页面官方说明。"
+          }
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://www.cnki.net/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "csc": {
+      "platform_key": "csc",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "csc.xxsuyang.com",
+        "xxsuyang.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cx": {
+      "platform_key": "cx",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "cx.wanfangdata.com.cn",
+        "wanfangdata.com.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "cy": {
+      "platform_key": "cy",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "cy.ncss.cn",
+        "ncss.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "data": {
+      "platform_key": "data",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "data.worldbank.org",
+        "worldbank.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "datafountain": {
+      "platform_key": "datafountain",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.datafountain.cn",
+        "datafountain.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "docs": {
+      "platform_key": "docs",
+      "canonical_name": "GitHub Docs",
+      "aliases": [],
+      "domains": [
+        "docs.github.com",
+        "github.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://docs.github.com/zh",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "douyin_creator": {
+      "platform_key": "douyin_creator",
+      "canonical_name": "抖音创作者中心",
+      "aliases": [],
+      "domains": [
+        "creator.douyin.com",
+        "douyin.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "HUMAN_REQUIRED",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://creator.douyin.com/creator-micro/creator-count/arithmetic-index",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "dspace": {
+      "platform_key": "dspace",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "dspace.mit.edu",
+        "mit.edu"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "eci": {
+      "platform_key": "eci",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "eci.elsevier.cn",
+        "elsevier.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "elementsofai": {
+      "platform_key": "elementsofai",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.elementsofai.com",
+        "elementsofai.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "elsevier": {
+      "platform_key": "elsevier",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.elsevier.com",
+        "elsevier.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "epub": {
+      "platform_key": "epub",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "epub.cnipa.gov.cn",
+        "cnipa.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "申请（专利权）人",
+          "文本名称",
+          "公告日",
+          "专利类型"
+        ],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "http://epub.cnipa.gov.cn/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "escience": {
+      "platform_key": "escience",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.escience.org.cn",
+        "escience.org.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "flk": {
+      "platform_key": "flk",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "flk.npc.gov.cn",
+        "npc.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "gb2760": {
+      "platform_key": "gb2760",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "gb2760.cfsa.net.cn",
+        "cfsa.net.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "ggfw": {
+      "platform_key": "ggfw",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "ggfw.cnipa.gov.cn",
+        "cnipa.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "github": {
+      "platform_key": "github",
+      "canonical_name": "GitHub",
+      "aliases": [
+        "Github",
+        "github"
+      ],
+      "domains": [
+        "github.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://github.com/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "gj": {
+      "platform_key": "gj",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "gj.ncss.cn",
+        "ncss.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "gongbao": {
+      "platform_key": "gongbao",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "gongbao.court.gov.cn",
+        "court.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "gov": {
+      "platform_key": "gov",
+      "canonical_name": "中国政府网",
+      "aliases": [
+        "国务院"
+      ],
+      "domains": [
+        "www.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "graduate": {
+      "platform_key": "graduate",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "graduate.smartedu.cn",
+        "smartedu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "gs": {
+      "platform_key": "gs",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "gs.sac.net.cn",
+        "sac.net.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "gw": {
+      "platform_key": "gw",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "gw.xkonglong.com",
+        "xkonglong.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "hao": {
+      "platform_key": "hao",
+      "canonical_name": "优设导航",
+      "aliases": [
+        "优设"
+      ],
+      "domains": [
+        "hao.uisdc.com",
+        "uisdc.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）",
+        "backfill": "DECISION_B_MERGED"
+      }
+    },
+    "heywhale": {
+      "platform_key": "heywhale",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.heywhale.com",
+        "heywhale.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "higher": {
+      "platform_key": "higher",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "higher.smartedu.cn",
+        "smartedu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "hulianhutongshequ": {
+      "platform_key": "hulianhutongshequ",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "hulianhutongshequ.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "icourse163": {
+      "platform_key": "icourse163",
+      "canonical_name": "中国大学MOOC",
+      "aliases": [
+        "爱课程",
+        "icourse163",
+        "中国大学MOOC_优质在线课程学习平台",
+        "MOOC",
+        "慕课"
+      ],
+      "domains": [
+        "www.icourse163.org",
+        "icourse163.org"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "课程名称",
+          "学校",
+          "教师"
+        ],
+        "query_syntax": [
+          {
+            "template_key": "MOOC",
+            "name": "中国大学MOOC 课程定位（非检索式）",
+            "entry": "https://www.icourse163.org/search.htm?search={COURSE_NAME}",
+            "pattern": "{COURSE_NAME}",
+            "operators": null,
+            "fields": null,
+            "verified": true,
+            "verification_note": "搜索页与课程大纲本机浏览器实测可用；.outline 无需登录即可读取。"
+          }
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://www.icourse163.org/search.htm",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "icourses": {
+      "platform_key": "icourses",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.icourses.cn",
+        "icourses.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "ie": {
+      "platform_key": "ie",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "ie.espacenet.com",
+        "espacenet.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "ieee": {
+      "platform_key": "ieee",
+      "canonical_name": "IEEE",
+      "aliases": [
+        "IEEE Xplore",
+        "IEEE会议",
+        "ieeexplore"
+      ],
+      "domains": [
+        "ieeexplore.ieee.org",
+        "ieee.org"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "Document Title",
+          "Author",
+          "Publication Year",
+          "Author Affiliations",
+          "Publication Title",
+          "Abstract",
+          "Index Terms"
+        ],
+        "query_syntax": [
+          {
+            "template_key": "IEEE",
+            "name": "IEEE Xplore 高级检索",
+            "entry": "https://ieeexplore.ieee.org/search/advanced",
+            "pattern": "(\"{TITLE_PHRASE}\") AND ({AUTHOR})",
+            "operators": null,
+            "fields": [
+              "Document Title",
+              "Author",
+              "Publication Year",
+              "Author Affiliations",
+              "Publication Title",
+              "Abstract",
+              "Index Terms"
+            ],
+            "verified": false,
+            "verification_note": "高级检索入口本机 HTTP 实测可达；wildcard 语法以当前界面 Help 为准，本轮未实测。"
+          }
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://ieeexplore.ieee.org/search/advanced",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "image": {
+      "platform_key": "image",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "image.baidu.com",
+        "baidu.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "iopscience": {
+      "platform_key": "iopscience",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "iopscience.iop.org",
+        "iop.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "jhsjk": {
+      "platform_key": "jhsjk",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "jhsjk.people.cn",
+        "people.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "jstor": {
+      "platform_key": "jstor",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.jstor.org",
+        "jstor.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "k": {
+      "platform_key": "k",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "k.cnki.net",
+        "cnki.net"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "lib": {
+      "platform_key": "lib",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "lib.caskm.edu.cn",
+        "caskm.edu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "lifelong": {
+      "platform_key": "lifelong",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "lifelong.smartedu.cn",
+        "smartedu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "loc": {
+      "platform_key": "loc",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.loc.gov",
+        "loc.gov"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "mee": {
+      "platform_key": "mee",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.mee.gov.cn",
+        "mee.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "modelscope": {
+      "platform_key": "modelscope",
+      "canonical_name": "ModelScope",
+      "aliases": [
+        "魔搭",
+        "魔搭社区"
+      ],
+      "domains": [
+        "modelscope.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://modelscope.cn/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "modernhistory": {
+      "platform_key": "modernhistory",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.modernhistory.org.cn",
+        "modernhistory.org.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "mohurd": {
+      "platform_key": "mohurd",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.mohurd.gov.cn",
+        "mohurd.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "moj": {
+      "platform_key": "moj",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.moj.gov.cn",
+        "moj.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "mp": {
+      "platform_key": "mp",
+      "canonical_name": "微信公众号",
+      "aliases": [
+        "微信公众平台"
+      ],
+      "domains": [
+        "mp.weixin.qq.com",
+        "qq.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "ncpssd": {
+      "platform_key": "ncpssd",
+      "canonical_name": "国家哲学社会科学文献中心",
+      "aliases": [
+        "哲学社会科学文献中心",
+        "NCPSSD",
+        "哲社文献中心"
+      ],
+      "domains": [
+        "www.ncpssd.org",
+        "ncpssd.org",
+        "www.ncpssd.cn",
+        "ncpssd.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://www.ncpssd.org/index",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "neea": {
+      "platform_key": "neea",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.neea.edu.cn",
+        "neea.edu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "nhc": {
+      "platform_key": "nhc",
+      "canonical_name": "国家卫健委",
+      "aliases": [
+        "卫健委",
+        "国家卫生健康委员会"
+      ],
+      "domains": [
+        "www.nhc.gov.cn",
+        "nhc.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "nlc": {
+      "platform_key": "nlc",
+      "canonical_name": "国家图书馆",
+      "aliases": [
+        "中国国家图书馆",
+        "国图",
+        "文津搜索",
+        "NLC"
+      ],
+      "domains": [
+        "www.nlc.cn",
+        "nlc.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "nmpa": {
+      "platform_key": "nmpa",
+      "canonical_name": "国家药监局",
+      "aliases": [
+        "国家药品监督管理局",
+        "药监局",
+        "药品批准文号",
+        "NMPA",
+        "药品查询"
+      ],
+      "domains": [
+        "www.nmpa.gov.cn",
+        "nmpa.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "note": {
+      "platform_key": "note",
+      "canonical_name": "有道云笔记",
+      "aliases": [],
+      "domains": [
+        "note.youdao.com",
+        "youdao.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "nppa": {
+      "platform_key": "nppa",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.nppa.gov.cn",
+        "nppa.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://www.nppa.gov.cn/bsfw/cyjghcpc",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "nsfc": {
+      "platform_key": "nsfc",
+      "canonical_name": "国家自然科学基金",
+      "aliases": [
+        "NSFC",
+        "国家自然科学基金大数据知识管理服务门户",
+        "科学基金共享服务网",
+        "自然科学基金"
+      ],
+      "domains": [
+        "kd.nsfc.cn",
+        "nsfc.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "结题年度",
+          "资助类型/项目类型",
+          "申请代码",
+          "依托单位",
+          "负责人"
+        ],
+        "query_syntax": [
+          {
+            "template_key": "NSFC",
+            "name": "国家自然科学基金结题项目（字段筛选，非检索式）",
+            "entry": "https://kd.nsfc.cn/finalProjectInit",
+            "pattern": null,
+            "operators": null,
+            "fields": [
+              "结题年度",
+              "资助类型/项目类型",
+              "申请代码",
+              "依托单位",
+              "负责人"
+            ],
+            "verified": true,
+            "verification_note": "入口本机 HTTP 实测可达。"
+          }
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://kd.nsfc.cn/finalProjectInit",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "office_ai": {
+      "platform_key": "office_ai",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.office-ai.cn",
+        "office-ai.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "opendatalab": {
+      "platform_key": "opendatalab",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "opendatalab.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "openml": {
+      "platform_key": "openml",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.openml.org",
+        "openml.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "paper": {
+      "platform_key": "paper",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "paper.iflytek.com",
+        "iflytek.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "patentscope2": {
+      "platform_key": "patentscope2",
+      "canonical_name": "PATENTSCOPE",
+      "aliases": [
+        "WIPO",
+        "世界知识产权组织"
+      ],
+      "domains": [
+        "patentscope2.wipo.int",
+        "wipo.int"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "pic": {
+      "platform_key": "pic",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "pic.sogou.com",
+        "sogou.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "pku": {
+      "platform_key": "pku",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.pku.edu.cn",
+        "pku.edu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "press": {
+      "platform_key": "press",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "press.nppa.gov.cn",
+        "nppa.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://press.nppa.gov.cn/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "publishmedia": {
+      "platform_key": "publishmedia",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "publishmedia.cbpt.cnki.net",
+        "cnki.net"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "pubmed": {
+      "platform_key": "pubmed",
+      "canonical_name": "PubMed",
+      "aliases": [
+        "pubmed",
+        "美国国立医学图书馆",
+        "NCBI PubMed",
+        "MeSH"
+      ],
+      "domains": [
+        "pubmed.ncbi.nlm.nih.gov",
+        "nih.gov"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "Title",
+          "Title/Abstract",
+          "Author",
+          "MeSH Terms",
+          "Journal",
+          "Date - Publication"
+        ],
+        "query_syntax": [
+          {
+            "template_key": "PUBMED",
+            "name": "PubMed 字段限定检索式",
+            "entry": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+            "pattern": "{TERM}[Title/Abstract] AND {START_YEAR}:{END_YEAR}[dp] NOT {EXCLUDE_TERM}[Title]",
+            "operators": [
+              "AND",
+              "OR",
+              "NOT"
+            ],
+            "fields": null,
+            "verified": true,
+            "verification_note": "入口与 Advanced Search 页面本机实测可达（HTTP 200）；字段标记为 PubMed 官方语法。"
+          }
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "research": {
+      "platform_key": "research",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "research.bjmu.edu.cn",
+        "bjmu.edu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "rmfyalk": {
+      "platform_key": "rmfyalk",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "rmfyalk.court.gov.cn",
+        "court.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "sbj": {
+      "platform_key": "sbj",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "sbj.cnipa.gov.cn",
+        "cnipa.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "scidb": {
+      "platform_key": "scidb",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.scidb.cn",
+        "scidb.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "scidraw": {
+      "platform_key": "scidraw",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "scidraw.io"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "science": {
+      "platform_key": "science",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.science.org",
+        "science.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "sciencedirect": {
+      "platform_key": "sciencedirect",
+      "canonical_name": "ScienceDirect",
+      "aliases": [
+        "sciencedirect",
+        "爱思唯尔",
+        "Elsevier",
+        "SD"
+      ],
+      "domains": [
+        "www.sciencedirect.com",
+        "sciencedirect.com"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "terms",
+          "journal or book title",
+          "Year(s)",
+          "Author(s)",
+          "Author affiliation",
+          "Volume(s)",
+          "Issue(s)",
+          "Page(s)",
+          "Title, abstract or author-specified keywords",
+          "Title",
+          "References",
+          "ISSN or ISBN"
+        ],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://www.sciencedirect.com/search",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "site": {
+      "platform_key": "site",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "site.sciping.com",
+        "sciping.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "sjtu": {
+      "platform_key": "sjtu",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.sjtu.edu.cn",
+        "sjtu.edu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "smart": {
+      "platform_key": "smart",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "smart.servier.com",
+        "servier.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "spiedigitallibrary": {
+      "platform_key": "spiedigitallibrary",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.spiedigitallibrary.org",
+        "spiedigitallibrary.org"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "sppt": {
+      "platform_key": "sppt",
+      "canonical_name": "sppt.cfsa.net.cn:8086",
+      "aliases": [],
+      "domains": [
+        "sppt.cfsa.net.cn",
+        "cfsa.net.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "LEGACY_NAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "standards": {
+      "platform_key": "standards",
+      "canonical_name": "国家标准全文公开系统",
+      "aliases": [
+        "国家标准",
+        "全国标准信息公共服务平台",
+        "标准全文公开",
+        "国家标准化管理委员会",
+        "openstd"
+      ],
+      "domains": [
+        "openstd.samr.gov.cn",
+        "samr.gov.cn",
+        "std.samr.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "标准号",
+          "标准名称",
+          "起草单位",
+          "实施日期"
+        ],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://openstd.samr.gov.cn/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "static": {
+      "platform_key": "static",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "static.zxhnzq.com",
+        "zxhnzq.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "stats": {
+      "platform_key": "stats",
+      "canonical_name": "国家统计局",
+      "aliases": [
+        "国家数据",
+        "统计局"
+      ],
+      "domains": [
+        "www.stats.gov.cn",
+        "stats.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://www.stats.gov.cn/sj/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "suyang": {
+      "platform_key": "suyang",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "suyang.zxhnzq.com",
+        "zxhnzq.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "ted": {
+      "platform_key": "ted",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.ted.com",
+        "ted.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "tianchi": {
+      "platform_key": "tianchi",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "tianchi.aliyun.com",
+        "aliyun.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "trendinsight": {
+      "platform_key": "trendinsight",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "trendinsight.oceanengine.com",
+        "oceanengine.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "unesco": {
+      "platform_key": "unesco",
+      "canonical_name": "UNESCO",
+      "aliases": [
+        "UNESCO Digital Library",
+        "联合国教科文组织",
+        "unesdoc"
+      ],
+      "domains": [
+        "unesdoc.unesco.org",
+        "unesco.org"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "ARK 编号",
+          "题名",
+          "作者",
+          "DOI",
+          "ISBN",
+          "页数",
+          "语言",
+          "出版年份"
+        ],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://unesdoc.unesco.org/ark:/48223/pf0000393559",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "uspto": {
+      "platform_key": "uspto",
+      "canonical_name": "USPTO",
+      "aliases": [
+        "USPTO",
+        "uspto",
+        "美国专利商标局"
+      ],
+      "domains": [
+        "www.uspto.gov",
+        "uspto.gov"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）",
+        "backfill": "DECISION_B_MERGED"
+      }
+    },
+    "video": {
+      "platform_key": "video",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "video.wanfangdata.com.cn",
+        "wanfangdata.com.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "vip": {
+      "platform_key": "vip",
+      "canonical_name": "维普",
+      "aliases": [
+        "维普网",
+        "维普期刊",
+        "维普资讯",
+        "cqvip",
+        "维普中文期刊服务平台"
+      ],
+      "domains": [
+        "www.cqvip.com",
+        "cqvip.com"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "任意字段",
+          "主题词",
+          "篇关摘",
+          "篇名",
+          "关键词",
+          "摘要",
+          "作者",
+          "第一作者",
+          "作者单位",
+          "刊名",
+          "中图分类号",
+          "学科分类号",
+          "DOI",
+          "基金"
+        ],
+        "query_syntax": [
+          {
+            "template_key": "VIP",
+            "name": "维普检索式",
+            "entry": "https://www.cqvip.com/advancesearch",
+            "pattern": "{FIELD1}={TERM1} {OP} {FIELD2}={TERM2}",
+            "operators": {
+              "AND": "也可写 and 或 *",
+              "OR": "也可写 or 或 +",
+              "NOT": "也可写 not 或 -"
+            },
+            "fields": [
+              "任意字段",
+              "主题词",
+              "篇关摘",
+              "篇名",
+              "关键词",
+              "摘要",
+              "作者",
+              "第一作者",
+              "作者单位",
+              "刊名",
+              "中图分类号",
+              "学科分类号",
+              "DOI",
+              "基金"
+            ],
+            "verified": true,
+            "verification_note": "高级检索页本机浏览器实测可打开；运算符规则取自页面官方检索规则说明。"
+          }
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://www.cqvip.com/advancesearch",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "vocational": {
+      "platform_key": "vocational",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "vocational.smartedu.cn",
+        "smartedu.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "wanfang": {
+      "platform_key": "wanfang",
+      "canonical_name": "万方",
+      "aliases": [
+        "万方数据",
+        "万方数据库",
+        "万方数据知识服务平台",
+        "万方数据知识服务平台（简称：万方或万方数据库）",
+        "wanfangdata",
+        "万方智研"
+      ],
+      "domains": [
+        "s.wanfangdata.com.cn",
+        "wanfangdata.com.cn",
+        "www.wanfangdata.com.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "题名",
+          "关键词",
+          "摘要",
+          "作者",
+          "作者单位",
+          "期刊名称",
+          "日期",
+          "基金"
+        ],
+        "query_syntax": [
+          {
+            "template_key": "WANFANG",
+            "name": "万方检索式",
+            "entry": "https://s.wanfangdata.com.cn/paper",
+            "pattern": "({FIELD1}:{TERM1}) {OP} ({FIELD2}:{TERM2})",
+            "operators": [
+              "AND",
+              "OR",
+              "NOT"
+            ],
+            "fields": [
+              "题名",
+              "关键词",
+              "摘要",
+              "作者",
+              "作者单位",
+              "期刊名称",
+              "日期",
+              "基金"
+            ],
+            "verified": false,
+            "verification_note": "入口本机实测可达；具体运算符符号以万方当前高级检索界面为准，本轮未逐条实测，不要照抄维普/CNKI 写法。"
+          }
+        ],
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://s.wanfangdata.com.cn/paper",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "wenjuanxing": {
+      "platform_key": "wenjuanxing",
+      "canonical_name": "问卷星",
+      "aliases": [
+        "WJX"
+      ],
+      "domains": [
+        "www.wjx.cn",
+        "wjx.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "HUMAN_REQUIRED",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "https://www.wjx.cn/newwjx/manage/myquestionnaires.aspx",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "DIRECT",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "wenshu": {
+      "platform_key": "wenshu",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "wenshu.court.gov.cn",
+        "court.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "x": {
+      "platform_key": "x",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "x.cnki.net",
+        "cnki.net"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "xhsz": {
+      "platform_key": "xhsz",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "xhsz.news.cn",
+        "news.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "xiaohongshu": {
+      "platform_key": "xiaohongshu",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.xiaohongshu.com",
+        "xiaohongshu.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "xuexi": {
+      "platform_key": "xuexi",
+      "canonical_name": "学习强国",
+      "aliases": [
+        "共产党员网"
+      ],
+      "domains": [
+        "www.xuexi.cn",
+        "xuexi.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）",
+        "backfill": "DECISION_B_MERGED"
+      }
+    },
+    "xzfg": {
+      "platform_key": "xzfg",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "xzfg.moj.gov.cn",
+        "moj.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "yuanbao": {
+      "platform_key": "yuanbao",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "yuanbao.tencent.com",
+        "tencent.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "yz": {
+      "platform_key": "yz",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "yz.chsi.com.cn",
+        "chsi.com.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "zh": {
+      "platform_key": "zh",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "zh.d2l.ai",
+        "d2l.ai"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "zhihu": {
+      "platform_key": "zhihu",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [
+        "www.zhihu.com",
+        "zhihu.com"
+      ],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "BLOCKED_SURFACE",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "zxgk": {
+      "platform_key": "zxgk",
+      "canonical_name": "中国执行信息公开网",
+      "aliases": [
+        "执行信息公开网"
+      ],
+      "domains": [
+        "zxgk.court.gov.cn",
+        "court.gov.cn"
+      ],
+      "capabilities": {
+        "supported_fields": [
+          "被执行人",
+          "案号",
+          "立案时间"
+        ],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "http://zxgk.court.gov.cn/",
+      "official_entry_decision": "ALLOWED",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "arxiv": {
+      "platform_key": "arxiv",
+      "canonical_name": "arXiv",
+      "aliases": [
+        "arxiv",
+        "预印本"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [
+          "identifier",
+          "Title",
+          "Author",
+          "Abstract",
+          "All fields"
+        ],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "UNKNOWN",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "baidu-index": {
+      "platform_key": "baidu-index",
+      "canonical_name": "百度指数",
+      "aliases": [
+        "微信指数",
+        "抖音指数"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [
+          "关键词",
+          "行业",
+          "时间范围",
+          "地域"
+        ],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "UNKNOWN",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "CONTROLLER_CURATED",
+        "aliases": "CONTROLLER_CURATED",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "wanfang_zhiyan": {
+      "platform_key": "wanfang_zhiyan",
+      "canonical_name": "UNKNOWN",
+      "aliases": [],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [
+          "订阅",
+          "期刊订阅",
+          "学科订阅",
+          "被引量",
+          "排序"
+        ],
+        "query_syntax": "",
+        "evidence_level_cap": "VERIFIED_PRIMARY",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "UNKNOWN",
+      "verification_status": "UNKNOWN",
+      "provenance": {
+        "name": "UNRESOLVED_LEGACY_HOSTNAME",
+        "aliases": "LEGACY",
+        "domains": "DERIVED_FROM_OFFICIAL_URL",
+        "base_asset": "config/platform_capabilities.json（未被修改）"
+      }
+    },
+    "aizhishu": {
+      "platform_key": "aizhishu",
+      "canonical_name": "AI知数",
+      "aliases": [
+        "AI知数",
+        "知数",
+        "AI 知数"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M09",
+      "evidence": "初赛-6 题干点名；M09 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "leappspace": {
+      "platform_key": "leappspace",
+      "canonical_name": "LeapSpace",
+      "aliases": [
+        "LeapSpace",
+        "Leap Space",
+        "leapspace"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M05",
+      "evidence": "初赛-13 题干点名；M05 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "cnki_ai": {
+      "platform_key": "cnki_ai",
+      "canonical_name": "CNKI AI",
+      "aliases": [
+        "CNKI AI",
+        "知网AI",
+        "CNKI-AI"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M05",
+      "evidence": "M05 官方首选入口（2 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "zhiwang_yanxue": {
+      "platform_key": "zhiwang_yanxue",
+      "canonical_name": "知网研学",
+      "aliases": [
+        "知网研学",
+        "研学平台"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M46",
+      "evidence": "M05/M46 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "pubscholar": {
+      "platform_key": "pubscholar",
+      "canonical_name": "PubScholar",
+      "aliases": [
+        "PubScholar",
+        "pubscholar",
+        "公益学术平台"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M26",
+      "evidence": "M26 官方首选入口（2 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "nstl": {
+      "platform_key": "nstl",
+      "canonical_name": "国家科技图书文献中心",
+      "aliases": [
+        "国家科技图书文献中心",
+        "NSTL",
+        "nstl"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M26",
+      "evidence": "初赛-28 题干点名",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "wiley": {
+      "platform_key": "wiley",
+      "canonical_name": "Wiley",
+      "aliases": [
+        "Wiley",
+        "WILEY",
+        "wiley",
+        "威立"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M21",
+      "evidence": "初赛-21、样题-45 题干点名；M33 首选入口（导航 5 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "tandf": {
+      "platform_key": "tandf",
+      "canonical_name": "Taylor & Francis",
+      "aliases": [
+        "Taylor & Francis",
+        "Taylor and Francis",
+        "T&F",
+        "Taylor"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M21",
+      "evidence": "M21/M31 官方首选入口；样题多次出现",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "acm": {
+      "platform_key": "acm",
+      "canonical_name": "ACM",
+      "aliases": [
+        "ACM",
+        "acm",
+        "美国计算机学会"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M21",
+      "evidence": "题干 3 次；M21 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "doaj": {
+      "platform_key": "doaj",
+      "canonical_name": "DOAJ",
+      "aliases": [
+        "DOAJ",
+        "doaj",
+        "开放获取期刊目录"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M24",
+      "evidence": "M24 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "oalib": {
+      "platform_key": "oalib",
+      "canonical_name": "OALib",
+      "aliases": [
+        "OALib",
+        "oalib"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M24",
+      "evidence": "M24 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "xuexi_qiangguo_speech": {
+      "platform_key": "xuexi_qiangguo_speech",
+      "canonical_name": "习近平系列重要讲话数据库",
+      "aliases": [
+        "习近平系列重要讲话数据库",
+        "系列重要讲话数据库",
+        "讲话数据库"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M08",
+      "evidence": "初赛-24、模拟题题干（3 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "zhihuishu": {
+      "platform_key": "zhihuishu",
+      "canonical_name": "智慧树",
+      "aliases": [
+        "智慧树",
+        "智慧树网"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M17",
+      "evidence": "样题-1 题干点名（3 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "piyao": {
+      "platform_key": "piyao",
+      "canonical_name": "中国互联网联合辟谣平台",
+      "aliases": [
+        "中国互联网联合辟谣平台",
+        "联合辟谣平台",
+        "辟谣平台"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M13",
+      "evidence": "M13 官方首选入口；题干（3 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "lawyer_credit": {
+      "platform_key": "lawyer_credit",
+      "canonical_name": "全国律师执业诚信信息公示平台",
+      "aliases": [
+        "全国律师执业诚信信息公示平台",
+        "律师执业诚信信息公示平台"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M16",
+      "evidence": "初赛-8 题干点名（2 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "nopss": {
+      "platform_key": "nopss",
+      "canonical_name": "国家社科基金项目数据库",
+      "aliases": [
+        "国家社科基金项目数据库",
+        "国家社科基金",
+        "社科基金项目数据库"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M25",
+      "evidence": "初赛-22 题干点名（2 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "law_knowledge": {
+      "platform_key": "law_knowledge",
+      "canonical_name": "中国法律知识资源总库",
+      "aliases": [
+        "中国法律知识资源总库",
+        "中国法律智库",
+        "法律知识资源总库"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M10",
+      "evidence": "模拟-3 题干点名（2 次）；M05/M10 首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "sac": {
+      "platform_key": "sac",
+      "canonical_name": "中国证券业协会",
+      "aliases": [
+        "中国证券业协会",
+        "证券业协会"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M16",
+      "evidence": "题干点名（2 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "course_ideology": {
+      "platform_key": "course_ideology",
+      "canonical_name": "全国高校课程思政教学资源服务平台",
+      "aliases": [
+        "全国高校课程思政教学资源服务平台",
+        "课程思政教学资源服务平台"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M08",
+      "evidence": "M08 官方首选入口；题干（2 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "oxford_academic": {
+      "platform_key": "oxford_academic",
+      "canonical_name": "Oxford Academic",
+      "aliases": [
+        "Oxford Academic",
+        "牛津学术",
+        "Oxford Academic Books",
+        "牛津学术专著"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M19",
+      "evidence": "M19 官方首选入口；题干「牛津学术」（2 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "ncbi_bookshelf": {
+      "platform_key": "ncbi_bookshelf",
+      "canonical_name": "NCBI Bookshelf",
+      "aliases": [
+        "NCBI Bookshelf",
+        "NCBI书架",
+        "Bookshelf"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M19",
+      "evidence": "M19 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "info_literacy_db": {
+      "platform_key": "info_literacy_db",
+      "canonical_name": "高校信息素养教育数据库",
+      "aliases": [
+        "高校信息素养教育数据库",
+        "信息素养教育数据库"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M18",
+      "evidence": "M18 官方首选入口；题干（2 次）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "cnki_thesis_named": {
+      "platform_key": "cnki_thesis_named",
+      "canonical_name": "CNKI 学位论文库",
+      "aliases": [
+        "中国知网学位论文",
+        "知网学位论文",
+        "CNKI学位论文"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M23",
+      "evidence": "初赛-14/15 题干；归并到 cnki 语义",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "aminer": {
+      "platform_key": "aminer",
+      "canonical_name": "AMiner",
+      "aliases": [
+        "AMiner",
+        "aminer"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M05",
+      "evidence": "M05 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "kimi": {
+      "platform_key": "kimi",
+      "canonical_name": "Kimi",
+      "aliases": [
+        "Kimi",
+        "kimi",
+        "月之暗面"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M03",
+      "evidence": "M03/M04 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "doubao": {
+      "platform_key": "doubao",
+      "canonical_name": "豆包",
+      "aliases": [
+        "豆包",
+        "Doubao"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M03",
+      "evidence": "M03/M04/M06 官方首选入口（最高频 AI 工具之一）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "zhipu": {
+      "platform_key": "zhipu",
+      "canonical_name": "智谱清言",
+      "aliases": [
+        "智谱清言",
+        "智谱",
+        "清影",
+        "GLM"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M06",
+      "evidence": "M03/M06 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "tongyi": {
+      "platform_key": "tongyi",
+      "canonical_name": "通义千问",
+      "aliases": [
+        "通义千问",
+        "通义",
+        "千问",
+        "通义万相"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M04",
+      "evidence": "M04/M06 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "wenxin": {
+      "platform_key": "wenxin",
+      "canonical_name": "文心一言",
+      "aliases": [
+        "文心一言",
+        "文心"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M03",
+      "evidence": "M03/M04 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "spark": {
+      "platform_key": "spark",
+      "canonical_name": "讯飞星火",
+      "aliases": [
+        "讯飞星火",
+        "星火",
+        "讯飞AI大学堂",
+        "AI大学堂"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M02",
+      "evidence": "M02/M05 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "aliyun_dev": {
+      "platform_key": "aliyun_dev",
+      "canonical_name": "阿里云开发者社区",
+      "aliases": [
+        "阿里云开发者社区",
+        "阿里云开发者"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M02",
+      "evidence": "M02 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "tencent_docs": {
+      "platform_key": "tencent_docs",
+      "canonical_name": "腾讯文档",
+      "aliases": [
+        "腾讯文档"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M38",
+      "evidence": "M38 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "wps": {
+      "platform_key": "wps",
+      "canonical_name": "WPS",
+      "aliases": [
+        "WPS",
+        "WPS Office",
+        "金山办公"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M45",
+      "evidence": "M38/M45 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "zotero": {
+      "platform_key": "zotero",
+      "canonical_name": "Zotero",
+      "aliases": [
+        "Zotero",
+        "zotero"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M46",
+      "evidence": "M46 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "mendeley": {
+      "platform_key": "mendeley",
+      "canonical_name": "Mendeley",
+      "aliases": [
+        "Mendeley",
+        "mendeley",
+        "Mendeley Reference Manager"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M46",
+      "evidence": "初赛-9 题干点名",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "citespace": {
+      "platform_key": "citespace",
+      "canonical_name": "CiteSpace",
+      "aliases": [
+        "CiteSpace",
+        "citespace"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M50",
+      "evidence": "M50 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "vosviewer": {
+      "platform_key": "vosviewer",
+      "canonical_name": "VOSviewer",
+      "aliases": [
+        "VOSviewer",
+        "vosviewer"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M50",
+      "evidence": "M50 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "echarts": {
+      "platform_key": "echarts",
+      "canonical_name": "ECharts",
+      "aliases": [
+        "ECharts",
+        "echarts"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M49",
+      "evidence": "M49 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "weiciyun": {
+      "platform_key": "weiciyun",
+      "canonical_name": "微词云",
+      "aliases": [
+        "微词云"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M49",
+      "evidence": "初赛-36 题干点名",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "site_newthinking": {
+      "platform_key": "site_newthinking",
+      "canonical_name": "赛特新思",
+      "aliases": [
+        "赛特新思"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M50",
+      "evidence": "M50 官方首选入口",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "baidu_xueshu": {
+      "platform_key": "baidu_xueshu",
+      "canonical_name": "百度学术",
+      "aliases": [
+        "百度学术"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M26",
+      "evidence": "M26/M44 官方首选入口（消歧后的限定形式）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "baidu_image": {
+      "platform_key": "baidu_image",
+      "canonical_name": "百度图片",
+      "aliases": [
+        "百度图片"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M27",
+      "evidence": "M27 官方首选入口（消歧后的限定形式）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "sogou_image": {
+      "platform_key": "sogou_image",
+      "canonical_name": "搜狗图片",
+      "aliases": [
+        "搜狗图片"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M27",
+      "evidence": "初赛-29 题干点名",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    },
+    "yuketang": {
+      "platform_key": "yuketang",
+      "canonical_name": "雨课堂",
+      "aliases": [
+        "雨课堂"
+      ],
+      "domains": [],
+      "capabilities": {
+        "supported_fields": [],
+        "query_syntax": "",
+        "evidence_level_cap": "",
+        "requires_login": "UNKNOWN",
+        "dynamicity": "UNKNOWN"
+      },
+      "official_entry": "",
+      "official_entry_decision": "PENDING_DOMAIN_VERIFICATION",
+      "verification_status": "UNVERIFIED",
+      "module_hint": "M39",
+      "evidence": "模拟题题干；M39 官方首选入口（复用既有 key `yuketang`）",
+      "provenance": {
+        "name": "CONTROLLER_BACKFILL",
+        "aliases": "CONTROLLER_BACKFILL",
+        "domains": "PENDING_NO_AUTHORITATIVE_SOURCE",
+        "base_asset": "config/platform_backfill.yaml（Controller 决策 (b)）"
+      }
+    }
+  }
+}

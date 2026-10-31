@@ -1,0 +1,189 @@
+# Gold 构建专用产品词典（**与路由器别名表相互独立**）
+#
+# ⚠️ 为什么需要单独一份：
+#   第一版 product-level Gold 直接复用了路由器自己的别名索引
+#   （`platform_router_v2.platform_aliases()`）来抽取「题干点名的产品」，
+#   而路由器的 `longest_known_alias()` 用的是**同一张表、同一套最长匹配**。
+#   结果配对评估里「补录后」得到 200/200 = 100% —— 这是**循环论证**：
+#   Gold 与预测由同一机制产生，必然全对。这正是 Controller 禁止的
+#   「把自身模型预测当作独立 Gold」。
+#
+#   本文件是**独立编写**的标注词典：只描述「题干里出现什么字样时，
+#   人会把该题判给哪个产品」，与路由器的匹配逻辑、别名表、评分无关。
+#   两者由不同来源写成，因此用它构建的 Gold 至少不是同一条代码路径的产物。
+#
+# 诚实声明：这仍是**作者人工编写**的词典，不是第三方人工标注。
+#   `matches` 一栏记录命中了哪些字样，供人工审计；
+#   若人工复核推翻某条，只改本文件即可，不影响路由器。
+#
+# 用法：仅 `scripts/phase2_gold_builder.py` 读取。路由器**不得**引用本文件。
+
+schema_version: 1
+generated_at: "2026-10-08"
+agent: "Provincial Elimination Executor"
+purpose: "产品级 Gold 的独立标注来源；禁止被路由逻辑引用"
+
+# 每条：product_key -> 题干里出现即判定为该产品的字样（区分大小写不敏感）
+products:
+  cnki:
+    - CNKI
+    - 中国知网
+    - 知网
+  wanfang:
+    - 万方
+  vip:
+    - 维普
+  zhiwang_yanxue:
+    - 知网研学
+  cnki_ai:
+    - CNKI AI
+  aizhishu:
+    - AI知数
+  law_knowledge:
+    - 中国法律知识资源总库
+    - 中国法律智库
+  sciencedirect:
+    - ScienceDirect
+  leappspace:
+    - LeapSpace
+  wiley:
+    - WILEY
+    - Wiley
+  ieee:
+    - IEEE
+  pubmed:
+    - PubMed
+  acm:
+    - ACM
+  tandf:
+    - Taylor & Francis
+    - T&F
+  springer:
+    - Springer
+  cambridge:
+    - 剑桥学术数据库
+    - Cambridge
+  oxford:
+    - 牛津学术
+    - Oxford
+  ncbi_bookshelf:
+    - NCBI Bookshelf
+  doaj:
+    - DOAJ
+  oalib:
+    - OALib
+  arxiv:
+    - arXiv
+  pubscholar:
+    - PubScholar
+  nstl:
+    - 国家科技图书文献中心
+    - NSTL
+  baidu_xueshu:
+    - 百度学术
+  baidu_index:
+    - 百度指数
+  baidu_image:
+    - 百度图片
+  sogou_image:
+    - 搜狗图片
+  weiciyun:
+    - 微词云
+  github:
+    - GitHub
+    - Github
+  modelscope:
+    - ModelScope
+    - 魔搭
+  aistudio:
+    - AI Studio
+  stats:
+    - 国家统计局
+    - 国家数据
+  standards:
+    - 国家标准全文公开系统
+    - 全国标准信息公共服务平台
+  cnipa:
+    - 中国专利公布公告
+    - 专利公布公告
+    - 专利检索及分析
+    - CNIPA
+  uspto:
+    - USPTO
+  nlc:
+    - 国家图书馆
+  unesco:
+    - UNESCO
+  nsfc:
+    - 国家自然科学基金
+    - NSFC
+  nopss:
+    - 国家社科基金项目数据库
+  ncpssd:
+    - 国家哲学社会科学文献中心
+  nmpa:
+    - 国家药监局
+    - 国家药品监督管理局
+  nhc:
+    - 国家卫健委
+    - 卫健委
+  xuexi:
+    - 学习强国
+  hao:
+    - 优设导航
+  zhihuishu:
+    - 智慧树
+  icourse163:
+    - 中国大学MOOC
+    - 爱课程
+  wenjuanxing:
+    - 问卷星
+  piyao:
+    - 中国互联网联合辟谣平台
+  lawyer_credit:
+    - 全国律师执业诚信信息公示平台
+  jhsjk:
+    - 习近平系列重要讲话数据库
+  mendeley:
+    - Mendeley
+  zotero:
+    - Zotero
+  citespace:
+    - CiteSpace
+  vosviewer:
+    - VOSviewer
+  echarts:
+    - ECharts
+  yuketang:
+    - 雨课堂
+  note:
+    - 有道云笔记
+  weiciyun_alt: []
+  doubao:
+    - 豆包
+  kimi:
+    - Kimi
+  zhipu:
+    - 智谱清言
+    - 清影
+  wenxin:
+    - 文心
+  douyin_creator:
+    - 抖音创作者中心
+  mooc_icourse:
+    - 智慧树
+
+# 明确**不**作为产品级 Gold 的表述（避免把泛称当产品）
+non_products:
+  - 数据库
+  - 平台
+  - 网站
+  - 官网
+  - 该系统
+  - 该平台
+  - 微信
+  - 百度
+  - Excel
+  - Word
+  - PPT
+  - PDF

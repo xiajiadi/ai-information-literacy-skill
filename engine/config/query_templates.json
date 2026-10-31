@@ -1,0 +1,230 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-19",
+  "agent": "FAST Replica",
+  "purpose": "按平台分开的可复制检索式模板。人工交接时直接给 Query，不只给自然语言。",
+  "hard_rule": "不同数据库的语法不可混用。CNKI 的写法不能套到万方、维普、PubMed、IEEE Xplore 或 ScienceDirect 上。",
+  "usage": [
+    "1. 先按题目指定平台选 template_key。",
+    "2. 只替换 parameters 里的占位符，不重写整套表达式。",
+    "3. 若当前页面不支持该语法，立即改用高级检索图形界面，不要硬凑。",
+    "4. verified=false 的条目表示语法取自官方说明或通用规则但本轮未逐条实测。"
+  ],
+  "templates": [
+    {
+      "template_key": "PUBMED",
+      "platform_key": "pubmed",
+      "name": "PubMed 字段限定检索式",
+      "entry": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "pattern": "{TERM}[Title/Abstract] AND {START_YEAR}:{END_YEAR}[dp] NOT {EXCLUDE_TERM}[Title]",
+      "example": "CRISPR[Title/Abstract] AND 2017:2024[dp] NOT therapy[Title]",
+      "parameters": {
+        "TERM": "主题关键词",
+        "START_YEAR": "起始年，如 2017",
+        "END_YEAR": "结束年，如 2024",
+        "EXCLUDE_TERM": "需要排除的词"
+      },
+      "field_tags": ["[Title]", "[Title/Abstract]", "[Author]", "[MeSH Terms]", "[Journal]", "[dp]"],
+      "operators": ["AND", "OR", "NOT"],
+      "phrase": "\"exact phrase\"",
+      "filters": {
+        "Article type": "Clinical Trial",
+        "Text availability": "由题目给出时使用",
+        "Publication date": "由题目给出时使用"
+      },
+      "verified": true,
+      "verification_note": "入口与 Advanced Search 页面本机实测可达（HTTP 200）；字段标记为 PubMed 官方语法。",
+      "notes": "PubMed 的字段标记与截词规则不能套用到 CNKI、万方、维普、ScienceDirect。"
+    },
+    {
+      "template_key": "CNKI",
+      "platform_key": "cnki",
+      "name": "CNKI 检索式（高级检索裸表达式 / 专业检索字段代码）",
+      "entry": "https://kns.cnki.net/starter/advanced",
+      "mode_advanced_search": {
+        "description": "高级检索的检索框内填【裸表达式】，不加字段前缀。",
+        "pattern": "{FIELD1} {OP1} {FIELD2}",
+        "operators": {
+          "*": "与",
+          "+": "或",
+          "-": "非",
+          "()": "英文半角括号确定优先级"
+        },
+        "quote_rule": "检索词含空格或 * + - ( ) / % = 时，须用英文半角单引号或双引号引起。",
+        "max_chars_per_box": 120,
+        "example": "(锻造 + 自由锻) * 裂纹",
+        "example_phrase": "'digital library' * 'information service'"
+      },
+      "mode_professional_search": {
+        "description": "只有【专业检索】才使用字段代码前缀。",
+        "pattern": "({CODE1}='{TERM1}' OR {CODE2}='{TERM2}') AND NOT {CODE3}='{EXCLUDE}'",
+        "example": "(TI='区块链' OR TI='数字货币') AND NOT TI='监管'",
+        "field_codes": {
+          "SU": "主题",
+          "TI": "篇名",
+          "KY": "关键词",
+          "AB": "摘要",
+          "AU": "作者",
+          "FI": "第一作者",
+          "AF": "作者单位",
+          "FT": "全文",
+          "LY": "文献来源"
+        }
+      },
+      "filters": {
+        "匹配方式": "精确 / 模糊",
+        "时间范围": "不限 / 最近一周 / 最近一月 / 最近半年 / 最近一年 / 今年迄今 / 上一年度",
+        "扩展": "中英文扩展 / 同义词扩展 / OA出版 / 网络首发 / 基金文献"
+      },
+      "verified": true,
+      "verification_note": "高级检索页本机浏览器实测可打开（starter/advanced），16 个检索项与运算符规则取自页面官方说明。",
+      "notes": "直连 kns8s/AdvSearch 会跳 blockPuzzle 安全验证，走 starter/advanced。"
+    },
+    {
+      "template_key": "VIP",
+      "platform_key": "vip",
+      "name": "维普检索式",
+      "entry": "https://www.cqvip.com/advancesearch",
+      "pattern": "{FIELD1}={TERM1} {OP} {FIELD2}={TERM2}",
+      "example": "篇名=人工智能 AND 关键词=信息素养",
+      "operators": {
+        "AND": "也可写 and 或 *",
+        "OR": "也可写 or 或 +",
+        "NOT": "也可写 not 或 -"
+      },
+      "operator_rules": [
+        "运算符前后需空格。",
+        "优先级：NOT > AND > OR；括号内优先。",
+        "检索词本身含 AND/OR/NOT/() 时用英文双引号包裹，如 \"C++\"。"
+      ],
+      "fields": ["任意字段", "主题词", "篇关摘", "篇名", "关键词", "摘要", "作者",
+                 "第一作者", "作者单位", "刊名", "中图分类号", "学科分类号", "DOI", "基金"],
+      "match_mode_warning": "维普的【精确】=不做分词、允许前后加内容；【模糊】=允许分词及位置调换。作者/第一作者/导师/刊名/系列分类号/DOI 字段的【精确】=完全命中。这与 CNKI 语义不同。",
+      "filters": {
+        "文献类型": "期刊论文 / 学位论文 / 会议论文 / 专利 / 标准",
+        "时间范围": "开始日期 — 结束日期",
+        "检索扩展": "同义词扩展 / 中英文扩展"
+      },
+      "verified": true,
+      "verification_note": "高级检索页本机浏览器实测可打开；运算符规则取自页面官方检索规则说明。",
+      "notes": "canonical 不带 ?dialog=login。旧入口 qikan.cqvip.com 返回 412，不使用。"
+    },
+    {
+      "template_key": "WANFANG",
+      "platform_key": "wanfang",
+      "name": "万方检索式",
+      "entry": "https://s.wanfangdata.com.cn/paper",
+      "pattern": "({FIELD1}:{TERM1}) {OP} ({FIELD2}:{TERM2})",
+      "example": "(题名:人工智能) AND (关键词:信息素养)",
+      "operators": ["AND", "OR", "NOT"],
+      "fields": ["题名", "关键词", "摘要", "作者", "作者单位", "期刊名称", "日期", "基金"],
+      "filters": {
+        "文献类型": "期刊论文 / 学位论文 / 会议论文 / 标准 / 专利",
+        "排序": "相关度 / 被引量 / 下载量 / 发表时间"
+      },
+      "verified": false,
+      "verification_note": "入口本机实测可达；具体运算符符号以万方当前高级检索界面为准，本轮未逐条实测，不要照抄维普/CNKI 写法。",
+      "notes": "结果数量、作者排名、机构排名优先用结果页已有的分组/筛选/分析，不要逐条数。万方智研是独立路由。"
+    },
+    {
+      "template_key": "IEEE",
+      "platform_key": "ieee",
+      "name": "IEEE Xplore 高级检索",
+      "entry": "https://ieeexplore.ieee.org/search/advanced",
+      "pattern": "(\"{TITLE_PHRASE}\") AND ({AUTHOR})",
+      "example": "\"information literacy\" AND (Zhang)",
+      "fields": ["Document Title", "Author", "Publication Year", "Author Affiliations",
+                 "Publication Title", "Abstract", "Index Terms"],
+      "filters": {
+        "年份": "Publication Year 区间",
+        "结果": "结果页读取 Result Count 与年份筛选"
+      },
+      "verified": false,
+      "verification_note": "高级检索入口本机 HTTP 实测可达；wildcard 语法以当前界面 Help 为准，本轮未实测。",
+      "notes": "IEEE 的 wildcard 语法不得复制到其他平台。"
+    },
+    {
+      "template_key": "WEB_SITE_SEARCH",
+      "platform_key": "_search_engine",
+      "name": "站内限定搜索（只用于找到官方页面）",
+      "entry": "https://cn.bing.com/",
+      "pattern": "site:{DOMAIN} {TERM}",
+      "examples": [
+        "site:gov.cn 托育机构 备案",
+        "site:edu.cn 信息素养 课程",
+        "site:cnki.net 人工智能 伦理",
+        "site:cqvip.com 信息素养",
+        "site:wanfangdata.com.cn 学位论文"
+      ],
+      "parameters": {
+        "DOMAIN": "限定域名",
+        "TERM": "检索词"
+      },
+      "verified": true,
+      "verification_note": "通用搜索引擎语法。",
+      "hard_rule": "搜索结果只用于定位官方页面。打开官方源后再取证据，不得以搜索摘要作为最终证据。"
+    },
+    {
+      "template_key": "FILETYPE_SEARCH",
+      "platform_key": "_search_engine",
+      "name": "文件类型与标题限定搜索",
+      "entry": "https://cn.bing.com/",
+      "pattern": "{TERM} filetype:{EXT}",
+      "examples": [
+        "生成式人工智能 教育与研究应用指南 filetype:pdf",
+        "信息素养 大赛 命题范围 filetype:pdf",
+        "intitle:信息素养 检索"
+      ],
+      "parameters": {
+        "TERM": "检索词",
+        "EXT": "pdf / docx / xlsx / pptx"
+      },
+      "verified": true,
+      "verification_note": "通用搜索引擎语法。",
+      "hard_rule": "找到文件后必须打开原始来源核验，不用缓存页或摘要当证据。"
+    },
+    {
+      "template_key": "MOOC",
+      "platform_key": "icourse163",
+      "name": "中国大学MOOC 课程定位（非检索式）",
+      "entry": "https://www.icourse163.org/search.htm?search={COURSE_NAME}",
+      "pattern": "{COURSE_NAME}",
+      "parameters": {
+        "COURSE_NAME": "课程名称",
+        "SCHOOL": "学校（用于核对，不进检索式）",
+        "TEACHER": "教师（用于核对，不进检索式）"
+      },
+      "steps": [
+        "搜索课程名称",
+        "核对学校与教师，排除同名课程",
+        "打开课程详情（新标签页）",
+        "读 .outline 取章节结构",
+        "定位题目要求的小节/视频/标题"
+      ],
+      "verified": true,
+      "verification_note": "搜索页与课程大纲本机浏览器实测可用；.outline 无需登录即可读取。",
+      "notes": "正式题可能换课程。换课程时流程完全不变，只替换 COURSE_NAME 与章节号。"
+    },
+    {
+      "template_key": "NSFC",
+      "platform_key": "nsfc",
+      "name": "国家自然科学基金结题项目（字段筛选，非检索式）",
+      "entry": "https://kd.nsfc.cn/finalProjectInit",
+      "fields": ["结题年度", "资助类型/项目类型", "申请代码", "依托单位", "负责人"],
+      "verified": true,
+      "verification_note": "入口本机 HTTP 实测可达。",
+      "notes": "不要从首页层层点击找「信息检索」。"
+    },
+    {
+      "template_key": "CNIPA",
+      "platform_key": "cnipa",
+      "name": "专利常规检索",
+      "entry": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+      "priority_fields": ["申请号（优先）", "专利名称（其次）"],
+      "fields": ["申请号", "专利名称", "申请人", "专利类型", "同族", "技术领域", "附图"],
+      "verified": true,
+      "verification_note": "入口本机 HTTP 实测可达。",
+      "notes": "申请号优先于名称，避免同名专利歧义。"
+    }
+  ]
+}

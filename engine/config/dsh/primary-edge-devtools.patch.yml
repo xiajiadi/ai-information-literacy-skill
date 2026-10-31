@@ -1,0 +1,45 @@
+# ===========================================================================
+# DSH MCP overlay — PRIMARY backend: Microsoft Edge + Chrome DevTools MCP
+#
+# 这是「插入新条目」的 patch：DSH 的 profile patch 列表里，按 id 定位的 patch 是
+# 覆盖已有条目，新增条目必须用 `insert:`（见 @deepseek-ai/cordis-plugin-include
+# 的 PatchOptions 定义）。
+#
+# 用法（先干跑校验，不直接改 ~/.dsh/profiles/web/cordis.patch.yml 本体）：
+#     dsh --profile web --dump-config --patch config/dsh/primary-edge-devtools.patch.yml
+#
+# 前提：Edge 必须已开启 Remote Debugging，否则 --autoConnect 会失败。
+#       启用方式：Edge → edge://inspect → 左侧 Remote debugging →
+#       勾选 Allow remote debugging for this browser instance。
+#
+# 不含任何 Cookie / Token / Password / WebSocket secret。
+# ===========================================================================
+- insert:
+    - id: mcp-edge-devtools
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: edge-devtools
+        transport: stdio
+        command: npx
+        args:
+          - '-y'
+          - 'chrome-devtools-mcp@1.10.1'
+          - '--autoConnect'
+          - '--user-data-dir=C:\Users\<user>\AppData\Local\Microsoft\Edge\User Data'
+          - '--no-usage-statistics'
+          # 速度优先：关闭比赛不需要的工具类别（§9）。
+          # 保留 input / navigation / debugging / network —— 即 snapshot、click、
+          # fill、JavaScript 求值、Network 读取。
+          - '--no-category-performance'
+          - '--no-category-memory'
+          - '--no-category-emulation'
+          # 比赛面隔离第二道防线：命中即静默 detach，不会读到比赛页 DOM（§2/§11）。
+          - '--blockedUrlPattern=*://*.xxsuyang.com/*'
+          - '--blockedUrlPattern=*://xxsuyang.com/*'
+        toolCallTimeoutMs: 15000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+          initialDelayMs: 500
+          maxDelayMs: 30000
+          maxAttempts: 3

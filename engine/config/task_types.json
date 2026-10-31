@@ -1,0 +1,268 @@
+{
+  "schema_version": "2.0",
+  "generated_at": "2026-10-08",
+  "agent": "Provincial Elimination Executor",
+  "purpose": "任务类型识别。旧中心是「这题像哪道旧题」，新中心是「这题要求做什么动作」。",
+  "hard_rule": "识别任务类型只用于选择方法与平台，不产生任何答案。答案必须来自外部核验。",
+  "scoring": {
+    "model": "加权信号：意图短语(intent_phrases, 高权) > 对象名词(signals, 低权)",
+    "why": "PHASE 2 离线验收发现：只按命中字符数计分时，「共有多少篇期刊论文」里的对象名词(作者/论文)会压过疑问短语(共有/多少)，把 GET_VALUE 误判成 GET_LIST。而「共有多少」正是本赛事最高频的取证形态。",
+    "intent_weight": 4,
+    "signal_weight": 1,
+    "tie_break": "detection_order（强约束动作优先）"
+  },
+  "detection_order": [
+    "CALCULATION",
+    "RULE_REASONING",
+    "TOOL_UI",
+    "COMPARE",
+    "EXISTS",
+    "GET_FIELD",
+    "GET_LIST",
+    "GET_VALUE"
+  ],
+  "detection_note": "按 intent_phrases 与 signals 加权计分；同分时按 detection_order 决定（强约束动作优先）。全部为 0 时 task_type=UNKNOWN 并降置信度。",
+  "task_types": [
+    {
+      "id": "GET_VALUE",
+      "name_zh": "取一个值",
+      "definition": "从官方页面或数据库读出一个标量：数量、年份、排名、日期、页数、指数、次数、分值、编号。",
+      "intent_phrases": [
+        "共有", "多少", "总共", "合计", "总数", "数量是", "几条", "几篇", "几个",
+        "第几", "排名第", "位列第", "排第", "前几名", "前N名",
+        "哪一年", "几年", "是什么年份", "发布于", "截止日期", "生效日期",
+        "第几页", "页码", "多少字", "字符数", "页数",
+        "指数是", "得分", "占比", "百分比", "多少次", "出现次数"
+      ],
+      "signals": ["数量", "结果数", "篇数", "条数", "年份", "日期", "排名", "榜单", "统计值"],
+      "typical_module_ranges": [[8, 16], [21, 30], [31, 37]],
+      "required_fields": ["platform", "query", "filters", "time_constraint", "result_location"],
+      "expected_output": "单个标量 + 访问日期",
+      "result_location_hint": "结果总数标签 / 详情页字段 / 统计页指标，不要逐条数",
+      "evidence_floor": "SECONDARY",
+      "upgrade_to_primary_requires": "页面为题目指定平台或官方来源，且已实测读到该值",
+      "anti_patterns": [
+        "把结果页分面数字之和当成结果总数（这是筛选未生效的信号）",
+        "把默认日期下的空值当成 0",
+        "把模糊检索结果数当成精确检索结果数"
+      ],
+      "recipe_hint": "先设条件再检索；数字类结论必须同时记录平台、检索式、筛选、访问时间。"
+    },
+    {
+      "id": "GET_LIST",
+      "name_zh": "取一组对象",
+      "definition": "获取一个有序或无序的集合：作者、机构、论文、岗位、栏目、功能、关键词、委托单位。",
+      "intent_phrases": [
+        "有哪些", "哪些", "哪些人", "哪几", "列出", "列举", "分别有",
+        "包括哪些", "包含哪些", "包含哪几", "以下哪些属于", "属于以下",
+        "名单", "清单", "目录包括"
+      ],
+      "signals": [
+        "作者", "机构", "单位", "团队", "成员", "论文", "文献", "专利", "项目",
+        "栏目", "分类", "岗位", "职位", "关键词", "主题词", "功能", "服务内容"
+      ],
+      "typical_module_ranges": [[17, 25], [38, 41], [46, 50]],
+      "required_fields": ["platform", "query", "filters", "result_location", "ordering"],
+      "expected_output": "集合 + 顺序口径 + 截断规则",
+      "result_location_hint": "详情页作者列表 / 结果页分组 / 目录结构；注意默认排序与是否截断",
+      "evidence_floor": "SECONDARY",
+      "upgrade_to_primary_requires": "官方页面一次看全，或原始 PDF/详情页",
+      "anti_patterns": [
+        "只看前 N 条就当成完整名单",
+        "把「相关作者」当成「作者」",
+        "忽略机构署名顺序与第一单位口径差异"
+      ],
+      "recipe_hint": "优先找「一页看全」的视图（分组、详情页、目录），不要逐页翻。"
+    },
+    {
+      "id": "GET_FIELD",
+      "name_zh": "核对一个字段",
+      "definition": "核对某个对象的单个属性值：学科专业、状态、负责人、文献类型、批准号、刊号、索书号、ISBN/DOI。",
+      "intent_phrases": [
+        "学科专业是", "学科门类是", "状态是", "是否现行", "是否为作废",
+        "负责人是", "主持人是谁", "文献类型是", "文献类型标识为",
+        "批准号是", "刊号是", "索书号是", "DOI是", "ISBN是",
+        "对应的字段", "该字段的值", "填写的字母是"
+      ],
+      "signals": [
+        "学科专业", "学科门类", "专业名称", "状态", "作废", "废止",
+        "负责人", "主持人", "第一作者", "通讯作者",
+        "文献类型", "载体类型", "批准号", "刊号", "CN号", "ISSN", "ISBN",
+        "DOI", "索书号", "分类号", "中图分类号"
+      ],
+      "typical_module_ranges": [[26, 30], [42, 45]],
+      "required_fields": ["platform", "object_identifier", "target_field", "detail_page"],
+      "expected_output": "字段名 + 字段值 + 所在页面层级",
+      "result_location_hint": "必须进详情页；结果页左侧的相近字段名往往是另一回事",
+      "evidence_floor": "VERIFIED_PRIMARY",
+      "upgrade_to_primary_requires": "已进入详情页读到该字段；仅凭结果页分面不足",
+      "anti_patterns": [
+        "把结果页的专辑分类当成学位论文的学科专业",
+        "把「状态」当成「有效性」的同义词",
+        "字段在界面上不存在却硬试（如维普高级检索没有「导师」字段）"
+      ],
+      "recipe_hint": "区分「结果页分面」与「详情页字段」；字段缺失时直接换路径，不要硬凑。"
+    },
+    {
+      "id": "EXISTS",
+      "name_zh": "判断存在性",
+      "definition": "判断某功能、栏目、条目、选项、入口、文件是否存在。",
+      "intent_phrases": [
+        "是否存在", "有没有", "是否提供", "是否支持", "能否",
+        "是否包含", "是否属于", "是否在", "是否可",
+        "以下说法正确", "以下说法错误", "不包含以下", "不属于",
+        "不支持", "不包括", "是否具备"
+      ],
+      "signals": [
+        "功能", "栏目", "入口", "菜单", "选项", "条目", "文件", "页面",
+        "服务", "板块", "专题", "模块"
+      ],
+      "typical_module_ranges": [[1, 7], [17, 20], [38, 41]],
+      "required_fields": ["platform", "target_object", "surface", "observed_at"],
+      "expected_output": "存在 / 不存在 + 观察时间 + 观察界面",
+      "result_location_hint": "菜单、栏目、功能入口、选项列表；界面会变，必须记日期",
+      "evidence_floor": "SECONDARY",
+      "upgrade_to_primary_requires": "题目指定平台的当前界面实测",
+      "anti_patterns": [
+        "用搜索结果摘要证明「页面存在某栏目」",
+        "用历史记忆代替当前界面（功能会改版）",
+        "把「需要登录才能看到」误判为「不存在」"
+      ],
+      "recipe_hint": "存在性题对界面改版最敏感；证据必须带 observed_at。"
+    },
+    {
+      "id": "COMPARE",
+      "name_zh": "比较两个值",
+      "definition": "比较大小、多少、高低、先后：哪个更多、哪个更高、前 N 名、时间先后、是否一致。",
+      "intent_phrases": [
+        "哪个更", "哪个多", "哪个高", "更多的是", "更少的是",
+        "更多", "更少", "更高", "更低",
+        "最多", "最少", "最高", "最低", "最大", "最小",
+        "排名前", "前N名",
+        "相比", "比较", "高于", "低于", "多于", "少于", "大于", "小于",
+        "更早", "更晚", "时间先后", "是否一致", "是否相同", "差异",
+        "超过"
+      ],
+      "signals": ["排序", "对比", "差距", "比值", "排名顺序"],
+      "typical_module_ranges": [[8, 16], [21, 37]],
+      "required_fields": ["platform", "query_a", "query_b", "comparison_axis", "time_constraint"],
+      "expected_output": "比较结论 + 两侧各自的量化值 + 口径",
+      "result_location_hint": "两侧必须用同一平台、同一筛选口径、同一时间窗读取",
+      "evidence_floor": "SECONDARY",
+      "upgrade_to_primary_requires": "两侧都在官方源以同口径实测",
+      "anti_patterns": [
+        "两侧用了不同检索式或不同筛选条件",
+        "用运算符语义不同的平台做同构比较（CNKI `*`=与、`+`=或）",
+        "忽略默认排序差异"
+      ],
+      "recipe_hint": "比较题的最大陷阱是口径不一致；先固定口径，再读两次数。"
+    },
+    {
+      "id": "RULE_REASONING",
+      "name_zh": "规则/规范推理",
+      "definition": "依据标准、法规、学术规范、检索语法或函数定义做推理判断。",
+      "intent_phrases": [
+        "GB/T", "国家标准规定", "行业标准规定", "标准规定", "规范要求",
+        "法规规定", "办法规定", "依据条文", "根据规定",
+        "学术不端", "学术规范", "著录格式", "引用格式",
+        "检索语法", "布尔逻辑", "运算符", "截词", "通配符", "字段代码",
+        "代表什么", "含义是", "标识为", "下列哪些行为属于"
+      ],
+      "signals": [
+        "标准", "法规", "规范", "条文", "条款", "著录", "文献类型标识",
+        "函数", "公式", "语法", "表达式", "快捷键"
+      ],
+      "typical_module_ranges": [[1, 7], [31, 45]],
+      "required_fields": ["authority_document", "clause_or_page", "applied_rule"],
+      "expected_output": "规则条文 + 出处（标准号/页码/条款） + 适用结论",
+      "result_location_hint": "标准正文 / 法规原文 / 官方帮助页；优先原始文件而非二手解读",
+      "evidence_floor": "VERIFIED_PRIMARY",
+      "upgrade_to_primary_requires": "读到标准或法规原文对应条款",
+      "anti_patterns": [
+        "凭印象给标准编号含义（如 GB/T 7714 的 M/C/J/D）",
+        "把某平台的检索语法套到另一平台",
+        "扫描件 PDF 无文字层却声称已读到正文"
+      ],
+      "recipe_hint": "此类题常常可以离线直接判断；离线判断必须标 MODEL_REASONING 而非官方。"
+    },
+    {
+      "id": "TOOL_UI",
+      "name_zh": "软件或网页当前界面功能",
+      "definition": "判断 AI 工具、Office、浏览器插件、网页菜单当前版本是否具备某功能，或功能在哪里。",
+      "intent_phrases": [
+        "点击后", "按钮的功能是", "功能包括", "功能不包括",
+        "快捷键", "插件", "客户端", "网页版中", "该功能"
+      ],
+      "signals": [
+        "菜单", "菜单中", "下拉菜单中", "选项卡", "选项卡中", "按钮", "工具栏",
+        "功能区", "扩展", "版本", "界面", "界面中", "入口", "设置项",
+        "AI工具", "大模型", "豆包", "Kimi", "智谱", "通义", "文心", "讯飞"
+      ],
+      "location_note": "「菜单中 / 下拉菜单中 / 界面中 / 工具栏」是**位置描述**不是动作意图，因此放在 signals（低权）。否则「在资源服务下拉菜单中一共有多少个入口」会被误判成 TOOL_UI，而它问的是数量（GET_VALUE）。",
+      "intent_patterns": [
+        "(?:ctrl|alt|shift|cmd|win)\\s*\\+\\s*[a-z0-9]",
+        "\\bF(?:[1-9]|1[0-2])\\b"
+      ],
+      "intent_patterns_note": "键盘快捷键在题干里通常写成 Ctrl+Shift+O，**不会**出现「快捷键」三个字。实测「输入Ctrl+Shift+O时会呈现什么内容」在纯词表模型下得 0 分被判 UNKNOWN，因此补正则意图。",
+      "typical_module_ranges": [[1, 7], [17, 20], [38, 41]],
+      "required_fields": ["product", "version_or_surface", "observed_ui_path", "observed_at"],
+      "expected_output": "功能存在性/位置 + 版本 + 观察日期",
+      "result_location_hint": "官方产品页、更新日志、帮助中心；界面截图需目视",
+      "evidence_floor": "SECONDARY",
+      "upgrade_to_primary_requires": "官方帮助文档或实测界面",
+      "anti_patterns": [
+        "依赖模型对旧版本界面的记忆",
+        "把「官网宣传页提到」当成「当前版本有该菜单」",
+        "需要登录才能看到的界面被当成已确认"
+      ],
+      "recipe_hint": "界面功能变化快，未实测时必须降低置信度并标注版本未知。"
+    },
+    {
+      "id": "CALCULATION",
+      "name_zh": "需要计算",
+      "definition": "需要做算术、Excel 函数、指数、加总、比例、增长率等运算才能得到答案。",
+      "intent_phrases": [
+        "计算", "求和", "加总", "合计得出", "平均值", "约为多少",
+        "增长率", "同比", "环比", "增幅", "占比是多少",
+        "用函数", "公式计算", "换算", "单位换算"
+      ],
+      "signals": [
+        "Excel", "函数", "公式", "透视表", "指数", "复合", "比例", "合计"
+      ],
+      "typical_module_ranges": [[8, 16], [38, 45]],
+      "required_fields": ["inputs", "formula_or_function", "unit", "rounding_rule"],
+      "expected_output": "计算过程 + 结果 + 口径与舍入",
+      "result_location_hint": "原始数据 + 明确的公式定义；不要在页面上找一个现成的数",
+      "evidence_floor": "MODEL_REASONING",
+      "upgrade_to_primary_requires": "输入数据来自官方源，且公式来自官方定义",
+      "anti_patterns": [
+        "输入数据来自旁证却把计算结果标成官方",
+        "忽略单位与舍入规则",
+        "把页面已有的现成指标当成需要自己计算的指标"
+      ],
+      "recipe_hint": "计算题的证据等级取决于输入数据的等级，而不是计算本身的确定性。"
+    }
+  ],
+  "legacy_template_bridge": {
+    "note": "旧 skill/answer_patterns.md 的 A–N 模板是任务类型的近似前身。此映射只用于复用旧配方，不构成答案复用",
+    "A 平台菜单/功能": "TOOL_UI",
+    "B 高级检索结果数量": "GET_VALUE",
+    "C 作者/机构/年份筛选": "GET_LIST",
+    "D PDF 页码/字符": "GET_VALUE",
+    "E 论文元数据": "GET_FIELD",
+    "F 当前统计/排名": "GET_VALUE",
+    "G 视频前 10 秒/时长": "GET_VALUE",
+    "H App/微信功能": "EXISTS",
+    "I 办公快捷键/函数": "TOOL_UI",
+    "J 检索语法": "RULE_REASONING",
+    "K AI 产品当前功能": "TOOL_UI",
+    "L 标准/专利/药品/资格": "GET_FIELD",
+    "M 馆藏/古籍/课程章节": "GET_LIST",
+    "N 多选逐项 UI": "EXISTS"
+  },
+  "multi_select_handling": {
+    "rule": "多选题必须逐项判定，然后估计「整个选项组合完全正确」的联合概率。",
+    "forbidden": "不得由 A、C 的单项概率推断 AC 的整体概率；不得用 min() 或乘积冒充整体概率。",
+    "required_output": "候选组合 + 整体 P + 次选组合 + 整体 P"
+  }
+}

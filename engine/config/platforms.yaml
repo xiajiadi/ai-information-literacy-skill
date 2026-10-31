@@ -1,0 +1,176 @@
+version: 1
+platforms:
+  - id: competition_training
+    name: "大赛训练入口"
+    url: "https://csc.xxsuyang.com/training"
+    login: "required_or_redirected"
+    route: "参赛指南 → 学生报名入口；访问受限时停止"
+    automation: "仅可检查公开跳转状态；不自动登录"
+  - id: public_knowledge
+    name: "公开知识模块"
+    url: "https://jsgateway.zhixinst.com/SCC/Website/GetKnowledgeList?kind=csc2025"
+    login: "not_required_for_current_snapshot"
+    route: "读取模块标题、具体要求、学习指导、样题、答案和解析"
+    automation: "可用 HTTP 或浏览器读取公开内容"
+  - id: cnki
+    name: "中国知网"
+    url: "https://www.cnki.net"
+    login: "题目和开放权限决定"
+    route: "首页或高级检索 → 文献类型 → 检索点 → 筛选 → 结果分析/全文"
+    automation: "公开页面可辅助；登录、验证码和校园认证转人工"
+  - id: wanfang
+    name: "万方数据"
+    url: "https://www.wanfangdata.com.cn"
+    login: "题目和开放权限决定"
+    route: "高级检索 → 文献类型 → 字段和年份 → 结果筛选/分析"
+    automation: "受访问权限、验证码和动态页面影响"
+  - id: pubmed
+    name: "PubMed"
+    url: "https://pubmed.ncbi.nlm.nih.gov"
+    login: "检索公开；订阅需账号"
+    route: "检索结果 → Create RSS 或 Create alert"
+    automation: "公开检索可辅助，订阅动作需人工确认"
+  - id: github
+    name: "GitHub"
+    url: "https://github.com"
+    login: "公开项目通常不需要"
+    route: "项目 → README → License → Release → 更新时间和作者"
+    automation: "公开项目可浏览器辅助"
+  - id: modelscope
+    name: "魔搭社区 ModelScope"
+    url: "https://modelscope.cn"
+    login: "题目和下载权限决定"
+    route: "模型/数据集 → README 或模型卡 → 数据字段和许可证"
+    automation: "公开页面可辅助；下载和账号权限单独记录"
+  - id: national_statistics
+    name: "国家统计局"
+    url: "https://www.stats.gov.cn"
+    login: "通常不需要"
+    route: "统计数据 → 数据查询 → 指标、地区和年份"
+    automation: "公开查询可辅助；结果口径必须保存"
+  - id: cnipa
+    name: "国家知识产权局"
+    url: "https://www.cnipa.gov.cn"
+    login: "题目和页面决定"
+    route: "专利/商标/地理标志查询 → 号段或名称 → 原文详情"
+    automation: "动态或受限页面转人工"
+  - id: standard_open
+    name: "国家标准全文公开系统"
+    url: "https://openstd.samr.gov.cn"
+    login: "通常不需要"
+    route: "标准号或名称 → 标准正文 → 页码、起草单位和实施信息"
+    automation: "公开页面可辅助"
+  - id: arxiv
+    name: "arXiv"
+    url: "https://arxiv.org"
+    login: "通常不需要"
+    route: "identifier 或检索 → Abstract → PDF/HTML 全文"
+    automation: "公开页面可辅助"
+  - id: nppa
+    name: "国家新闻出版署期刊查询"
+    url: "https://www.nppa.gov.cn/bsfw/cyjghcpcx"
+    login: "通常不需要"
+    route: "期刊名称或刊号 → 主办/出版信息 → 记录结果"
+    automation: "公开页面可辅助"
+
+  # ------------------------------------------------------------------
+  # 用户补充的高频平台（2026-09-19）
+  #
+  # route_type 取值：HOME / ADVANCED_SEARCH / DATABASE_ENTRY / DEEP_LINK /
+  # QUERY_RECIPE / LOGIN_DASHBOARD。题目属于某平台时按 route_type 直接
+  # 选入口，不要先走搜索引擎。
+  # prefer_edge：优先通过用户现有 Microsoft Edge 打开（多数依赖登录态）。
+  # 逐题 URL 配方以 config/official_urls.json 为准，本表只记总路线。
+  # ------------------------------------------------------------------
+
+  - id: ieee_xplore
+    name: "IEEE Xplore"
+    url: "https://ieeexplore.ieee.org/search/advanced"
+    route_type: "ADVANCED_SEARCH"
+    login: "题目和开放权限决定"
+    route: "高级检索 → Document Title / Author / Publication Year → 结果数量与年份筛选"
+    automation: "公开页面可辅助；截词规则不与 PubMed/ScienceDirect 通用"
+
+  - id: nsfc
+    name: "国家自然科学基金"
+    url: "https://kd.nsfc.cn/finalProjectInit"
+    route_key: "NSFC_FINAL_PROJECT"
+    route_type: "DATABASE_ENTRY"
+    login: "通常不需要"
+    route: "结题项目入口 → 结题年度/项目类型/申请代码 → 依托单位/负责人 → 项目列表"
+    automation: "公开查询可辅助"
+    note: "不要从 kd.nsfc.cn 首页重新寻找「信息检索」再进结题项目。"
+
+  - id: ncpssd
+    name: "国家哲学社会科学文献中心"
+    url: "https://www.ncpssd.org/index"
+    route_key: "NCPSD_MAIN"
+    route_type: "HOME"
+    login: "通常不需要"
+    route: "首页 → 期刊/集刊 → CSSCI 来源等筛选 → 记录字段"
+    automation: "公开页面可辅助"
+
+  - id: vip
+    name: "维普"
+    url: "https://www.cqvip.com/advancesearch"
+    route_key: "VIP_MAIN"
+    route_type: "ADVANCED_SEARCH"
+    login: "题目和开放权限决定"
+    prefer_edge: true
+    route: "高级检索 → 检索项/模糊精确 → AND/OR/NOT → 文献类型与时间范围 → 结果数量与左侧分组"
+    automation: "公开页面可辅助；旧入口 qikan.cqvip.com 返回 412，不要使用"
+
+  - id: wanfang_zhiyan
+    name: "万方智研"
+    url: "https://zhiyan.wanfangdata.com.cn/"
+    route_key: "WANFANG_ZHIYAN"
+    route_type: "HOME"
+    login: "依赖登录态"
+    prefer_edge: true
+    route: "智研首页 → 订阅/期刊订阅/学科订阅 → 排序与被引量 → 页面字段"
+    automation: "与万方主站并列的独立路由，不要从主站找入口"
+
+  - id: leapspace
+    name: "LeapSpace"
+    url: "https://www.sciencedirect.com/leapspace"
+    route_key: "LEAPSPACE"
+    route_type: "DEEP_LINK"
+    login: "题目和开放权限决定"
+    route: "LeapSpace → Trust Card / Claim Radar / Deep Research / Writing Coach"
+    automation: "公开页面可辅助；canonical 不带 utm_* 追踪参数"
+
+  - id: wenjuanxing
+    name: "问卷星"
+    url: "https://www.wjx.cn/newwjx/manage/myquestionnaires.aspx"
+    route_type: "LOGIN_DASHBOARD"
+    login: "必需"
+    prefer_edge: true
+    manual_only: true
+    route: "通过用户已登录 Edge → 我的问卷 → 问卷设置/提交答卷控制/AI创建 → 记录字段"
+    automation: "依赖登录态；canonical 不含 randomt 参数"
+
+  - id: douyin_creator
+    name: "抖音创作者中心"
+    url: "https://creator.douyin.com/creator-micro/creator-count/arithmetic-index"
+    route_type: "LOGIN_DASHBOARD"
+    login: "必需"
+    prefer_edge: true
+    manual_only: true
+    route: "已登录 Edge → 创作者中心 → 指数/创作者数据 → 指标与时间范围"
+    automation: "出现二维码/扫码/手机确认立即转人工，不尝试绕过"
+
+  - id: icourse163
+    name: "中国大学MOOC"
+    url: "https://www.icourse163.org/search.htm"
+    route_type: "ADVANCED_SEARCH"
+    login: "公开页通常不需要"
+    route: "搜索课程 → 核对学校与教师 → 打开课程页 → 读 .outline 章节结构"
+    automation: "课程大纲无需登录即可读取；同名课程必须按学校+教师核对"
+
+  - id: unesco_digital_library
+    name: "UNESCO Digital Library"
+    url: "https://unesdoc.unesco.org/"
+    route_type: "HOME"
+    login: "公开页通常不需要"
+    route: "ARK 落地页 → PDF 查看器；注意区分 PDF 页码与正文页码"
+    automation: "SPA，需浏览器渲染；PDF 无法脱离浏览器直取（直链返回 HTML、下载端点 403）"

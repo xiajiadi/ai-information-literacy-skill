@@ -1,0 +1,207 @@
+# 平台名称别名 overlay（人工策展）
+#
+# 为什么需要这个文件：
+#   `config/platform_capabilities.json` 由 `build_platform_capabilities.py`
+#   自动生成，把**遇到的每个 URL 主机**都当成了一个平台条目，并把主机名
+#   直接写进 `name` 字段。实测 128 个条目里有 **105 个的 name 是主机名**
+#   （如 `aistudio` 的 name 是 `aistudio.baidu.com`，`nhc` 的 name 是
+#   `nhc.gov.cn`）。
+#
+#   后果：按「题干里出现的平台名」做识别时，82% 的平台根本没有可用名称，
+#   只能靠少数几个正常条目。这是 PHASE 2 平台路由准确率偏低的首要原因。
+#
+# 本文件用**题干里真实会出现的写法**（中文名、英文名、常见简称）映射到
+# 已存在的 platform_key，优先级高于自动生成的名字。
+#
+# 规则：
+#   - 只映射到 `platform_capabilities.json` 里**已存在**的 key；
+#   - 别名必须是**有区分度**的（避免「百度」这种会同时命中多个平台的词，
+#     除非确实要映射到某一个）；
+#   - 不在这里编造新平台；缺失的平台记在 `missing_platforms` 里供 Controller 决策。
+
+schema_version: 1
+generated_at: "2026-10-08"
+agent: "Provincial Elimination Executor"
+
+aliases:
+  cnki:
+    - CNKI
+    - 中国知网
+    - 知网
+    - CNKI中国知网
+    - 中国学术期刊网络出版总库
+  wanfang:
+    - 万方
+    - 万方数据
+    - 万方数据库
+    - 万方数据知识服务平台
+    - 万方数据知识服务平台（简称：万方或万方数据库）
+  vip:
+    - 维普
+    - 维普网
+    - 维普期刊
+    - 维普资讯
+  sciencedirect:
+    - ScienceDirect
+    - sciencedirect
+    - 爱思唯尔
+    - Elsevier
+  pubmed:
+    - PubMed
+    - pubmed
+    - 美国国立医学图书馆
+  ieee:
+    - IEEE
+    - IEEE Xplore
+    - IEEE会议
+  cnipa:
+    - CNIPA
+    - 国家知识产权局
+    - 中国专利公布公告
+    - 专利公布公告
+    - 专利检索及分析
+    - 中国专利公布公告系统
+  patentscope2:
+    - PATENTSCOPE
+    - WIPO
+    - 世界知识产权组织
+  standards:
+    - 国家标准全文公开系统
+    - 国家标准
+    - 全国标准信息公共服务平台
+    - 标准全文公开
+    - 国家标准化管理委员会
+  stats:
+    - 国家统计局
+    - 国家数据
+    - 统计局
+  nsfc:
+    - 国家自然科学基金
+    - NSFC
+    - 国家自然科学基金大数据知识管理服务门户
+    - 科学基金共享服务网
+  ncpssd:
+    # 注意：「国家社科基金项目数据库」**不是**国家哲学社会科学文献中心，
+    # 二者归属不同，因此那组别名放在 platform_backfill.yaml 的 `nopss` 下，
+    # 避免同一别名指向两个平台。
+    - 国家哲学社会科学文献中心
+    - 哲学社会科学文献中心
+  nlc:
+    - 国家图书馆
+    - 中国国家图书馆
+    - 国图
+    - 文津搜索
+  unesco:
+    - UNESCO
+    - UNESCO Digital Library
+    - 联合国教科文组织
+  arxiv:
+    - arXiv
+    - arxiv
+    - 预印本
+  icourse163:
+    - 中国大学MOOC
+    - 爱课程
+    - icourse163
+    - 中国大学MOOC_优质在线课程学习平台
+  wenjuanxing:
+    - 问卷星
+  nmpa:
+    - 国家药监局
+    - 国家药品监督管理局
+    - 药监局
+    - 药品批准文号
+  nhc:
+    - 国家卫健委
+    - 卫健委
+    - 国家卫生健康委员会
+  aistudio:
+    - 百度AI Studio
+    - AI Studio
+    - 飞桨
+    - PaddlePaddle
+  baidu-index:
+    - 百度指数
+    - 微信指数
+    - 抖音指数
+  douyin_creator:
+    - 抖音创作者中心
+  modelscope:
+    - ModelScope
+    - 魔搭
+    - 魔搭社区
+  github:
+    - GitHub
+    - Github
+    - github
+  docs:
+    - GitHub Docs
+  unesco_extra: []
+  hao:
+    - 优设导航
+    - 优设
+  xuexi:
+    - 学习强国
+    - 共产党员网
+  note:
+    - 有道云笔记
+  gov:
+    - 中国政府网
+    - 国务院
+  mp:
+    - 微信公众号
+    - 微信公众平台
+  zxgk:
+    - 中国执行信息公开网
+    - 执行信息公开网
+
+# 交接题库/正式导航点名、但 capabilities 里**没有**对应条目的平台。
+# 不是本次可修的范围，列出供 Controller 决定是否补建。
+missing_platforms:
+  - 阿里云开发者社区
+  - 讯飞AI大学堂
+  - 华为云开发者学堂
+  - 豆包
+  - 智谱清言
+  - 通义千问
+  - Kimi
+  - 文心一言
+  - 讯飞星火
+  - 国家法律法规数据库
+  - 中国法律知识资源总库
+  - 学信网
+  - 研招网
+  - 中国教育考试网
+  - 习近平系列重要讲话数据库
+  - 国家反诈中心
+  - 中国互联网联合辟谣平台
+  - 搜狗图片
+  - 百度图片
+  - 腾讯文档
+  - WPS
+  - Zotero
+  - Mendeley
+  - ECharts
+  - CiteSpace
+  - VOSviewer
+  - 赛特新思
+  - 微词云
+  - 百度学术
+  - PubScholar
+  - DOAJ
+  - OALib
+  - Cambridge Core
+  - Oxford Academic
+  - NCBI Bookshelf
+  - 国家科技图书文献中心
+  - NSTL
+  - Wiley
+  - Taylor & Francis
+  - ACM
+  - USPTO
+  - 国家网信办
+  - 全国网安标委
+  - 优设导航（行业视野）
+  - 中国裁判文书网
+  - 全国律师执业诚信信息公示平台
+  - 国家企业信用信息公示系统
